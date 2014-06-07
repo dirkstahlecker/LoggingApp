@@ -1,5 +1,6 @@
 package model;
 
+import java.applet.AudioClip;
 import java.io.File;
 import java.io.IOException;
 import java.util.Timer;
@@ -25,56 +26,60 @@ public class AudioTesting implements LineListener {
 
 	boolean playCompleted;
 	String pause = "";
+	Clip audioClip;
+	
+	public void setupAudio(File audioFile) {
+		AudioInputStream audioStream;
+		try {
+			audioStream = AudioSystem.getAudioInputStream(audioFile);
+
+			AudioFormat format = audioStream.getFormat();
+			DataLine.Info info = new DataLine.Info(Clip.class, format);
+
+			audioClip = (Clip) AudioSystem.getLine(info);
+			audioClip.addLineListener(this);
+			audioClip.open(audioStream);
+			
+		} catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedAudioFileException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 
 	/**
 	 * Play a given audio file.
 	 * @param audioFilePath Path of the audio file.
 	 */
-	void play(String audioFilePath) {
-		File audioFile = new File(audioFilePath);
-		Timer timer = new Timer();
-		timer.schedule(new AudioPause(), 2000);
-		timer.schedule(new AudioResume(), 4000);
-
-		try {
-			AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-			AudioFormat format = audioStream.getFormat();
-			DataLine.Info info = new DataLine.Info(Clip.class, format);
-
-			Clip audioClip = (Clip) AudioSystem.getLine(info);
-			audioClip.addLineListener(this);
-			audioClip.open(audioStream);
-			audioClip.start();
-
-			while (!playCompleted) {
-				if (pause.equals("pause")) {
-					audioClip.stop();
-				}
-				else if (pause.equals("resume")) {
-					audioClip.start();
-				}
-				else {
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException ex) {
-						ex.printStackTrace();
-					}
+	public void play() {
+		audioClip.start();
+		
+		while (!playCompleted) {
+			if (pause.equals("pause")) {
+				audioClip.stop();
+			}
+			else if (pause.equals("resume")) {
+				audioClip.start();
+			}
+			else {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException ex) {
+					ex.printStackTrace();
 				}
 			}
-
-			audioClip.close();
-
-		} catch (UnsupportedAudioFileException ex) {
-			System.out.println("The specified audio file is not supported.");
-			ex.printStackTrace();
-		} catch (LineUnavailableException ex) {
-			System.out.println("Audio line for playing back is unavailable.");
-			ex.printStackTrace();
-		} catch (IOException ex) {
-			System.out.println("Error playing the audio file.");
-			ex.printStackTrace();
 		}
 
+		audioClip.close();
+	}
+	
+	public void pause() {
+		audioClip.stop();
 	}
 
 	/**
@@ -88,20 +93,20 @@ public class AudioTesting implements LineListener {
 			System.out.println("Playback started.");
 
 		} else if (type == LineEvent.Type.STOP) {
-			//playCompleted = true;
+			playCompleted = true;
 			System.out.println("Playback completed.");
 		}
 
 	}
 	
-	private class AudioPause extends TimerTask{
+	private class AudioPause extends TimerTask {
 		@Override
 		public void run() {
 			pause = "pause";
 		}
 	}
 	
-	private class AudioResume extends TimerTask{
+	private class AudioResume extends TimerTask {
 		@Override
 		public void run() {
 			pause = "resume";
@@ -110,7 +115,18 @@ public class AudioTesting implements LineListener {
 
 	public static void main(String[] args) {
 		String audioFilePath = "/Users/Dirk/Desktop/Takeoff1.wav";
+		File audioFile = new File(audioFilePath);
 		AudioTesting player = new AudioTesting();
-		player.play(audioFilePath);
+		player.setupAudio(audioFile);
+		player.play();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("has paused");
+		player.pause();
+
 	}
 }

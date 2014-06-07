@@ -40,6 +40,7 @@ public class SoundPlayer implements LineListener {
 
 			audioClip = (Clip) AudioSystem.getLine(info);
 			audioClip.addLineListener(this);
+			audioClip.open(audioStream);
 
 		} catch (UnsupportedAudioFileException ex) {
 			System.out.println("The specified audio file is not supported.");
