@@ -21,8 +21,19 @@ public class DisplayBox extends JPanel {
 	
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
+        //fillWindow(g2);
+        paintText(g2);
+
+    }
+    
+    private void fillWindow(Graphics2D g) {
         g.setColor(Color.YELLOW);
         g.fillRect(0,  0,  getWidth(), getHeight());
+    }
+    
+    private void paintText(Graphics2D g) {
+    	g.setColor(Color.BLACK);
+    	g.drawString("Testing", 100, 100);
     }
 
 }

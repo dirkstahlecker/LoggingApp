@@ -119,14 +119,6 @@ public class AudioTesting implements LineListener {
 		AudioTesting player = new AudioTesting();
 		player.setupAudio(audioFile);
 		player.play();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("has paused");
-		player.pause();
 
 	}
 }
