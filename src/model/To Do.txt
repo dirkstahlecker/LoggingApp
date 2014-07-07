@@ -4,6 +4,12 @@ Features to add:
 -volume control
 -timestamp when started typing
 -fastforward/rewind
+-Remove comments
+-Output comments to a nice format
 
 Bugs to fix:
--null pointer is playpause is clicked without loading a file
+-Size of fastforward and rewind buttons is too big
+-
+
+Problems to consider:
+-holding focus when typing

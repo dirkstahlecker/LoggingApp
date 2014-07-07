@@ -70,20 +70,16 @@ public class SoundPlayer implements Runnable, LineListener {
 			timeStamp.setText("     0:00 / " + (double)Math.round(length * 1000) / 1000);
 			isPaused = true;
 			
-			
-			FloatControl volume = (FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN);
+			//FloatControl volume = (FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN);
 			//volume.setValue(-20);
 			
 			System.out.println("Player configured");
 			
 		} catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedAudioFileException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
@@ -91,21 +87,36 @@ public class SoundPlayer implements Runnable, LineListener {
 	@Override
 	public void run() {
 		String[] message = null;
+
+		//block until setup message initially seen
 		while (true) {
-			message = audioQueue.poll();
-			if (message != null) {
-				System.out.println("message received! " + message[0] + message[1]);
-				switch (message[0]) {
-				case "init":
+			try {
+				message = audioQueue.take();
+				if (message[0].equals("init")) {
 					setupAudio(message[1]);
 					System.out.println("SoundPlayer: init");
 					break;
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
+		//then listen to all message
+		while (true) {
+			message = audioQueue.poll();
+			if (message != null) {
+				switch (message[0]) {
+				case "init":
+					setupAudio(message[1]);
+					if (Constants.debug) System.out.println("SoundPlayer: init");
+					break;
 				case "play":
 					audioClip.start();
-					System.out.println("SoundPlayer: play");
+					if (Constants.debug) System.out.println("SoundPlayer: play");
 					
 					if (isPaused) { //initial start
-						System.out.println("startTime: " + startTime + " currentTime: " + getTime() + " playedLength: " + playedLength);
+						if (Constants.debug) System.out.println("startTime: "+startTime+" currentTime: "+getTime()+" playedLength: "+playedLength);
 						startTime = getTime() - playedLength;
 					}
 					else { //resume
@@ -115,11 +126,11 @@ public class SoundPlayer implements Runnable, LineListener {
 					
 					break;
 				case "pause":
-					System.out.println("SoundPlayer: pause");
+					if (Constants.debug) System.out.println("SoundPlayer: pause");
 					audioClip.stop();
 					isPaused = true;
 					playedLength = getTime() - startTime; //elapsed time since starting to play
-					System.out.println("playedLength: " + playedLength);
+					if (Constants.debug) System.out.println("playedLength: " + playedLength);
 					break;
 				}
 			}
@@ -133,55 +144,6 @@ public class SoundPlayer implements Runnable, LineListener {
 			}
 		}
 	}
-
-	/*
-	@Override
-	public void run() {
-		String[] message = null;
-		System.out.println("audioClip null? " + audioClip == null);
-		while (true) {
-			
-			message = audioQueue.poll();
-			if (message != null && audioClip != null) {
-				
-				System.out.println("Received message: " + message);
-				switch (message[0]) {
-				case "play":
-					
-					audioClip.start();
-					System.out.println("SoundPlayer: play");
-					
-					if (isPaused) { //initial start
-						System.out.println("startTime: " + startTime + " currentTime: " + getTime() + " playedLength: " + playedLength);
-						startTime = getTime() - playedLength;
-					}
-					else { //resume
-						startTime = getTime();
-					}
-					isPaused = false;
-					
-					break;
-				case "pause":
-					System.out.println("SoundPlayer: pause");
-					audioClip.stop();
-					isPaused = true;
-					playedLength = getTime() - startTime; //elapsed time since starting to play
-					System.out.println("playedLength: " + playedLength);
-					break;
-				case "init":
-					setupAudio(message[1]);
-					System.out.println("SoundPlayer: init");
-					break;
-				}
-			}
-			else { //no new message
-				if (isPaused != null && !isPaused) { //checking against null necessary to not throw exception
-					//this is necessary since we don't want to display anything from here when the playback hasn't started
-					outputTime();
-				}
-			}
-		}
-	}*/
 	
 	private void outputTime() {
 		currentTime = getTime() - startTime;
@@ -195,43 +157,6 @@ public class SoundPlayer implements Runnable, LineListener {
 	private double getTime() {
 		return System.nanoTime() / 10e8;
 	}
-
-	/**
-	 * Play a given audio file.
-	 * @param audioFilePath Path of the audio file.
-	 */
-	/*public void play() {
-		audioClip.start();
-		
-		while (!playCompleted) {
-			if (state.equals("pause")) {
-				audioClip.stop();
-			}
-			else if (state.equals("resume")) {
-				Thread thread = new Thread(new playAudio());
-				thread.start();
-				//audioClip.start();
-				state = "play";
-			}
-			else {
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException ex) {
-					ex.printStackTrace();
-				}
-			}
-		}
-
-		audioClip.close();
-	}*/
-	
-	/*public void pause() {
-		audioClip.stop();
-	}
-	
-	public String getState() {
-		return new String(state);
-	}*/
 
 	/**
 	 * Listens to the START and STOP events of the audio line.

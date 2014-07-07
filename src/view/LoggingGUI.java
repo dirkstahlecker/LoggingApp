@@ -8,6 +8,8 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -16,6 +18,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class LoggingGUI extends JFrame {
     private static final long serialVersionUID = 1L; //required
     
+    private final JScrollPane displayScrollPane;
     private final JTextField commentField;
     private final JTextField audioSource;
     private final JButton enterText;
@@ -67,12 +70,12 @@ public class LoggingGUI extends JFrame {
         rewind = new JButton();
         rewind.setName("rewind");
         rewind.setText("<<");
-        rewind.setMinimumSize(new Dimension(30,enterText.getSize().height));
+        rewind.setMaximumSize(new Dimension(30,enterText.getSize().height));
         
         fastforward = new JButton();
         fastforward.setName("fastforward");
         fastforward.setText(">>");
-        fastforward.setMinimumSize(new Dimension(30,enterText.getSize().height));
+        fastforward.setMaximumSize(new Dimension(30,enterText.getSize().height));
         
         outputLog = new JTextArea();
         outputLog.setName("outputField");
@@ -80,8 +83,10 @@ public class LoggingGUI extends JFrame {
         
         contentPane = getContentPane();
         userPanel = new JPanel();
+        
         //displayPanel = new DisplayBox(); //this is the old version
         displayPanel = new JPanel();
+        displayScrollPane = new JScrollPane(displayPanel); //TODO: make this replace displayPanel
         
         currentAudioSource = new JLabel();
         currentAudioSource.setName("currentAudioSource");
@@ -98,7 +103,52 @@ public class LoggingGUI extends JFrame {
         player = new SoundPlayer(audioQueue, timeStamp, time);
         timeQueue = new LinkedBlockingQueue<String>();
         
-        //Set up the user interface panel
+        configureLayouts();        
+        
+        //Add action listeners
+        playpause.addActionListener(new PauseActionListener(playpause, audioQueue));
+        
+        SoundActionListener soundAction = new SoundActionListener(audioSource, audioQueue, currentAudioSource);
+        enterAudio.addActionListener(soundAction);
+        audioSource.addActionListener(soundAction);
+        
+        EnterMessageActionListener enterAction = new EnterMessageActionListener(commentField, outputLog, time);
+        enterText.addActionListener(enterAction);
+        commentField.addActionListener(enterAction);
+        
+        //Start threads
+        Thread soundPlayerThread = new Thread(player);
+        soundPlayerThread.start();
+        
+        //enterText.addKeyListener(new KeyPressedListener());
+        //enterText.requestFocusInWindow();
+        
+        setFocusable(true);
+        this.addKeyListener(new KeyPressedListener());
+        //this.requestFocusInWindow();
+        pack();
+    }
+    
+    
+    /**
+     * necessary to run from command line
+     * @param args unused
+     */
+    public static void main(final String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                LoggingGUI main = new LoggingGUI();
+                main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                
+                main.requestFocus();
+                main.setVisible(true);
+            }
+        });
+    }
+    
+    
+    private void configureLayouts() {
+    	//Set up the user interface panel
         GroupLayout userLayout = new GroupLayout(userPanel);
         userPanel.setLayout(userLayout);
         
@@ -145,57 +195,13 @@ public class LoggingGUI extends JFrame {
         );
         
         //Set up the display panel
-        GroupLayout displayLayout = new GroupLayout(displayPanel);
-        displayPanel.setLayout(displayLayout);
+        ScrollPaneLayout displayLayout = new ScrollPaneLayout();
+        displayScrollPane.setLayout(displayLayout);
         
-        displayLayout.setHorizontalGroup(
-        	displayLayout.createSequentialGroup()
-        		.addComponent(outputLog)
-        );
-        
-        displayLayout.setVerticalGroup(
-        	displayLayout.createParallelGroup()
-        		.addComponent(outputLog)
-        );
-
-        //Configure the layout specifications for both panels
+      //Configure the layout specifications for both panels
         userPanel.setPreferredSize(new Dimension(500,100));
-        displayPanel.setPreferredSize(new Dimension(500,400));
+        displayScrollPane.setPreferredSize(new Dimension(500,400));
         contentPane.add(userPanel, BorderLayout.SOUTH);
-        contentPane.add(displayPanel, BorderLayout.NORTH);
-        
-        //Add action listeners
-        playpause.addActionListener(new PauseActionListener(playpause, audioQueue));
-        
-        SoundActionListener soundAction = new SoundActionListener(audioSource, audioQueue, currentAudioSource);
-        enterAudio.addActionListener(soundAction);
-        audioSource.addActionListener(soundAction);
-        
-        EnterMessageActionListener enterAction = new EnterMessageActionListener(commentField, outputLog, time);
-        enterText.addActionListener(enterAction);
-        commentField.addActionListener(enterAction);
-        
-        //Start threads
-        Thread soundPlayerThread = new Thread(player);
-        soundPlayerThread.start();
-        //timerThread.start();
-        
-        pack();
+        contentPane.add(displayScrollPane, BorderLayout.NORTH);
     }
-    
-    
-    /**
-     * necessary to run from command line
-     * @param args unused
-     */
-    public static void main(final String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                LoggingGUI main = new LoggingGUI();
-
-                main.setVisible(true);
-            }
-        });
-    }
-    
 }
