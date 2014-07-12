@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class LoggingGUI extends JFrame {
     private static final long serialVersionUID = 1L; //required
     
-    private final JScrollPane displayScrollPane;
+    
     private final JTextField commentField;
     private final JTextField audioSource;
     private final JButton enterText;
@@ -28,10 +28,11 @@ public class LoggingGUI extends JFrame {
     private final JButton fastforward;
     private Container contentPane;
     private final JPanel userPanel; //contains the user interface
-    private final JPanel displayPanel; //displays the past logs
+    //private final JPanel displayPanel; //displays the past logs
     private final JLabel currentAudioSource;
     private final JLabel timeStamp;
     private final JTextArea outputLog;
+    private final JScrollPane displayScrollPane;
     
     private final SoundPlayer player;
     private final BlockingQueue<String[]> audioQueue;
@@ -40,6 +41,8 @@ public class LoggingGUI extends JFrame {
     private AtomicInteger time; //holds a rounded time stamp, as I don't feel its necessary to have precision greater than a second
     
     public LoggingGUI() {
+    	
+    	
         
     	//Configure the GUI elements
         commentField = new JTextField();
@@ -77,16 +80,18 @@ public class LoggingGUI extends JFrame {
         fastforward.setText(">>");
         fastforward.setMaximumSize(new Dimension(30,enterText.getSize().height));
         
-        outputLog = new JTextArea();
+        outputLog = new JTextArea(5,20);
         outputLog.setName("outputField");
         outputLog.setText("");
+        outputLog.setEditable(false);
         
         contentPane = getContentPane();
         userPanel = new JPanel();
         
         //displayPanel = new DisplayBox(); //this is the old version
-        displayPanel = new JPanel();
-        displayScrollPane = new JScrollPane(displayPanel); //TODO: make this replace displayPanel
+        //displayPanel = new JPanel();
+        
+        displayScrollPane = new JScrollPane(outputLog); //TODO: make this replace displayPanel
         
         currentAudioSource = new JLabel();
         currentAudioSource.setName("currentAudioSource");
@@ -195,12 +200,36 @@ public class LoggingGUI extends JFrame {
         );
         
         //Set up the display panel
-        ScrollPaneLayout displayLayout = new ScrollPaneLayout();
-        displayScrollPane.setLayout(displayLayout);
+        //GroupLayout displayLayout = new GroupLayout(displayPanel);
+        //displayPanel.setLayout(displayLayout);
+        
+        ScrollPaneLayout scrollPaneLayout = new ScrollPaneLayout();
+        displayScrollPane.setLayout(scrollPaneLayout);
+        displayScrollPane.setPreferredSize(new Dimension(500,400));
+        
+        /*In a container that uses a BorderLayout:
+        textArea = new JTextArea(5, 30);
+        ...
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        ...
+        setPreferredSize(new Dimension(450, 110));
+        ...
+        add(scrollPane, BorderLayout.CENTER);*/
+        
+        /*
+        displayLayout.setHorizontalGroup(
+        	displayLayout.createSequentialGroup()
+        		.addComponent(outputLog)
+        );
+        
+        displayLayout.setVerticalGroup(
+        	displayLayout.createParallelGroup()
+        		.addComponent(outputLog)
+        );*/
         
       //Configure the layout specifications for both panels
         userPanel.setPreferredSize(new Dimension(500,100));
-        displayScrollPane.setPreferredSize(new Dimension(500,400));
+        //displayPanel.setPreferredSize(new Dimension(500,400));
         contentPane.add(userPanel, BorderLayout.SOUTH);
         contentPane.add(displayScrollPane, BorderLayout.NORTH);
     }

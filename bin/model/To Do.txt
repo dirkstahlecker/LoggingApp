@@ -1,0 +1,15 @@
+Features to add:
+-timestamp with each comment
+-key listeners for easy playback control
+-volume control
+-timestamp when started typing
+-fastforward/rewind
+-Remove comments
+-Output comments to a nice format
+
+Bugs to fix:
+-Size of fastforward and rewind buttons is too big
+-
+
+Problems to consider:
+-holding focus when typing
