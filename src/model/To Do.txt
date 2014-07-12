@@ -3,7 +3,7 @@ Features to add:
 -key listeners for easy playback control
 -volume control
 -timestamp when started typing
--fastforward/rewind
+-better fastforward/rewind
 -Remove comments
 -Output comments to a nice format
 
@@ -19,3 +19,4 @@ Problems to consider:
 
 Done:
 -timestamp with each comment
+-fastforward/rewind

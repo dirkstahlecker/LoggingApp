@@ -33,8 +33,6 @@ public class SoundPlayer implements Runnable {
 	private BlockingQueue<String[]> audioQueue;
 	private double length;
 	private double currentTime;
-	private double startTime;
-	private double playedLength;
 	private final JLabel timeStamp;
 	private Boolean isPaused;
 	private AtomicInteger time; //set current time here so other threads can read it
@@ -104,12 +102,27 @@ public class SoundPlayer implements Runnable {
 		//then listen to all message
 		while (true) {
 			message = audioQueue.poll();
+			long index;
+			int advanceTime = 250000; //quarter second
+			
 			if (message != null) {
 				switch (message[0]) {
 				case "init":
 					setupAudio(message[1]);
 					if (Constants.debug) System.out.println("SoundPlayer: init");
 					break;
+				case "playpause":
+					if (isPaused) {
+						audioClip.start();
+						if (Constants.debug) System.out.println("SoundPlayer: play");
+						isPaused = false;
+					}
+					else {
+						audioClip.stop();
+						isPaused = true;
+					}
+					break;
+				/*
 				case "play":
 					audioClip.start();
 					if (Constants.debug) System.out.println("SoundPlayer: play");
@@ -122,18 +135,22 @@ public class SoundPlayer implements Runnable {
 					isPaused = true;
 					if (Constants.debug) System.out.println("playedLength: " + playedLength);
 					break;
+				*/
 				case "rewind":
-					long index = audioClip.getMicrosecondPosition();
-					System.out.println("odl index: " + index);
-					index -= 500;
-					System.out.println("new index:" + index);
+					index = audioClip.getMicrosecondPosition();
+					index -= advanceTime;
 					if (index < 0) index = 0;
 					audioClip.setMicrosecondPosition(index);
 					System.out.println("rewinding");
 					outputTime();
 					break;
-				case "fastfoward":
-					System.out.println("fastforwarding");
+				case "fastforward":
+					index = audioClip.getMicrosecondPosition();
+					index += advanceTime;
+					if (index > length) index = (long)length;
+					audioClip.setMicrosecondPosition(index);
+					System.out.println("fast forwarding");
+					outputTime();
 					break;
 				}
 			}
@@ -141,7 +158,6 @@ public class SoundPlayer implements Runnable {
 			
 			else { //no new message
 				if (isPaused != null && !isPaused) { //checking against null necessary to not throw exception
-					//this is necessary since we don't want to display anything from here when the playback hasn't started
 					outputTime();
 				}
 			}
@@ -152,7 +168,6 @@ public class SoundPlayer implements Runnable {
 		currentTime = audioClip.getMicrosecondPosition();
 		currentTime /= 1000000;
 		currentTime = (double)Math.round(currentTime * 1000.0) / 1000.0;
-
 		timeStamp.setText("     " + currentTime + "/" + length);
 	}
 
