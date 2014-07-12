@@ -27,7 +27,7 @@ import javax.swing.JLabel;
  * @author Dirk
  *
  */
-public class SoundPlayer implements Runnable, LineListener {
+public class SoundPlayer implements Runnable {
 
 	private Clip audioClip;
 	private BlockingQueue<String[]> audioQueue;
@@ -59,15 +59,14 @@ public class SoundPlayer implements Runnable, LineListener {
 
 			AudioFormat format = audioStream.getFormat();
 			DataLine.Info info = new DataLine.Info(Clip.class, format);
-			
-			long frames = audioStream.getFrameLength();
-			length = (frames+0.0) / format.getFrameRate();
-			
+
 			audioClip = (Clip) AudioSystem.getLine(info);
-			audioClip.addLineListener(this);
 			audioClip.open(audioStream);
 			
-			timeStamp.setText("     0:00 / " + (double)Math.round(length * 1000) / 1000);
+			length = audioClip.getMicrosecondLength();
+			length = length / 1000000;
+			length = (double)Math.round(length * 1000.0) / 1000.0;
+			outputTime();
 			isPaused = true;
 			
 			//FloatControl volume = (FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN);
@@ -114,14 +113,6 @@ public class SoundPlayer implements Runnable, LineListener {
 				case "play":
 					audioClip.start();
 					if (Constants.debug) System.out.println("SoundPlayer: play");
-					
-					if (isPaused) { //initial start
-						if (Constants.debug) System.out.println("startTime: "+startTime+" currentTime: "+getTime()+" playedLength: "+playedLength);
-						startTime = getTime() - playedLength;
-					}
-					else { //resume
-						startTime = getTime();
-					}
 					isPaused = false;
 					
 					break;
@@ -129,8 +120,20 @@ public class SoundPlayer implements Runnable, LineListener {
 					if (Constants.debug) System.out.println("SoundPlayer: pause");
 					audioClip.stop();
 					isPaused = true;
-					playedLength = getTime() - startTime; //elapsed time since starting to play
 					if (Constants.debug) System.out.println("playedLength: " + playedLength);
+					break;
+				case "rewind":
+					long index = audioClip.getMicrosecondPosition();
+					System.out.println("odl index: " + index);
+					index -= 500;
+					System.out.println("new index:" + index);
+					if (index < 0) index = 0;
+					audioClip.setMicrosecondPosition(index);
+					System.out.println("rewinding");
+					outputTime();
+					break;
+				case "fastfoward":
+					System.out.println("fastforwarding");
 					break;
 				}
 			}
@@ -146,33 +149,11 @@ public class SoundPlayer implements Runnable, LineListener {
 	}
 	
 	private void outputTime() {
-		currentTime = getTime() - startTime;
-		time.set((int)Math.round(currentTime));
-		
-		if (currentTime <= length) {
-			timeStamp.setText("     " + (double)Math.round(currentTime * 1000) / 1000 + " / " + (double)Math.round(length * 1000) / 1000);
-		}
-	}
-	
-	private double getTime() {
-		return System.nanoTime() / 10e8;
-	}
+		currentTime = audioClip.getMicrosecondPosition();
+		currentTime /= 1000000;
+		currentTime = (double)Math.round(currentTime * 1000.0) / 1000.0;
 
-	/**
-	 * Listens to the START and STOP events of the audio line.
-	 * Does nothing, because playback is controlled via the queue
-	 */
-	@Override
-	public void update(LineEvent event) {
-		LineEvent.Type type = event.getType();
-
-		if (type == LineEvent.Type.START) {
-			//System.out.println("Playback started.");
-
-		} else if (type == LineEvent.Type.STOP) {
-			//System.out.println("Playback completed.");
-		}
-
+		timeStamp.setText("     " + currentTime + "/" + length);
 	}
 
 	/**

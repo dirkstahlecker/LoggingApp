@@ -45,12 +45,12 @@ public class PauseActionListener implements ActionListener {
 		}*/
 
 		if (playpause.getText().equalsIgnoreCase("Play")) {
-			System.out.println("sending play message");
+			//System.out.println("sending play message");
 			audioQueue.add(new String[]{"play",""});
 			playpause.setText("Pause");
 		}
 		else {
-			System.out.println("sending pause message");
+			//System.out.println("sending pause message");
 			audioQueue.add(new String[]{"pause",""});
 			playpause.setText("Play");
 		}

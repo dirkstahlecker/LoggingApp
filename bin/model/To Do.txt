@@ -1,5 +1,5 @@
 Features to add:
--timestamp with each comment
+
 -key listeners for easy playback control
 -volume control
 -timestamp when started typing
@@ -9,7 +9,13 @@ Features to add:
 
 Bugs to fix:
 -Size of fastforward and rewind buttons is too big
--
+-Reloading while playing causes play/pause button to be backwards - problem since playing and pausing is determined by text
+	-add internal boolean instead
+-Use fixed width font for time
 
 Problems to consider:
 -holding focus when typing
+
+
+Done:
+-timestamp with each comment

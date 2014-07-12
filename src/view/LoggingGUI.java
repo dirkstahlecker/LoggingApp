@@ -8,6 +8,8 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.concurrent.BlockingQueue;
@@ -28,7 +30,6 @@ public class LoggingGUI extends JFrame {
     private final JButton fastforward;
     private Container contentPane;
     private final JPanel userPanel; //contains the user interface
-    //private final JPanel displayPanel; //displays the past logs
     private final JLabel currentAudioSource;
     private final JLabel timeStamp;
     private final JTextArea outputLog;
@@ -41,9 +42,7 @@ public class LoggingGUI extends JFrame {
     private AtomicInteger time; //holds a rounded time stamp, as I don't feel its necessary to have precision greater than a second
     
     public LoggingGUI() {
-    	
-    	
-        
+
     	//Configure the GUI elements
         commentField = new JTextField();
         commentField.setName("commentField");
@@ -89,7 +88,6 @@ public class LoggingGUI extends JFrame {
         userPanel = new JPanel();
         
         //displayPanel = new DisplayBox(); //this is the old version
-        //displayPanel = new JPanel();
         
         displayScrollPane = new JScrollPane(outputLog); //TODO: make this replace displayPanel
         
@@ -108,18 +106,8 @@ public class LoggingGUI extends JFrame {
         player = new SoundPlayer(audioQueue, timeStamp, time);
         timeQueue = new LinkedBlockingQueue<String>();
         
-        configureLayouts();        
-        
-        //Add action listeners
-        playpause.addActionListener(new PauseActionListener(playpause, audioQueue));
-        
-        SoundActionListener soundAction = new SoundActionListener(audioSource, audioQueue, currentAudioSource);
-        enterAudio.addActionListener(soundAction);
-        audioSource.addActionListener(soundAction);
-        
-        EnterMessageActionListener enterAction = new EnterMessageActionListener(commentField, outputLog, time);
-        enterText.addActionListener(enterAction);
-        commentField.addActionListener(enterAction);
+        configureLayouts();
+        addActionListeners();
         
         //Start threads
         Thread soundPlayerThread = new Thread(player);
@@ -149,6 +137,21 @@ public class LoggingGUI extends JFrame {
                 main.setVisible(true);
             }
         });
+    }
+    
+    private void addActionListeners() {
+        playpause.addActionListener(new PauseActionListener(playpause, audioQueue));
+        
+        SoundActionListener soundAction = new SoundActionListener(audioSource, audioQueue, currentAudioSource);
+        enterAudio.addActionListener(soundAction);
+        audioSource.addActionListener(soundAction);
+        
+        EnterMessageActionListener enterAction = new EnterMessageActionListener(commentField, outputLog, time);
+        enterText.addActionListener(enterAction);
+        commentField.addActionListener(enterAction);
+        
+        rewind.addActionListener(new PositionControlActionListener(audioQueue,"rewind"));
+        fastforward.addActionListener(new PositionControlActionListener(audioQueue,"fastforward"));
     }
     
     
@@ -216,20 +219,9 @@ public class LoggingGUI extends JFrame {
         ...
         add(scrollPane, BorderLayout.CENTER);*/
         
-        /*
-        displayLayout.setHorizontalGroup(
-        	displayLayout.createSequentialGroup()
-        		.addComponent(outputLog)
-        );
-        
-        displayLayout.setVerticalGroup(
-        	displayLayout.createParallelGroup()
-        		.addComponent(outputLog)
-        );*/
-        
-      //Configure the layout specifications for both panels
+        //Configure the layout specifications for both panels
         userPanel.setPreferredSize(new Dimension(500,100));
-        //displayPanel.setPreferredSize(new Dimension(500,400));
+
         contentPane.add(userPanel, BorderLayout.SOUTH);
         contentPane.add(displayScrollPane, BorderLayout.NORTH);
     }
