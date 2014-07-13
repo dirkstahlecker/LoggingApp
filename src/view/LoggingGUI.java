@@ -1,6 +1,9 @@
 package view;
 import javax.swing.*;
 
+import audio.AudioControlActionListener;
+import audio.SoundActionListener;
+import audio.SoundPlayer;
 import model.*;
 
 import java.awt.BorderLayout;
@@ -106,7 +109,6 @@ public class LoggingGUI extends JFrame {
         userPanel = new JPanel();
         
         //displayPanel = new DisplayBox(); //this is the old version
-        
         displayScrollPane = new JScrollPane(outputLog);
         
         currentAudioSource = new JLabel();
@@ -124,12 +126,10 @@ public class LoggingGUI extends JFrame {
         player = new SoundPlayer(audioQueue, timeStamp, currentAudioSource, time);
         timeQueue = new LinkedBlockingQueue<String>();
         
+        //Configure everything else, separated for readability
         configureLayouts();
         addActionListeners();
-
-        //Start threads
-        Thread soundPlayerThread = new Thread(player);
-        soundPlayerThread.start();
+        startThreads();
         
         //enterText.addKeyListener(new KeyPressedListener());
         //enterText.requestFocusInWindow();
@@ -173,6 +173,11 @@ public class LoggingGUI extends JFrame {
         
         volumeUp.addActionListener(new AudioControlActionListener(audioQueue,"volume","up"));
         volumeDown.addActionListener(new AudioControlActionListener(audioQueue,"volume","down"));
+    }
+    
+    private void startThreads() {
+        Thread soundPlayerThread = new Thread(player);
+        soundPlayerThread.start();
     }
     
     

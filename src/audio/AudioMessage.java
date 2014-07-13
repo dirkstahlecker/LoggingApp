@@ -1,4 +1,4 @@
-package model;
+package audio;
 
 public class AudioMessage {
 	private String message;

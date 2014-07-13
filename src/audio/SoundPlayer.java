@@ -1,4 +1,4 @@
-package model;
+package audio;
 
 import java.applet.AudioClip;
 import java.io.File;
@@ -20,6 +20,8 @@ import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JLabel;
+
+import model.Constants;
 
 /**
  * Controls the playback of the audio. Must run in a separate
@@ -181,19 +183,6 @@ public class SoundPlayer implements Runnable {
 		currentTime /= 1000000;
 		currentTime = (double)Math.round(currentTime * 1000.0) / 1000.0;
 		timeStamp.setText("     " + currentTime + "/" + length);
-	}
-
-	/**
-	 * For local testing only - ultimately will be deleted
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		String audioFilePath = "/Users/Dirk/Desktop/Takeoff1.wav";
-		File audioFile = new File(audioFilePath);
-		AudioTesting player = new AudioTesting();
-		player.setupAudio(audioFile);
-		player.play();
-
 	}
 
 }
