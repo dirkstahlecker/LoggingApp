@@ -34,6 +34,7 @@ public class LoggingGUI extends JFrame {
     private final JButton fastforward;
     private final JButton volumeUp;
     private final JButton volumeDown;
+    private final JButton export;
     
     private Container contentPane;
     
@@ -100,6 +101,10 @@ public class LoggingGUI extends JFrame {
         volumeDown.setText("Volume Down");
         volumeDown.setMaximumSize(new Dimension(30,volumeDown.getSize().height));
         
+        export = new JButton();
+        export.setName("export");
+        export.setText("Export log");
+        
         outputLog = new JTextArea();
         outputLog.setName("outputField");
         outputLog.setText("");
@@ -140,23 +145,6 @@ public class LoggingGUI extends JFrame {
         pack();
     }
     
-    
-    /**
-     * necessary to run from command line
-     * @param args unused
-     */
-    public static void main(final String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                LoggingGUI main = new LoggingGUI();
-                main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                
-                main.requestFocus();
-                main.setVisible(true);
-            }
-        });
-    }
-    
     private void addActionListeners() {
         playpause.addActionListener(new PauseActionListener(audioQueue));
         
@@ -173,6 +161,8 @@ public class LoggingGUI extends JFrame {
         
         volumeUp.addActionListener(new AudioControlActionListener(audioQueue,"volume","up"));
         volumeDown.addActionListener(new AudioControlActionListener(audioQueue,"volume","down"));
+        
+        export.addActionListener(new ExportLogActionListener(this, outputLog));
     }
     
     private void startThreads() {
@@ -206,6 +196,7 @@ public class LoggingGUI extends JFrame {
                 .addGroup(userLayout.createSequentialGroup()
                 	.addComponent(currentAudioSource)
                 	.addComponent(timeStamp)
+                	.addComponent(export)
                 )
         );
         
@@ -229,30 +220,34 @@ public class LoggingGUI extends JFrame {
                 .addGroup(userLayout.createParallelGroup()
                 	.addComponent(currentAudioSource)
                 	.addComponent(timeStamp)
+                	.addComponent(export)
                 )
         );
-        
-        //Set up the display panel
-        //GroupLayout displayLayout = new GroupLayout(displayPanel);
-        //displayPanel.setLayout(displayLayout);
         
         ScrollPaneLayout scrollPaneLayout = new ScrollPaneLayout();
         displayScrollPane.setLayout(scrollPaneLayout);
         displayScrollPane.setPreferredSize(new Dimension(500,400));
         
-        /*In a container that uses a BorderLayout:
-        textArea = new JTextArea(5, 30);
-        ...
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        ...
-        setPreferredSize(new Dimension(450, 110));
-        ...
-        add(scrollPane, BorderLayout.CENTER);*/
-        
         //Configure the layout specifications for both panels
-        userPanel.setPreferredSize(new Dimension(500,100));
+        userPanel.setPreferredSize(new Dimension(500,125));
 
         contentPane.add(userPanel, BorderLayout.SOUTH);
         contentPane.add(displayScrollPane, BorderLayout.NORTH);
+    }
+    
+    /**
+     * necessary to run from command line
+     * @param args unused
+     */
+    public static void main(final String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                LoggingGUI main = new LoggingGUI();
+                main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                
+                main.requestFocus();
+                main.setVisible(true);
+            }
+        });
     }
 }
