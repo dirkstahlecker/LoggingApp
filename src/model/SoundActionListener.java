@@ -17,12 +17,10 @@ public class SoundActionListener implements ActionListener {
 	
 	private final JTextField audioSource;
 	private final BlockingQueue<String[]> audioQueue;
-	private final JLabel currentAudioSource;
 	
-	public SoundActionListener(JTextField audioSource, BlockingQueue<String[]> audioQueue, JLabel currentAudioSource) {
+	public SoundActionListener(JTextField audioSource, BlockingQueue<String[]> audioQueue) {
 		this.audioSource = audioSource;
 		this.audioQueue = audioQueue;
-		this.currentAudioSource = currentAudioSource;
 	}
 
 	@Override
@@ -30,6 +28,5 @@ public class SoundActionListener implements ActionListener {
 		String path = audioSource.getText();
 		audioQueue.add(new String[]{"init",path});
 		audioSource.setText("");
-		currentAudioSource.setText("File: " + path);
 	}
 }

@@ -23,16 +23,24 @@ public class LoggingGUI extends JFrame {
     
     private final JTextField commentField;
     private final JTextField audioSource;
+    
     private final JButton enterText;
     private final JButton playpause;
     private final JButton enterAudio;
     private final JButton rewind;
     private final JButton fastforward;
+    private final JButton volumeUp;
+    private final JButton volumeDown;
+    
     private Container contentPane;
+    
     private final JPanel userPanel; //contains the user interface
+    
     private final JLabel currentAudioSource;
     private final JLabel timeStamp;
+    
     private final JTextArea outputLog;
+    
     private final JScrollPane displayScrollPane;
     
     private final SoundPlayer player;
@@ -56,7 +64,7 @@ public class LoggingGUI extends JFrame {
         
         enterText = new JButton();
         enterText.setName("enterText");
-        enterText.setText("Enter");
+        enterText.setText("Enter Comment");
         enterText.setMaximumSize(new Dimension(80,enterText.getSize().height));
         
         playpause = new JButton();
@@ -66,20 +74,30 @@ public class LoggingGUI extends JFrame {
         
         enterAudio = new JButton();
         enterAudio.setName("enterAudio");
-        enterAudio.setText("Enter");
+        enterAudio.setText("Enter Path");
         enterAudio.setMinimumSize(new Dimension(80,enterText.getSize().height));
         
         rewind = new JButton();
         rewind.setName("rewind");
         rewind.setText("<<");
-        rewind.setMaximumSize(new Dimension(30,enterText.getSize().height));
+        rewind.setMaximumSize(new Dimension(30,rewind.getSize().height));
         
         fastforward = new JButton();
         fastforward.setName("fastforward");
         fastforward.setText(">>");
-        fastforward.setMaximumSize(new Dimension(30,enterText.getSize().height));
+        fastforward.setMaximumSize(new Dimension(30,fastforward.getSize().height));
         
-        outputLog = new JTextArea(5,20);
+        volumeUp = new JButton();
+        volumeUp.setName("voluemUp");
+        volumeUp.setText("Volume Up");
+        volumeUp.setMaximumSize(new Dimension(30,volumeUp.getSize().height));
+        
+        volumeDown = new JButton();
+        volumeDown.setName("voluemUp");
+        volumeDown.setText("Volume Down");
+        volumeDown.setMaximumSize(new Dimension(30,volumeDown.getSize().height));
+        
+        outputLog = new JTextArea();
         outputLog.setName("outputField");
         outputLog.setText("");
         outputLog.setEditable(false);
@@ -89,7 +107,7 @@ public class LoggingGUI extends JFrame {
         
         //displayPanel = new DisplayBox(); //this is the old version
         
-        displayScrollPane = new JScrollPane(outputLog); //TODO: make this replace displayPanel
+        displayScrollPane = new JScrollPane(outputLog);
         
         currentAudioSource = new JLabel();
         currentAudioSource.setName("currentAudioSource");
@@ -103,12 +121,12 @@ public class LoggingGUI extends JFrame {
         time.set(0);
         
         audioQueue = new LinkedBlockingQueue<String[]>();
-        player = new SoundPlayer(audioQueue, timeStamp, time);
+        player = new SoundPlayer(audioQueue, timeStamp, currentAudioSource, time);
         timeQueue = new LinkedBlockingQueue<String>();
         
         configureLayouts();
         addActionListeners();
-        
+
         //Start threads
         Thread soundPlayerThread = new Thread(player);
         soundPlayerThread.start();
@@ -140,9 +158,9 @@ public class LoggingGUI extends JFrame {
     }
     
     private void addActionListeners() {
-        playpause.addActionListener(new PauseActionListener(playpause, audioQueue));
+        playpause.addActionListener(new PauseActionListener(audioQueue));
         
-        SoundActionListener soundAction = new SoundActionListener(audioSource, audioQueue, currentAudioSource);
+        SoundActionListener soundAction = new SoundActionListener(audioSource, audioQueue);
         enterAudio.addActionListener(soundAction);
         audioSource.addActionListener(soundAction);
         
@@ -150,8 +168,11 @@ public class LoggingGUI extends JFrame {
         enterText.addActionListener(enterAction);
         commentField.addActionListener(enterAction);
         
-        rewind.addActionListener(new PositionControlActionListener(audioQueue,"rewind"));
-        fastforward.addActionListener(new PositionControlActionListener(audioQueue,"fastforward"));
+        rewind.addActionListener(new AudioControlActionListener(audioQueue,"rewind"));
+        fastforward.addActionListener(new AudioControlActionListener(audioQueue,"fastforward"));
+        
+        volumeUp.addActionListener(new AudioControlActionListener(audioQueue,"volume","up"));
+        volumeDown.addActionListener(new AudioControlActionListener(audioQueue,"volume","down"));
     }
     
     
@@ -174,6 +195,8 @@ public class LoggingGUI extends JFrame {
                 	.addComponent(rewind)
                 	.addComponent(playpause)
                 	.addComponent(fastforward)
+                	.addComponent(volumeDown)
+                	.addComponent(volumeUp)
                 )
                 .addGroup(userLayout.createSequentialGroup()
                 	.addComponent(currentAudioSource)
@@ -195,6 +218,8 @@ public class LoggingGUI extends JFrame {
                 	.addComponent(rewind)
                 	.addComponent(playpause)
                 	.addComponent(fastforward)
+                	.addComponent(volumeDown)
+                	.addComponent(volumeUp)
                 )
                 .addGroup(userLayout.createParallelGroup()
                 	.addComponent(currentAudioSource)

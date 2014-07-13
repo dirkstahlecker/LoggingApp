@@ -34,13 +34,18 @@ public class SoundPlayer implements Runnable {
 	private double length;
 	private double currentTime;
 	private final JLabel timeStamp;
+	private FloatControl volume;
+	private final JLabel currentAudioSource;
 	private Boolean isPaused;
 	private AtomicInteger time; //set current time here so other threads can read it
 	
-	public SoundPlayer(BlockingQueue<String[]> audioQueue, JLabel timeStamp, AtomicInteger time) {
+	public SoundPlayer(BlockingQueue<String[]> audioQueue, JLabel timeStamp, JLabel currentAudioSource, AtomicInteger time) {
+		
 		this.audioQueue = audioQueue;
 		this.timeStamp = timeStamp;
 		this.time = time;
+		this.currentAudioSource = currentAudioSource;
+		
 	}
 	
 	/**
@@ -67,17 +72,20 @@ public class SoundPlayer implements Runnable {
 			outputTime();
 			isPaused = true;
 			
-			//FloatControl volume = (FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN);
-			//volume.setValue(-20);
+			currentAudioSource.setText("File: " + audioFilePath);
+			volume = (FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN);
 			
 			System.out.println("Player configured");
 			
-		} catch (LineUnavailableException e) {
-			e.printStackTrace();
+		} catch (LineUnavailableException e) { //Do nothing on catch - should alert the user
+			audioClip = null;
+			currentAudioSource.setText("Audio file not found");
 		} catch (IOException e) {
-			e.printStackTrace();
+			audioClip = null;
+			currentAudioSource.setText("Audio file not found");
 		} catch (UnsupportedAudioFileException e1) {
-			e1.printStackTrace();
+			audioClip = null;
+			currentAudioSource.setText("Audio file not found");
 		}
 	}
 	
@@ -103,42 +111,32 @@ public class SoundPlayer implements Runnable {
 		while (true) {
 			message = audioQueue.poll();
 			long index;
-			int advanceTime = 250000; //quarter second
+			int timeeGain = 250000; //quarter second
+			float volumeGain = 2;
 			
 			if (message != null) {
 				switch (message[0]) {
 				case "init":
+					if (audioClip != null) {
+						audioClip.stop();
+					}
 					setupAudio(message[1]);
 					if (Constants.debug) System.out.println("SoundPlayer: init");
 					break;
 				case "playpause":
-					if (isPaused) {
+					if (isPaused && audioClip != null) {
 						audioClip.start();
 						if (Constants.debug) System.out.println("SoundPlayer: play");
 						isPaused = false;
 					}
-					else {
+					else if (audioClip != null) {
 						audioClip.stop();
 						isPaused = true;
 					}
 					break;
-				/*
-				case "play":
-					audioClip.start();
-					if (Constants.debug) System.out.println("SoundPlayer: play");
-					isPaused = false;
-					
-					break;
-				case "pause":
-					if (Constants.debug) System.out.println("SoundPlayer: pause");
-					audioClip.stop();
-					isPaused = true;
-					if (Constants.debug) System.out.println("playedLength: " + playedLength);
-					break;
-				*/
 				case "rewind":
 					index = audioClip.getMicrosecondPosition();
-					index -= advanceTime;
+					index -= timeeGain;
 					if (index < 0) index = 0;
 					audioClip.setMicrosecondPosition(index);
 					System.out.println("rewinding");
@@ -146,11 +144,25 @@ public class SoundPlayer implements Runnable {
 					break;
 				case "fastforward":
 					index = audioClip.getMicrosecondPosition();
-					index += advanceTime;
+					index += timeeGain;
 					if (index > length) index = (long)length;
 					audioClip.setMicrosecondPosition(index);
 					System.out.println("fast forwarding");
 					outputTime();
+					break;
+				case "volume":
+					if (message[1].equals("up")) {
+						float newVolume = volume.getValue() + volumeGain;
+						if (newVolume > volume.getMaximum()) 
+							newVolume = volume.getMaximum();
+						volume.setValue(newVolume);
+					}
+					else {
+						float newVolume = volume.getValue() - volumeGain;
+						if (newVolume < volume.getMinimum()) 
+							newVolume = volume.getMinimum();
+						volume.setValue(newVolume);
+					}
 					break;
 				}
 			}
