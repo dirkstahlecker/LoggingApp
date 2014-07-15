@@ -16,21 +16,18 @@ import javax.swing.JTextField;
  *
  */
 public class EnterMessageActionListener implements ActionListener {
-	
-	/*
-	 * Held as a list because it will keep the different entries
-	 * separate from one another. Possibly convert this to a dictionary
-	 * or something later, with timestamp as key for ease of access.
-	 */
+
 	//private List<String> log = new ArrayList<String>();
 	private final JTextField commentField;
 	private final JTextArea logOutputField;
 	private final AtomicInteger time;
+	private int count;
 	
 	public EnterMessageActionListener(JTextField commentField, JTextArea outputLog, AtomicInteger time) {
 		this.commentField = commentField;
 		this.logOutputField = outputLog;
 		this.time = time;
+		this.count = 0;
 	}
 
 	@Override
@@ -40,7 +37,23 @@ public class EnterMessageActionListener implements ActionListener {
 		out += ": ";
 		out += commentField.getText();
 		out += '\n';
-		logOutputField.append(out);
+		
+		//logOutputField.append(count + out);
+		logOutputField.append(makeCol(String.valueOf(count)) + out);
 		commentField.setText("");
+		count++;
+	}
+	
+	private String makeCol(String inp) {
+		int maxLen = 4;
+		int diff = 0;
+		String out = inp;
+		if (inp.length() != maxLen) 
+			diff = maxLen - inp.length();
+		else 
+			 diff = 0;
+		for (int i = 0; i < diff; i++) 
+			out += ' ';
+		return out + ": ";
 	}
 }

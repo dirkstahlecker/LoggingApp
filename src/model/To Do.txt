@@ -4,16 +4,20 @@ Features to add:
 -timestamp when started typing
 -better fastforward/rewind
 -Remove comments
+	rm [0-9] removes that line
+	rm removes last
 -Output comments to a nice format
+	-Remove subsequent identical numbers in output 
+-html output
+-clear log button
 
 Bugs to fix:
 -Size of fastforward and rewind buttons is too big
--Reloading while playing causes play/pause button to be backwards - problem since playing and pausing is determined by text
-	-add internal boolean instead
 -Use fixed width font for time
 
 Problems to consider:
 -holding focus when typing
+
 
 
 Done:
@@ -21,3 +25,4 @@ Done:
 -fastforward/rewind
 -volume control
 -Output comments to txt
+-Reloading while playing causes play/pause button to be backwards - problem since playing and pausing is determined by text

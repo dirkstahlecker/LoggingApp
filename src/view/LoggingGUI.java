@@ -9,6 +9,7 @@ import model.*;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -97,7 +98,7 @@ public class LoggingGUI extends JFrame {
         volumeUp.setMaximumSize(new Dimension(30,volumeUp.getSize().height));
         
         volumeDown = new JButton();
-        volumeDown.setName("voluemUp");
+        volumeDown.setName("voluemDown");
         volumeDown.setText("Volume Down");
         volumeDown.setMaximumSize(new Dimension(30,volumeDown.getSize().height));
         
@@ -109,6 +110,8 @@ public class LoggingGUI extends JFrame {
         outputLog.setName("outputField");
         outputLog.setText("");
         outputLog.setEditable(false);
+        Font font = new Font("Courier New", Font.PLAIN, 14);
+        outputLog.setFont(font);
         
         contentPane = getContentPane();
         userPanel = new JPanel();

@@ -168,12 +168,9 @@ public class SoundPlayer implements Runnable {
 					break;
 				}
 			}
-			
-			
-			else { //no new message
-				if (isPaused != null && !isPaused) { //checking against null necessary to not throw exception
-					outputTime();
-				}
+
+			if (isPaused != null && !isPaused) { //checking against null necessary to not throw exception
+				outputTime();
 			}
 		}
 	}
@@ -183,6 +180,7 @@ public class SoundPlayer implements Runnable {
 		currentTime /= 1000000;
 		currentTime = (double)Math.round(currentTime * 1000.0) / 1000.0;
 		timeStamp.setText("     " + currentTime + "/" + length);
+		time.set((int) currentTime);
 	}
 
 }
