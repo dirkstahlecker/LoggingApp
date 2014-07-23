@@ -9,16 +9,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.FloatControl;
-import javax.sound.sampled.LineEvent;
-import javax.sound.sampled.LineListener;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.sound.sampled.*;
 import javax.swing.JLabel;
 
 import model.Constants;
@@ -47,7 +38,6 @@ public class SoundPlayer implements Runnable {
 		this.timeStamp = timeStamp;
 		this.time = time;
 		this.currentAudioSource = currentAudioSource;
-		
 	}
 	
 	/**
@@ -61,6 +51,7 @@ public class SoundPlayer implements Runnable {
 		File audioFile = new File(audioFilePath);
 		try {
 			audioStream = AudioSystem.getAudioInputStream(audioFile);
+
 
 			AudioFormat format = audioStream.getFormat();
 			DataLine.Info info = new DataLine.Info(Clip.class, format);
@@ -134,6 +125,8 @@ public class SoundPlayer implements Runnable {
 					else if (audioClip != null) {
 						audioClip.stop();
 						isPaused = true;
+						
+						
 					}
 					break;
 				case "rewind":

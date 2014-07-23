@@ -36,6 +36,7 @@ public class LoggingGUI extends JFrame {
     private final JButton volumeUp;
     private final JButton volumeDown;
     private final JButton export;
+    private final JButton clearLog;
     
     private Container contentPane;
     
@@ -105,6 +106,10 @@ public class LoggingGUI extends JFrame {
         export = new JButton();
         export.setName("export");
         export.setText("Export log");
+        
+        clearLog = new JButton();
+        clearLog.setName("clearLog");
+        clearLog.setText("Clear");
         
         outputLog = new JTextArea();
         outputLog.setName("outputField");
@@ -197,9 +202,10 @@ public class LoggingGUI extends JFrame {
                 	.addComponent(volumeUp)
                 )
                 .addGroup(userLayout.createSequentialGroup()
+                	.addComponent(clearLog)
+                	.addComponent(export)
                 	.addComponent(currentAudioSource)
                 	.addComponent(timeStamp)
-                	.addComponent(export)
                 )
         );
         
@@ -221,9 +227,10 @@ public class LoggingGUI extends JFrame {
                 	.addComponent(volumeUp)
                 )
                 .addGroup(userLayout.createParallelGroup()
+                	.addComponent(clearLog)
+                	.addComponent(export)
                 	.addComponent(currentAudioSource)
                 	.addComponent(timeStamp)
-                	.addComponent(export)
                 )
         );
         

@@ -1,28 +1,40 @@
 Features to add:
-
--key listeners for easy playback control
--timestamp when started typing
--better fastforward/rewind
--Remove comments
-	rm [0-9] removes that line
-	rm removes last
--Output comments to a nice format
-	-Remove subsequent identical numbers in output 
--html output
+Essential:
+-variable playback speed
 -clear log button
 
+Good:
+-key listeners for easy playback control
+-better fastforward/rewind
+-Output comments to a nice format
+	-Remove subsequent identical numbers in output 
+-wrap text that goes off screen
+
+Extra:
+-html output
+
+Maybe:
+-timestamp when started typing (?)
+
+
+-------------------------------------------------------------
 Bugs to fix:
 -Size of fastforward and rewind buttons is too big
 -Use fixed width font for time
+-Error catching in EnterMessageActionListener
 
 Problems to consider:
 -holding focus when typing
 
-
-
+-------------------------------------------------------------
 Done:
 -timestamp with each comment
 -fastforward/rewind
 -volume control
 -Output comments to txt
 -Reloading while playing causes play/pause button to be backwards - problem since playing and pausing is determined by text
+-Remove comments
+	rm (digit) removes that line
+	rm removes last
+	multiple lines
+	allow no space between rm and number
