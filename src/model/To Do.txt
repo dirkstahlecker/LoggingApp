@@ -1,7 +1,6 @@
 Features to add:
 Essential:
 -variable playback speed
--clear log button
 
 Good:
 -key listeners for easy playback control
@@ -12,6 +11,7 @@ Good:
 
 Extra:
 -html output
+-error logging system
 
 Maybe:
 -timestamp when started typing (?)
@@ -38,3 +38,4 @@ Done:
 	rm removes last
 	multiple lines
 	allow no space between rm and number
+-clear log button

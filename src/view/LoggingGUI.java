@@ -49,9 +49,12 @@ public class LoggingGUI extends JFrame {
     
     private final JScrollPane displayScrollPane;
     
-    private final SoundPlayer player;
     private final BlockingQueue<String[]> audioQueue;
     private final BlockingQueue<String> timeQueue;
+    private final BlockingQueue<String> outputQueue;
+    
+    private final OutputLogDisplay outputLogDisplay;
+    private final SoundPlayer player;
     
     private AtomicInteger time; //holds a rounded time stamp, as I don't feel its necessary to have precision greater than a second
     
@@ -136,8 +139,10 @@ public class LoggingGUI extends JFrame {
         time.set(0);
         
         audioQueue = new LinkedBlockingQueue<String[]>();
+        outputQueue = new LinkedBlockingQueue<String>();
         player = new SoundPlayer(audioQueue, timeStamp, currentAudioSource, time);
         timeQueue = new LinkedBlockingQueue<String>();
+        this.outputLogDisplay = new OutputLogDisplay(outputQueue, commentField, outputLog, time);
         
         //Configure everything else, separated for readability
         configureLayouts();
@@ -160,7 +165,7 @@ public class LoggingGUI extends JFrame {
         enterAudio.addActionListener(soundAction);
         audioSource.addActionListener(soundAction);
         
-        EnterMessageActionListener enterAction = new EnterMessageActionListener(commentField, outputLog, time);
+        AddToOutputQueue enterAction = new AddToOutputQueue(outputQueue,"enter");
         enterText.addActionListener(enterAction);
         commentField.addActionListener(enterAction);
         
@@ -171,11 +176,16 @@ public class LoggingGUI extends JFrame {
         volumeDown.addActionListener(new AudioControlActionListener(audioQueue,"volume","down"));
         
         export.addActionListener(new ExportLogActionListener(this, outputLog));
+        
+        clearLog.addActionListener(new AddToOutputQueue(outputQueue,"clear"));
     }
     
     private void startThreads() {
         Thread soundPlayerThread = new Thread(player);
         soundPlayerThread.start();
+        
+        Thread textOutputThread = new Thread(outputLogDisplay);
+        textOutputThread.start();
     }
     
     

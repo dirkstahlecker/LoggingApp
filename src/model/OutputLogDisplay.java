@@ -1,29 +1,24 @@
 package model;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-/**
- * Listens to the comment box, waiting for user to enter a comment.
- * Updates the display area with the timestamp and the comment
- * @author Dirk
- *
- */
-public class EnterMessageActionListener implements ActionListener {
+public class OutputLogDisplay implements Runnable {
 
+	private final BlockingQueue<String> outputQueue;
 	private final JTextField commentField;
 	private final JTextArea logOutputField;
 	private final AtomicInteger time;
 	private int count;
 	private List<String> lines; //internal structure to hold just the comments, in order
-	
-	public EnterMessageActionListener(JTextField commentField, JTextArea outputLog, AtomicInteger time) {
+
+	public OutputLogDisplay(BlockingQueue<String> outputQueue, JTextField commentField, JTextArea outputLog, AtomicInteger time) {
+		this.outputQueue = outputQueue;
 		this.commentField = commentField;
 		this.logOutputField = outputLog;
 		this.time = time;
@@ -32,12 +27,35 @@ public class EnterMessageActionListener implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void run() {
+		System.out.println("Running outputLogDisplay");
+		while (true) {
+			String message = outputQueue.poll();
+			if (message != null) {
+				System.out.println("message: " + message);
+				switch(message) {
+				case "enter":
+					if (Constants.debug) System.out.println("Enter text message received");
+					enterText();
+					break;
+				case "clear":
+					clear();
+					break;
+				}
+			}
+		}	
+	}
+	
+	public void clear() {
+		logOutputField.setText("");
+	}
+
+	public void enterText() {
 		String comment = commentField.getText();
 		if (comment.matches("(\\s*rm)|(\\s*rm\\s+.*)")) { //remove command, handle and don't add comment
 			comment = comment.trim();
 			String[] parts = comment.split("\\s+");
-			
+
 			int lineNum = -1;
 			int lineNum2 = -1;
 			switch(parts.length) {
@@ -97,6 +115,7 @@ public class EnterMessageActionListener implements ActionListener {
 		}
 		commentField.setText("");
 	}
+
 	
 	private void writeArrayToField(int lineToRemove) {
 		logOutputField.setText(""); //clear field
@@ -107,6 +126,11 @@ public class EnterMessageActionListener implements ActionListener {
 		}
 	}
 
+	/**
+	 * Creates equally spaced columns
+	 * @param inp string to format
+	 * @return string with the proper number of spaces appended
+	 */
 	private String makeCol(String inp) {
 		int maxLen = 4;
 		int diff = 0;
@@ -114,7 +138,7 @@ public class EnterMessageActionListener implements ActionListener {
 		if (inp.length() != maxLen) 
 			diff = maxLen - inp.length();
 		else 
-			 diff = 0;
+			diff = 0;
 		for (int i = 0; i < diff; i++) 
 			out += ' ';
 		return out + ": ";
