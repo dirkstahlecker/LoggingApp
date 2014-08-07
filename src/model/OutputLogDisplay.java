@@ -32,10 +32,9 @@ public class OutputLogDisplay implements Runnable {
 		while (true) {
 			String message = outputQueue.poll();
 			if (message != null) {
-				System.out.println("message: " + message);
+				if (Constants.debug) System.out.println("message: " + message);
 				switch(message) {
 				case "enter":
-					if (Constants.debug) System.out.println("Enter text message received");
 					enterText();
 					break;
 				case "clear":

@@ -1,6 +1,8 @@
 Features to add:
 Essential:
 -variable playback speed
+-allow volume control before audio file is entered
+-add 'menuItem.getAccessibleContext().setAccessibleDescription' to all menu items
 
 Good:
 -key listeners for easy playback control

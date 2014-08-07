@@ -7,10 +7,8 @@ import java.util.concurrent.BlockingQueue;
 import javax.swing.JButton;
 
 /**
- * invoked when the game is paused or resumed
- *
- * utilizes a boolean to determines if it's paused, therefore allowing
- * this class to perform both pause and unpause actions
+ * Invoked when the audio is paused or resumed
+ * @author Dirk
  *
  */
 public class PauseActionListener implements ActionListener {

@@ -1,9 +1,15 @@
 package view;
+import javafx.embed.swing.JFXPanel;
+
 import javax.swing.*;
 
 import audio.AudioControlActionListener;
 import audio.SoundActionListener;
 import audio.SoundPlayer;
+//import audio.SoundPlayer;
+import audio.SoundPlayerFX;
+import menu.MenuController;
+import menu.MenuActionListener;
 import model.*;
 
 import java.awt.BorderLayout;
@@ -17,13 +23,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class LoggingGUI extends JFrame {
     private static final long serialVersionUID = 1L; //required
-    
     
     private final JTextField commentField;
     private final JTextField audioSource;
@@ -52,9 +58,18 @@ public class LoggingGUI extends JFrame {
     private final BlockingQueue<String[]> audioQueue;
     private final BlockingQueue<String> timeQueue;
     private final BlockingQueue<String> outputQueue;
+    private final BlockingQueue<String> menuQueue;
     
     private final OutputLogDisplay outputLogDisplay;
-    private final SoundPlayer player;
+    private final SoundPlayerFX player;
+    private final MenuController menuController;
+    
+    //menu bar
+	private JMenuBar menuBar;
+	private JMenu menu, submenu;
+	private JMenuItem menuItem;
+	private JRadioButtonMenuItem rbMenuItem;
+	private JCheckBoxMenuItem cbMenuItem;
     
     private AtomicInteger time; //holds a rounded time stamp, as I don't feel its necessary to have precision greater than a second
     
@@ -140,14 +155,17 @@ public class LoggingGUI extends JFrame {
         
         audioQueue = new LinkedBlockingQueue<String[]>();
         outputQueue = new LinkedBlockingQueue<String>();
-        player = new SoundPlayer(audioQueue, timeStamp, currentAudioSource, time);
+        menuQueue = new LinkedBlockingQueue<String>();
+        player = new SoundPlayerFX(audioQueue, timeStamp, currentAudioSource, time, playpause);
         timeQueue = new LinkedBlockingQueue<String>();
         this.outputLogDisplay = new OutputLogDisplay(outputQueue, commentField, outputLog, time);
+        this.menuController = new MenuController(menuQueue,this);
         
         //Configure everything else, separated for readability
         configureLayouts();
         addActionListeners();
         startThreads();
+        setUpMenuBar();
         
         //enterText.addKeyListener(new KeyPressedListener());
         //enterText.requestFocusInWindow();
@@ -181,11 +199,14 @@ public class LoggingGUI extends JFrame {
     }
     
     private void startThreads() {
-        Thread soundPlayerThread = new Thread(player);
-        soundPlayerThread.start();
+        Thread soundPlayerFXThread = new Thread(player);
+        soundPlayerFXThread.start();
         
         Thread textOutputThread = new Thread(outputLogDisplay);
         textOutputThread.start();
+        
+        Thread menuControllerThread = new Thread(menuController);
+        menuControllerThread.start();
     }
     
     
@@ -246,22 +267,143 @@ public class LoggingGUI extends JFrame {
         
         ScrollPaneLayout scrollPaneLayout = new ScrollPaneLayout();
         displayScrollPane.setLayout(scrollPaneLayout);
-        displayScrollPane.setPreferredSize(new Dimension(500,400));
+        displayScrollPane.setPreferredSize(new Dimension(750,400));
         
         //Configure the layout specifications for both panels
-        userPanel.setPreferredSize(new Dimension(500,125));
+        userPanel.setPreferredSize(new Dimension(750,125));
 
         contentPane.add(userPanel, BorderLayout.SOUTH);
         contentPane.add(displayScrollPane, BorderLayout.NORTH);
     }
     
+    private void setUpMenuBar() {
+    	//Create the menu bar.
+    	menuBar = new JMenuBar();
+
+    	//Build the first menu.
+    	menu = new JMenu("File");
+    	menu.setMnemonic(KeyEvent.VK_A);
+    	//menu.getAccessibleContext().setAccessibleDescription("File");
+    	menuBar.add(menu);
+    	
+    	//a group of JMenuItems
+    	menuItem = new JMenuItem("New");
+    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	menuItem.addActionListener(new MenuActionListener("new",menuQueue));
+    	menu.add(menuItem);
+    	
+    	menuItem = new JMenuItem("Open", KeyEvent.VK_T);
+    	//menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+    	menuItem.addActionListener(new MenuActionListener("open",menuQueue));
+    	menu.add(menuItem);
+    	
+    	menuItem = new JMenuItem("Save");
+    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	menuItem.addActionListener(new MenuActionListener("save",menuQueue));
+    	menu.add(menuItem);
+    	
+    	menuItem = new JMenuItem("Save As");
+    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	menuItem.addActionListener(new MenuActionListener("save as",menuQueue));
+    	menu.add(menuItem);
+    	
+    	
+    	//menuItem = new JMenuItem(new ImageIcon("images/middle.gif"));
+    	
+    	/*
+    	//a group of radio button menu items
+    	menu.addSeparator();
+    	ButtonGroup group = new ButtonGroup();
+    	rbMenuItem = new JRadioButtonMenuItem("A radio button menu item");
+    	rbMenuItem.setSelected(true);
+    	rbMenuItem.setMnemonic(KeyEvent.VK_R);
+    	group.add(rbMenuItem);
+    	menu.add(rbMenuItem);
+    	
+    	rbMenuItem = new JRadioButtonMenuItem("Another one");
+    	rbMenuItem.setMnemonic(KeyEvent.VK_O);
+    	group.add(rbMenuItem);
+    	menu.add(rbMenuItem);
+		*/
+    	/*
+    	//a group of check box menu items
+    	menu.addSeparator();
+    	cbMenuItem = new JCheckBoxMenuItem("A check box menu item");
+    	cbMenuItem.setMnemonic(KeyEvent.VK_C);
+    	menu.add(cbMenuItem);
+
+    	cbMenuItem = new JCheckBoxMenuItem("Another one");
+    	cbMenuItem.setMnemonic(KeyEvent.VK_H);
+    	menu.add(cbMenuItem);
+		*/
+    	/*
+    	//a submenu
+    	menu.addSeparator();
+    	submenu = new JMenu("A submenu");
+    	submenu.setMnemonic(KeyEvent.VK_S);
+
+    	menuItem = new JMenuItem("An item in the submenu");
+    	menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
+    	submenu.add(menuItem);
+
+    	menuItem = new JMenuItem("Another item");
+    	submenu.add(menuItem);
+    	menu.add(submenu);
+    	 */
+    	
+    	//Build second menu in the menu bar.
+    	menu = new JMenu("Export");
+    	menu.setMnemonic(KeyEvent.VK_N);
+    	menuBar.add(menu);
+    	
+    	menuItem = new JMenuItem("Export as .txt");
+    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	//menuItem.addActionListener(new MenuActionListener("export txt",menuQueue));
+    	menuItem.addActionListener(new ExportLogActionListener(this, outputLog));
+    	menu.add(menuItem);
+    	
+    	menuItem = new JMenuItem("Export as PDF");
+    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	menuItem.addActionListener(new MenuActionListener("export pdf",menuQueue));
+    	menu.add(menuItem);
+    	
+    	menuItem = new JMenuItem("Export to Excel");
+    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	menuItem.addActionListener(new MenuActionListener("export excel",menuQueue));
+    	menu.add(menuItem);
+    	
+    	menu = new JMenu("Help");
+    	menu.setMnemonic(KeyEvent.VK_N);
+    	menuBar.add(menu);
+    	
+    	menuItem = new JMenuItem("About");
+    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	menuItem.addActionListener(new MenuActionListener("about",menuQueue));
+    	menu.add(menuItem);
+    	
+    	menuItem = new JMenuItem("View Help");
+    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	menuItem.addActionListener(new MenuActionListener("view help",menuQueue));
+    	menu.add(menuItem);
+
+    	this.setJMenuBar(menuBar);
+
+    }
+    
+    
     /**
      * necessary to run from command line
      * @param args unused
+     * @throws InterruptedException for latch.await()
      */
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws InterruptedException {
+    	final CountDownLatch latch = new CountDownLatch(1);
         SwingUtilities.invokeLater(new Runnable() {
+        	@Override
             public void run() {
+        		new JFXPanel(); // initializes JavaFX environment
+        		latch.countDown();
+        		
                 LoggingGUI main = new LoggingGUI();
                 main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 
@@ -269,5 +411,6 @@ public class LoggingGUI extends JFrame {
                 main.setVisible(true);
             }
         });
+        latch.await();
     }
 }
