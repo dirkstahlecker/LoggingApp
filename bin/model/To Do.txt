@@ -24,6 +24,7 @@ Bugs to fix:
 -Size of fastforward and rewind buttons is too big
 -Use fixed width font for time
 -Error catching in EnterMessageActionListener
+-Can't write to pdf
 
 Problems to consider:
 -holding focus when typing

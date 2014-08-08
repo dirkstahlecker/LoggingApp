@@ -193,8 +193,6 @@ public class LoggingGUI extends JFrame {
         volumeUp.addActionListener(new AudioControlActionListener(audioQueue,"volume","up"));
         volumeDown.addActionListener(new AudioControlActionListener(audioQueue,"volume","down"));
         
-        export.addActionListener(new ExportLogActionListener(this, outputLog));
-        
         clearLog.addActionListener(new AddToOutputQueue(outputQueue,"clear"));
     }
     
@@ -234,7 +232,6 @@ public class LoggingGUI extends JFrame {
                 )
                 .addGroup(userLayout.createSequentialGroup()
                 	.addComponent(clearLog)
-                	.addComponent(export)
                 	.addComponent(currentAudioSource)
                 	.addComponent(timeStamp)
                 )
@@ -259,7 +256,6 @@ public class LoggingGUI extends JFrame {
                 )
                 .addGroup(userLayout.createParallelGroup()
                 	.addComponent(clearLog)
-                	.addComponent(export)
                 	.addComponent(currentAudioSource)
                 	.addComponent(timeStamp)
                 )
@@ -359,17 +355,22 @@ public class LoggingGUI extends JFrame {
     	menuItem = new JMenuItem("Export as .txt");
     	menuItem.setMnemonic(KeyEvent.VK_B);
     	//menuItem.addActionListener(new MenuActionListener("export txt",menuQueue));
-    	menuItem.addActionListener(new ExportLogActionListener(this, outputLog));
+    	menuItem.addActionListener(new ExportLogActionListener(this,outputLog,".txt"));
+    	menu.add(menuItem);
+    	
+    	menuItem = new JMenuItem("Export as .rtf");
+    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	menuItem.addActionListener(new ExportLogActionListener(this,outputLog,".rtf"));
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Export as PDF");
     	menuItem.setMnemonic(KeyEvent.VK_B);
-    	menuItem.addActionListener(new MenuActionListener("export pdf",menuQueue));
+    	menuItem.addActionListener(new ExportLogActionListener(this,outputLog,".pdf"));
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Export to Excel");
     	menuItem.setMnemonic(KeyEvent.VK_B);
-    	menuItem.addActionListener(new MenuActionListener("export excel",menuQueue));
+    	menuItem.addActionListener(new ExportLogActionListener(this,outputLog,".xls"));
     	menu.add(menuItem);
     	
     	menu = new JMenu("Help");

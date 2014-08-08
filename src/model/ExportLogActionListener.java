@@ -24,14 +24,13 @@ public class ExportLogActionListener implements ActionListener {
 	private final JTextArea log;
 	private File file;
 	private final JFrame frame;
-	private final List<String> endingsList;
+	private final String extension;
 
-	public ExportLogActionListener(JFrame frame, JTextArea log) {
+	public ExportLogActionListener(JFrame frame, JTextArea log, String format) {
 		this.log = log;
-		//this.file = new File("/users/dirk/desktop/log.asdf"); //TODO: get this from somewhere
 		this.file = null;
 		this.frame = frame;
-		this.endingsList = new ArrayList<String>(Arrays.asList(".txt",".xls",".xlsx",".rtf"));
+		this.extension = format;
 	}
 
 	@Override
@@ -40,31 +39,30 @@ public class ExportLogActionListener implements ActionListener {
 
 		System.setProperty("apple.awt.fileDialogForDirectories", "true");
 		FileDialog fileDialog = new FileDialog(frame, "Choose an output file", FileDialog.SAVE);
-		if (file != null) fileDialog.setFile(this.file.getPath());
+		fileDialog.setFile('*' + extension);
+		
+		if (file != null) {
+			//fileDialog.setFile(this.file.getPath());
+		}
 		fileDialog.setVisible(true);
 		
 		if (fileDialog.getFile() != null) { //user clicked okay and not cancel
-			file = new File(fileDialog.getDirectory() + fileDialog.getFile());
-			String path = file.getPath();
+			String path = fileDialog.getDirectory() + fileDialog.getFile();
+			if (!path.endsWith(extension)) {
+				if (path.matches("\\..+$")) {
+					JOptionPane.showMessageDialog(frame, "Error creating file: Incorrect file extension","Error",JOptionPane.ERROR_MESSAGE);
+					actionPerformed(null); //recurse to start over
+				}
+				path += extension;
+			}
+			file = new File(path);
 			System.out.println("path: " + path);
 			
-			boolean validEnding = false;
-			for (String ending : endingsList) {
-				if (path.endsWith(ending)) {
-					validEnding = true;
-				}
-			}
-			if (!validEnding) {
-				JOptionPane.showMessageDialog(frame, "Error creating file: Unsupported file extension","Error",JOptionPane.ERROR_MESSAGE);
-				//JOptionPane.showInputDialog("Enter file path:");
-				return;
-			}
-			
 			//Do format-specific formatting
-			if (path.endsWith(".xls") || path.endsWith(".xlsx")) {
+			if (extension.equals(".xls") || extension.equals(".xlsx")) {
 				logText = logText.replaceAll(":", "\t"); //tabs create new column in excel
 			}
-
+			
 			try {
 				PrintWriter fileWriter = new PrintWriter(file,"UTF-8");
 
