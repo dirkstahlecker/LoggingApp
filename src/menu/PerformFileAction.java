@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
 
 import sun.misc.IOUtils;
 import model.Constants.FileAction;
+import model.OutputLogDisplay;
 
 /**
  * Performs open and save operations
@@ -34,14 +35,16 @@ public class PerformFileAction implements ActionListener {
 	private final JTextArea log;
 	private final JFrame frame;
 	private final FileAction action;
+	private final OutputLogDisplay outputLogDisplay;
 	
 	public PerformFileAction(JFrame frame, BlockingQueue<String[]> performSaveQueue, JTextArea log, FileAction action, 
-			BlockingQueue<String[]> audioQueue) {
+			BlockingQueue<String[]> audioQueue, OutputLogDisplay outputLogDisplay) {
 		this.log = log;
 		this.performSaveQueue = performSaveQueue;
 		this.audioQueue = audioQueue;
 		this.frame = frame;
 		this.action = action;
+		this.outputLogDisplay = outputLogDisplay;
 	}
 	
 	/**
@@ -148,8 +151,8 @@ public class PerformFileAction implements ActionListener {
 			
 			//give this info to wherever it needs to go
 			audioQueue.add(new String[]{"init",audioFilePath,playbackPosition});
+			outputLogDisplay.rewriteField(logText);
 			
-
 		}
 	}
 

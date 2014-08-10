@@ -16,7 +16,7 @@ public class OutputLogDisplay implements Runnable {
 	private final AtomicInteger time;
 	private int count;
 	private List<String> lines; //internal structure to hold just the comments, in order
-
+	
 	public OutputLogDisplay(BlockingQueue<String> outputQueue, JTextField commentField, JTextArea outputLog, AtomicInteger time) {
 		this.outputQueue = outputQueue;
 		this.commentField = commentField;
@@ -25,7 +25,7 @@ public class OutputLogDisplay implements Runnable {
 		this.count = 1;
 		this.lines = new ArrayList<String>();
 	}
-
+	
 	@Override
 	public void run() {
 		System.out.println("Running outputLogDisplay");
@@ -48,7 +48,10 @@ public class OutputLogDisplay implements Runnable {
 	public void clear() {
 		logOutputField.setText("");
 	}
-
+	
+	/**
+	 * Add text to the output log
+	 */
 	public void enterText() {
 		String comment = commentField.getText();
 		if (comment.matches("(\\s*rm)|(\\s*rm\\s+.*)")) { //remove command, handle and don't add comment
@@ -115,13 +118,35 @@ public class OutputLogDisplay implements Runnable {
 		commentField.setText("");
 	}
 
-	
+	/**
+	 * Clear and replace the output text
+	 * @param lineToRemove
+	 */
 	private void writeArrayToField(int lineToRemove) {
 		logOutputField.setText(""); //clear field
 		int count = 1;
 		for (String line : this.lines) {
 			logOutputField.append(makeCol(String.valueOf(count)) + line);
 			count++;
+		}
+	}
+	
+	/**
+	 * Writes an entire list of strings to the output
+	 * Mainly used when loading
+	 * @param newLines list of lines to add
+	 */
+	public void rewriteField(List<String> newLines) {
+		this.lines = new ArrayList<String>();
+		for (String line : newLines) {
+			String out = "";
+			out += time.get();
+			out += ": ";
+			out += line;
+			out += '\n';
+
+			lines.add(out);
+			writeArrayToField(-1);
 		}
 	}
 

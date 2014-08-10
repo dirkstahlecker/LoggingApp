@@ -277,6 +277,8 @@ public class LoggingGUI extends JFrame {
     }
     
     private void setUpMenuBar() {
+    	PerformFileAction performFileAction = new PerformFileAction(this,performSaveQueue,outputLog,FileAction.OPEN,audioQueue,outputLogDisplay);
+    	
     	//Create the menu bar.
     	menuBar = new JMenuBar();
 
@@ -294,12 +296,12 @@ public class LoggingGUI extends JFrame {
     	
     	menuItem = new JMenuItem("Open", KeyEvent.VK_T);
     	//menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.OPEN,audioQueue));
+    	menuItem.addActionListener(performFileAction);
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Save");
     	menuItem.setMnemonic(KeyEvent.VK_B);
-    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.SAVE,audioQueue));
+    	menuItem.addActionListener(performFileAction);
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Save As");
