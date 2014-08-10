@@ -5,6 +5,12 @@ import java.util.concurrent.BlockingQueue;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+/**
+ * Used as a hub for handling menu options that aren't handled explicitly
+ * by an action listener. 
+ * @author Dirk
+ *
+ */
 public class MenuController implements Runnable {
 	
 	private final BlockingQueue<String> queue;
@@ -36,15 +42,6 @@ public class MenuController implements Runnable {
 				case "save as":
 					
 					break;
-				case "export txt":
-					
-					break;
-				case "export pdf":
-					
-					break;
-				case "export excel":
-					
-					break;
 				case "about":
 					JOptionPane.showMessageDialog(frame, "Created by Dirk Stahlecker\nCopyright 2014","About",JOptionPane.PLAIN_MESSAGE);
 					break;
@@ -56,4 +53,6 @@ public class MenuController implements Runnable {
 		}
 		
 	}
+	
+
 }

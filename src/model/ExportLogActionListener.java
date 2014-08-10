@@ -18,7 +18,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
-
 public class ExportLogActionListener implements ActionListener {
 
 	private final JTextArea log;
@@ -48,7 +47,7 @@ public class ExportLogActionListener implements ActionListener {
 		
 		if (fileDialog.getFile() != null) { //user clicked okay and not cancel
 			String path = fileDialog.getDirectory() + fileDialog.getFile();
-			if (!path.endsWith(extension)) {
+			if (!path.endsWith(extension)) { //TODO: this seems useless, or at least not called ever
 				if (path.matches("\\..+$")) {
 					JOptionPane.showMessageDialog(frame, "Error creating file: Incorrect file extension","Error",JOptionPane.ERROR_MESSAGE);
 					actionPerformed(null); //recurse to start over

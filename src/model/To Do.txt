@@ -3,6 +3,8 @@ Essential:
 -variable playback speed
 -allow volume control before audio file is entered
 -add 'menuItem.getAccessibleContext().setAccessibleDescription' to all menu items
+-opening and saving
+-error logging system
 
 Good:
 -key listeners for easy playback control
@@ -10,6 +12,7 @@ Good:
 -Output comments to a nice format
 	-Remove subsequent identical numbers in output 
 -wrap text that goes off screen
+-error handling class (exception class)
 
 Extra:
 -html output
@@ -17,6 +20,7 @@ Extra:
 
 Maybe:
 -timestamp when started typing (?)
+-file dialog class?
 
 
 -------------------------------------------------------------

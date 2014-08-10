@@ -10,6 +10,7 @@ import audio.SoundPlayer;
 import audio.SoundPlayerFX;
 import menu.MenuController;
 import menu.MenuActionListener;
+import menu.PerformSave;
 import model.*;
 
 import java.awt.BorderLayout;
@@ -59,6 +60,7 @@ public class LoggingGUI extends JFrame {
     private final BlockingQueue<String> timeQueue;
     private final BlockingQueue<String> outputQueue;
     private final BlockingQueue<String> menuQueue;
+    private final BlockingQueue<String[]> performSaveQueue;
     
     private final OutputLogDisplay outputLogDisplay;
     private final SoundPlayerFX player;
@@ -156,7 +158,8 @@ public class LoggingGUI extends JFrame {
         audioQueue = new LinkedBlockingQueue<String[]>();
         outputQueue = new LinkedBlockingQueue<String>();
         menuQueue = new LinkedBlockingQueue<String>();
-        player = new SoundPlayerFX(audioQueue, timeStamp, currentAudioSource, time, playpause);
+        performSaveQueue = new LinkedBlockingQueue<String[]>();
+        player = new SoundPlayerFX(audioQueue, timeStamp, currentAudioSource, time, playpause, performSaveQueue);
         timeQueue = new LinkedBlockingQueue<String>();
         this.outputLogDisplay = new OutputLogDisplay(outputQueue, commentField, outputLog, time);
         this.menuController = new MenuController(menuQueue,this);
@@ -295,7 +298,7 @@ public class LoggingGUI extends JFrame {
     	
     	menuItem = new JMenuItem("Save");
     	menuItem.setMnemonic(KeyEvent.VK_B);
-    	menuItem.addActionListener(new MenuActionListener("save",menuQueue));
+    	menuItem.addActionListener(new PerformSave(this,performSaveQueue,outputLog));
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Save As");

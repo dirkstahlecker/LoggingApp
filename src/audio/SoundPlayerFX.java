@@ -34,8 +34,11 @@ public class SoundPlayerFX implements Runnable {
 	private AtomicInteger time; //set current time here so other threads can read it
 	private MediaPlayer audioPlayer;
 	private final JButton playpause;
+	private final BlockingQueue<String[]> performSaveQueue;
+	private String audioFilePath;
 
-	public SoundPlayerFX(BlockingQueue<String[]> audioQueue, JLabel timeStamp, JLabel currentAudioSource, AtomicInteger time, JButton playpause) {
+	public SoundPlayerFX(BlockingQueue<String[]> audioQueue, JLabel timeStamp, JLabel currentAudioSource, 
+			AtomicInteger time, JButton playpause, BlockingQueue<String[]> performSaveQueue) {
 
 		this.audioQueue = audioQueue;
 		this.timeStamp = timeStamp;
@@ -43,6 +46,7 @@ public class SoundPlayerFX implements Runnable {
 		this.currentAudioSource = currentAudioSource;
 		this.audioPlayer = null;
 		this.playpause = playpause;
+		this.performSaveQueue = performSaveQueue;
 	}
 
 	/**
@@ -50,9 +54,13 @@ public class SoundPlayerFX implements Runnable {
 	 * Can be called again to change the file
 	 * @param audioFilePath the path to the sound file to play
 	 */
-	public void setupAudio(String audioFilePath) {
+	public void setupAudio(String inputPath) {
+		if (audioPlayer != null) {
+			audioPlayer.stop();
+		}
+		
 		//TODO: error handling
-		audioFilePath = "file://" + audioFilePath; //TODO: make this better
+		audioFilePath = "file://" + inputPath; //TODO: make this better
 		System.out.println("Audio source: " + audioFilePath); 
 		audioPlayer = null;
 		try {
@@ -67,6 +75,7 @@ public class SoundPlayerFX implements Runnable {
 			
 			System.out.println("audioPlayer: " + audioPlayer.toString());
 			System.out.println("Player configured");
+			addInfoToQueue();
 		}
 		catch (MediaException me) {
 			System.err.println("MediaException");
@@ -110,28 +119,13 @@ public class SoundPlayerFX implements Runnable {
 
 			if (message != null) {
 				if (Constants.debug) System.out.println("message: " + message[0]);
+				
 				switch (message[0]) {
 				case "init":
-					if (audioPlayer != null) {
-						audioPlayer.stop();
-					}
 					setupAudio(message[1]);
-					if (Constants.debug) System.out.println("SoundPlayer: init");
 					break;
 				case "playpause":
-					if (isPaused && audioPlayer != null) {
-						if (Constants.debug) System.out.println("SoundPlayer: play");
-						System.out.println("in play case");
-						audioPlayer.play();
-						isPaused = false;
-						playpause.setText("Pause");
-					}
-					else if (audioPlayer != null) {
-						if (Constants.debug) System.out.println("SoundPlayer: pause"); 
-						audioPlayer.pause();
-						isPaused = true;
-						playpause.setText("Play");
-					}
+					playpause();
 					break;
 				/*
 				case "rewind":
@@ -152,29 +146,60 @@ public class SoundPlayerFX implements Runnable {
 					break;
 				*/
 				case "volume":
-					if (message[1].equals("up")) {
-						volume = audioPlayer.getVolume() + Constants.volumeGain;
-					}
-					else {
-						volume = audioPlayer.getVolume() - Constants.volumeGain;
-					}
-					if (volume > 1) {
-						volume = 1;
-					}
-					else if (volume < 0) {
-						volume = 0;
-					}
-					audioPlayer.setVolume(volume);
+					volume(message[1]);
 					break;
 				}
 			}
 			
 			if (isPaused != null && !isPaused) { //checking against null necessary to not throw exception
 				outputTime();
+				addInfoToQueue();
 			}
 		}
 	}
+	
+	/**
+	 * Plays or pauses the audio, depending on its current state
+	 */
+	private void playpause() {
+		if (isPaused && audioPlayer != null) {
+			if (Constants.debug) System.out.println("SoundPlayer: play");
+			System.out.println("in play case");
+			audioPlayer.play();
+			isPaused = false;
+			playpause.setText("Pause");
+		}
+		else if (audioPlayer != null) {
+			if (Constants.debug) System.out.println("SoundPlayer: pause"); 
+			audioPlayer.pause();
+			isPaused = true;
+			playpause.setText("Play");
+		}
+	}
+	
+	/**
+	 * Adjusts the volume by a constant amount, Constants.volumeGain
+	 * @param m string "up" or "down"
+	 */
+	private void volume(String m) {
+		if (m.equals("up")) {
+			volume = audioPlayer.getVolume() + Constants.volumeGain;
+		}
+		else {
+			volume = audioPlayer.getVolume() - Constants.volumeGain;
+		}
+		if (volume > 1) {
+			volume = 1;
+		}
+		else if (volume < 0) {
+			volume = 0;
+		}
+		audioPlayer.setVolume(volume);
+	}
 
+	/**
+	 * displays the current playback location to the gui
+	 */
 	private void outputTime() {
 		if (audioPlayer != null) {
 			currentTime = audioPlayer.getCurrentTime().toSeconds();
@@ -187,8 +212,17 @@ public class SoundPlayerFX implements Runnable {
 		time.set((int) currentTime);
 	}
 	
+	private double currentTime() {
+		return audioPlayer.getCurrentTime().toSeconds();
+	}
+	
 	private double convertTime(double time) {
 		return time;
+	}
+	
+	private void addInfoToQueue() {
+		performSaveQueue.poll();//don't care about old value, so remove it
+		performSaveQueue.add(new String[]{audioFilePath,String.valueOf(currentTime())});
 	}
 
 }
