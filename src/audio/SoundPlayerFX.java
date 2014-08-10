@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.Media;
+import javafx.util.Duration;
 import model.Constants;
 
 /**
@@ -54,13 +55,17 @@ public class SoundPlayerFX implements Runnable {
 	 * Can be called again to change the file
 	 * @param audioFilePath the path to the sound file to play
 	 */
-	public void setupAudio(String inputPath) {
+	public void setupAudio(String inputPath, long startTime) {
 		if (audioPlayer != null) {
 			audioPlayer.stop();
 		}
+		audioFilePath = inputPath;
 		
 		//TODO: error handling
-		audioFilePath = "file://" + inputPath; //TODO: make this better
+		if (!audioFilePath.startsWith("file://")) {
+			audioFilePath = "file://" + audioFilePath;
+		}
+		
 		System.out.println("Audio source: " + audioFilePath); 
 		audioPlayer = null;
 		try {
@@ -72,6 +77,7 @@ public class SoundPlayerFX implements Runnable {
 			
 			currentAudioSource.setText("File: " + audioFilePath);
 			volume = audioPlayer.getVolume();
+			audioPlayer.setStartTime(new Duration(startTime)); //startTime in milliseconds
 			
 			System.out.println("audioPlayer: " + audioPlayer.toString());
 			System.out.println("Player configured");
@@ -100,7 +106,14 @@ public class SoundPlayerFX implements Runnable {
 			try {
 				message = audioQueue.take();
 				if (message[0].equals("init")) {
-					setupAudio(message[1]);
+					long startTime;
+					try {
+						startTime = Long.parseLong(message[2]);
+					}
+					catch (NumberFormatException | NullPointerException e) {
+						startTime = 0;
+					}
+					setupAudio(message[1],startTime);
 					System.out.println("SoundPlayer: init");
 					break;
 				}
@@ -122,7 +135,7 @@ public class SoundPlayerFX implements Runnable {
 				
 				switch (message[0]) {
 				case "init":
-					setupAudio(message[1]);
+					setupAudio(message[1],Long.parseLong(message[2]));
 					break;
 				case "playpause":
 					playpause();

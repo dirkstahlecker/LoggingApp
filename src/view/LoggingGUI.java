@@ -10,8 +10,9 @@ import audio.SoundPlayer;
 import audio.SoundPlayerFX;
 import menu.MenuController;
 import menu.MenuActionListener;
-import menu.PerformSave;
+import menu.PerformFileAction;
 import model.*;
+import model.Constants.FileAction;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -270,7 +271,7 @@ public class LoggingGUI extends JFrame {
         
         //Configure the layout specifications for both panels
         userPanel.setPreferredSize(new Dimension(750,125));
-
+        
         contentPane.add(userPanel, BorderLayout.SOUTH);
         contentPane.add(displayScrollPane, BorderLayout.NORTH);
     }
@@ -293,12 +294,12 @@ public class LoggingGUI extends JFrame {
     	
     	menuItem = new JMenuItem("Open", KeyEvent.VK_T);
     	//menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-    	menuItem.addActionListener(new MenuActionListener("open",menuQueue));
+    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.OPEN,audioQueue));
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Save");
     	menuItem.setMnemonic(KeyEvent.VK_B);
-    	menuItem.addActionListener(new PerformSave(this,performSaveQueue,outputLog));
+    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.SAVE,audioQueue));
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Save As");
