@@ -29,6 +29,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class LoggingGUI extends JFrame {
     private static final long serialVersionUID = 1L; //required
@@ -151,7 +152,7 @@ public class LoggingGUI extends JFrame {
         
         timeStamp = new JLabel();
         timeStamp.setName("timeStamp");
-        timeStamp.setText("      0:00 / 0:00");
+        timeStamp.setText("      0:00 / 0:00"); //TODO: space this somehow else, so it doesn't jump around
         
         time = new AtomicInteger();
         time.set(0);
@@ -277,7 +278,8 @@ public class LoggingGUI extends JFrame {
     }
     
     private void setUpMenuBar() {
-    	PerformFileAction performFileAction = new PerformFileAction(this,performSaveQueue,outputLog,FileAction.OPEN,audioQueue,outputLogDisplay);
+    	AtomicReference<String> audioFilePathReference = new AtomicReference<String>();
+    	audioFilePathReference.set(null);
     	
     	//Create the menu bar.
     	menuBar = new JMenuBar();
@@ -291,22 +293,22 @@ public class LoggingGUI extends JFrame {
     	//a group of JMenuItems
     	menuItem = new JMenuItem("New");
     	menuItem.setMnemonic(KeyEvent.VK_B);
-    	menuItem.addActionListener(new MenuActionListener("new",menuQueue));
+    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.NEW,audioQueue,outputLogDisplay,audioFilePathReference));
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Open", KeyEvent.VK_T);
     	//menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-    	menuItem.addActionListener(performFileAction);
+    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.OPEN,audioQueue,outputLogDisplay,audioFilePathReference));
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Save");
     	menuItem.setMnemonic(KeyEvent.VK_B);
-    	menuItem.addActionListener(performFileAction);
+    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.SAVE,audioQueue,outputLogDisplay,audioFilePathReference));
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Save As");
     	menuItem.setMnemonic(KeyEvent.VK_B);
-    	menuItem.addActionListener(new MenuActionListener("save as",menuQueue));
+    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.SAVE_AS,audioQueue,outputLogDisplay,audioFilePathReference));
     	menu.add(menuItem);
     	
     	

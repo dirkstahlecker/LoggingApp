@@ -12,14 +12,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.atomic.AtomicReference;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import sun.misc.IOUtils;
+import view.LoggingGUI;
 import model.Constants.FileAction;
 import model.OutputLogDisplay;
 
@@ -36,21 +39,38 @@ public class PerformFileAction implements ActionListener {
 	private final JFrame frame;
 	private final FileAction action;
 	private final OutputLogDisplay outputLogDisplay;
+	private String saveFilePath = "";
+	private final AtomicReference<String> audioFilePathReference;
 	
 	public PerformFileAction(JFrame frame, BlockingQueue<String[]> performSaveQueue, JTextArea log, FileAction action, 
-			BlockingQueue<String[]> audioQueue, OutputLogDisplay outputLogDisplay) {
+			BlockingQueue<String[]> audioQueue, OutputLogDisplay outputLogDisplay, AtomicReference<String> audioFilePathReference) {
 		this.log = log;
 		this.performSaveQueue = performSaveQueue;
 		this.audioQueue = audioQueue;
 		this.frame = frame;
 		this.action = action;
 		this.outputLogDisplay = outputLogDisplay;
+		this.audioFilePathReference = audioFilePathReference;
+	}
+	
+	private String getSaveFile() {
+		System.setProperty("apple.awt.fileDialogForDirectories", "true");
+		FileDialog fileDialog = new FileDialog(frame, "Choose a folder to save to", FileDialog.SAVE);
+		fileDialog.setFile("*.txt");
+		fileDialog.setVisible(true);
+		
+		String saveFilePath = null;
+		if (fileDialog.getFile() != null) { //user clicked okay and not cancel 
+			saveFilePath = fileDialog.getDirectory() + fileDialog.getFile();
+		}
+		return saveFilePath;
 	}
 	
 	/**
-	 * Save all relevant information to a text file
+	 * Saves all relevant information to a text file
+	 * @param saveFilePath path to output save data to
 	 */
-	public void save() {
+	private void performSave(String saveFilePath) {
 		String out = "";
 		//store stuff in a text file
 		/*
@@ -76,14 +96,10 @@ public class PerformFileAction implements ActionListener {
 		out += String.valueOf(position) + '\n';
 		
 		out += log.getText();
-		System.setProperty("apple.awt.fileDialogForDirectories", "true");
-		FileDialog fileDialog = new FileDialog(frame, "Choose a folder to save to", FileDialog.SAVE);
-		fileDialog.setFile("*.txt");
-		fileDialog.setVisible(true);
-
-		if (fileDialog.getFile() != null) { //user clicked okay and not cancel 
-			String outputFilePath = fileDialog.getDirectory() + fileDialog.getFile();
-			File file = new File(outputFilePath);
+		
+		if (saveFilePath != null) {
+			audioFilePathReference.set(saveFilePath);
+			File file = new File(saveFilePath);
 
 			PrintWriter fileWriter;
 			try {
@@ -101,7 +117,7 @@ public class PerformFileAction implements ActionListener {
 	/**
 	 * Open a previously saved file
 	 */
-	private void open() {
+	private void performOpen() {
 		//System.setProperty("apple.awt.fileDialogForDirectories", "true");
 		FileDialog fileDialog = new FileDialog(frame, "Choose a file to open", FileDialog.LOAD);
 		fileDialog.setFile("*.txt");
@@ -152,15 +168,34 @@ public class PerformFileAction implements ActionListener {
 			//give this info to wherever it needs to go
 			audioQueue.add(new String[]{"init",audioFilePath,playbackPosition});
 			outputLogDisplay.rewriteField(logText);
-			
 		}
+	}
+	
+	private void performNew() {
+		audioQueue.add(new String[]{"init",""});
+		outputLogDisplay.rewriteField(new ArrayList<String>());
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (action == FileAction.SAVE) 
-			save();
+		String path = audioFilePathReference.get();
+		if (action == FileAction.SAVE) {
+			if (path == null) { //not already saved
+				String filePath = getSaveFile();
+				performSave(filePath);
+			}
+			else {
+				performSave(path);
+			}
+		}
 		else if (action == FileAction.OPEN)
-			open();
+			performOpen();
+		else if (action == FileAction.SAVE_AS) {
+			String filePath = getSaveFile();
+			performSave(filePath);
+		}
+		else if (action == FileAction.NEW) {
+			performNew();
+		}
 	}
 }

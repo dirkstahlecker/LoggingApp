@@ -137,6 +137,9 @@ public class OutputLogDisplay implements Runnable {
 	 * @param newLines list of lines to add
 	 */
 	public void rewriteField(List<String> newLines) {
+		if (newLines.size() == 0) {
+			logOutputField.setText("");
+		}
 		this.lines = new ArrayList<String>();
 		for (String line : newLines) {
 			String out = "";

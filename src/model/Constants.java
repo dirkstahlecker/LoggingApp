@@ -5,6 +5,6 @@ public class Constants {
 	public static double volumeGain = 0.1;
 	
 	public enum FileAction {
-		OPEN, SAVE
+		OPEN, SAVE, SAVE_AS, NEW
 	}
 }

@@ -53,16 +53,21 @@ public class SoundPlayerFX implements Runnable {
 	/**
 	 * Configure the sound
 	 * Can be called again to change the file
-	 * @param audioFilePath the path to the sound file to play
+	 * @param inputPath path to the audio file to play. If empty, initialize no file (but don't throw exception)
+	 * @param startTime time in seconds to start playing the audio. If empty, starts at beginning
 	 */
 	public void setupAudio(String inputPath, long startTime) {
 		if (audioPlayer != null) {
 			audioPlayer.stop();
 		}
 		audioFilePath = inputPath;
+		if (audioFilePath == "" || audioFilePath == null) { //don't do anything if empty or null - there's no file to load
+			currentAudioSource.setText("File: none");
+			return;
+		}
 		
 		//TODO: error handling
-		if (!audioFilePath.startsWith("file://")) {
+		if (!audioFilePath.startsWith("file://")) { //TODO: make better
 			audioFilePath = "file://" + audioFilePath;
 		}
 		
@@ -79,10 +84,10 @@ public class SoundPlayerFX implements Runnable {
 			volume = audioPlayer.getVolume();
 			audioPlayer.setStartTime(new Duration(startTime)); //startTime in milliseconds
 			
-			System.out.println("audioPlayer: " + audioPlayer.toString());
 			System.out.println("Player configured");
 			addInfoToQueue();
 		}
+		//TODO: error handling
 		catch (MediaException me) {
 			System.err.println("MediaException");
 		}
@@ -101,47 +106,35 @@ public class SoundPlayerFX implements Runnable {
 	public void run() {
 		String[] message = null;
 
-		//block until setup message initially seen
-		while (true) {
-			try {
-				message = audioQueue.take();
-				if (message[0].equals("init")) {
-					long startTime;
-					try {
-						startTime = Long.parseLong(message[2]);
-					}
-					catch (NumberFormatException | NullPointerException e) {
-						startTime = 0;
-					}
-					setupAudio(message[1],startTime);
-					System.out.println("SoundPlayer: init");
-					break;
-				}
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-
-		System.out.println("Listening for messages");
-		//then listen to all message
+		boolean initialSetup = false;
+		//listen to all message
 		while (true) {
 			message = audioQueue.poll();
 			long index;
 			int timeGain = 250000; //quarter second
-			
 
 			if (message != null) {
 				if (Constants.debug) System.out.println("message: " + message[0]);
 				
 				switch (message[0]) {
 				case "init":
-					setupAudio(message[1],Long.parseLong(message[2]));
+					initialSetup = true;
+					long startTime;
+					try {
+						startTime = Long.parseLong(message[2]);
+					}
+					catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
+						startTime = 0;
+					}
+					setupAudio(message[1],startTime);
 					break;
 				case "playpause":
+					if (!initialSetup) break;
 					playpause();
 					break;
 				/*
 				case "rewind":
+					if (!initialSetup) break;
 					index = audioClip.getMicrosecondPosition();
 					index -= timeGain;
 					if (index < 0) index = 0;
@@ -150,6 +143,7 @@ public class SoundPlayerFX implements Runnable {
 					outputTime();
 					break;
 				case "fastforward":
+					if (!initialSetup) break;
 					index = audioClip.getMicrosecondPosition();
 					index += timeGain;
 					if (index > length) index = (long)length;
@@ -159,6 +153,7 @@ public class SoundPlayerFX implements Runnable {
 					break;
 				*/
 				case "volume":
+					if (!initialSetup) break;
 					volume(message[1]);
 					break;
 				}

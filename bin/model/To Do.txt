@@ -2,9 +2,10 @@ Features to add:
 Essential:
 -variable playback speed
 -allow volume control before audio file is entered
--add 'menuItem.getAccessibleContext().setAccessibleDescription' to all menu items
--opening and saving
 -error logging system
+-help documentation
+-make everything synchronized
+-notification if incorrect java version
 
 Good:
 -key listeners for easy playback control
@@ -17,6 +18,7 @@ Good:
 Extra:
 -html output
 -error logging system
+-add 'menuItem.getAccessibleContext().setAccessibleDescription' to all menu items
 
 Maybe:
 -timestamp when started typing (?)
@@ -46,3 +48,5 @@ Done:
 	multiple lines
 	allow no space between rm and number
 -clear log button
+-opening and saving
+-save as

@@ -30,18 +30,6 @@ public class MenuController implements Runnable {
 			if (message != null) {
 
 				switch(message) {
-				case "new":
-					
-					break;
-				case "open":
-					
-					break;
-				case "save":
-					
-					break;
-				case "save as":
-					
-					break;
 				case "about":
 					JOptionPane.showMessageDialog(frame, "Created by Dirk Stahlecker\nCopyright 2014","About",JOptionPane.PLAIN_MESSAGE);
 					break;
