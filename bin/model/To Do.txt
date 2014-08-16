@@ -19,6 +19,7 @@ Extra:
 -html output
 -error logging system
 -add 'menuItem.getAccessibleContext().setAccessibleDescription' to all menu items
+-all javadocs added
 
 Maybe:
 -timestamp when started typing (?)
@@ -28,9 +29,12 @@ Maybe:
 -------------------------------------------------------------
 Bugs to fix:
 -Size of fastforward and rewind buttons is too big
--Use fixed width font for time
+-Use fixed width font for time (or make the separator somehow other than raw spaces)
 -Error catching in EnterMessageActionListener
+	-Error catching/handling pretty much everywhere actually
 -Can't write to pdf
+-length is NaN
+-After clicking 'save' then canceling, 'open' doesn't display properly
 
 Problems to consider:
 -holding focus when typing

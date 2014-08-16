@@ -25,6 +25,7 @@ import sun.misc.IOUtils;
 import view.LoggingGUI;
 import model.Constants.FileAction;
 import model.OutputLogDisplay;
+import model.PopupDialog;
 
 /**
  * Performs open and save operations
@@ -41,6 +42,7 @@ public class PerformFileAction implements ActionListener {
 	private final OutputLogDisplay outputLogDisplay;
 	private String saveFilePath = "";
 	private final AtomicReference<String> audioFilePathReference;
+	private final PopupDialog popupDialog;
 	
 	public PerformFileAction(JFrame frame, BlockingQueue<String[]> performSaveQueue, JTextArea log, FileAction action, 
 			BlockingQueue<String[]> audioQueue, OutputLogDisplay outputLogDisplay, AtomicReference<String> audioFilePathReference) {
@@ -51,6 +53,7 @@ public class PerformFileAction implements ActionListener {
 		this.action = action;
 		this.outputLogDisplay = outputLogDisplay;
 		this.audioFilePathReference = audioFilePathReference;
+		this.popupDialog = new PopupDialog(frame);
 	}
 	
 	private String getSaveFile() {
@@ -106,7 +109,7 @@ public class PerformFileAction implements ActionListener {
 				fileWriter = new PrintWriter(file,"UTF-8");
 				fileWriter.write(out);
 				fileWriter.close();
-				JOptionPane.showMessageDialog(frame, "File created");
+				popupDialog.showMessage("File created");
 			} catch (FileNotFoundException | UnsupportedEncodingException e) {
 				JOptionPane.showMessageDialog(frame, "Error creating file","Error",JOptionPane.ERROR_MESSAGE);
 			}
@@ -128,6 +131,8 @@ public class PerformFileAction implements ActionListener {
 			String audioFilePath = null;
 			String playbackPosition = "";
 			List<String> logText = new ArrayList<String>();
+			String fullFileText = "";
+			boolean validFile = true;
 			
 			FileReader fileReader;
 			try {
@@ -136,13 +141,21 @@ public class PerformFileAction implements ActionListener {
 				String line;
 				int count = 0;
 				while ((line = reader.readLine()) != null) {
+					fullFileText += line;
 					switch (count) {
 					case 0:
-						if (line.matches("file:///[^\\s]+?\\.[0-9a-zA-Z]+")) {
+						if (line.matches("\\s*file:///[^\\s]+?\\.[0-9a-zA-Z]+")) { //TODO: allow no audio file to be specfied
 							audioFilePath = line;
+						}
+						else {
+							validFile = false;
 						}
 						break;
 					case 1:
+						if (!line.matches("\\d+")) { //TODO: make more robust
+							validFile = false;
+							break;
+						}
 						try {
 							playbackPosition = line;
 						}
@@ -150,6 +163,12 @@ public class PerformFileAction implements ActionListener {
 							JOptionPane.showMessageDialog(frame, "Error loading file","Error",JOptionPane.ERROR_MESSAGE);
 						}
 						break;
+					case 2:
+						if (!line.matches("\\d+\\s*:\\s*\\d+\\s*:\\s*.*|\n")) {
+							validFile = false;
+							break;
+						}
+						//don't break here, because we want it to get into default to add the line
 					default:
 						logText.add(line);
 					}
@@ -165,6 +184,14 @@ public class PerformFileAction implements ActionListener {
 				e.printStackTrace();
 			}
 			
+			if (!validFile) {
+				PopupDialog.showError(frame,"Incorrect File Format","error");
+				return;
+			}
+			else
+				System.out.println("successfully passed regex");
+			
+			audioFilePath = audioFilePath.trim();
 			//give this info to wherever it needs to go
 			audioQueue.add(new String[]{"init",audioFilePath,playbackPosition});
 			outputLogDisplay.rewriteField(logText);

@@ -8,6 +8,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import javafx.scene.media.MediaException;
@@ -15,6 +16,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.Media;
 import javafx.util.Duration;
 import model.Constants;
+import model.PopupDialog;
 
 /**
  * Controls the playback of the audio. Must run in a separate
@@ -37,9 +39,11 @@ public class SoundPlayerFX implements Runnable {
 	private final JButton playpause;
 	private final BlockingQueue<String[]> performSaveQueue;
 	private String audioFilePath;
+	private final PopupDialog popupDialog;
+	private boolean initialSetup = false; //false if audio isn't set up, to prevent errors
 
 	public SoundPlayerFX(BlockingQueue<String[]> audioQueue, JLabel timeStamp, JLabel currentAudioSource, 
-			AtomicInteger time, JButton playpause, BlockingQueue<String[]> performSaveQueue) {
+			AtomicInteger time, JButton playpause, BlockingQueue<String[]> performSaveQueue, JFrame frame) {
 
 		this.audioQueue = audioQueue;
 		this.timeStamp = timeStamp;
@@ -48,6 +52,7 @@ public class SoundPlayerFX implements Runnable {
 		this.audioPlayer = null;
 		this.playpause = playpause;
 		this.performSaveQueue = performSaveQueue;
+		this.popupDialog = new PopupDialog(frame);
 	}
 
 	/**
@@ -57,6 +62,7 @@ public class SoundPlayerFX implements Runnable {
 	 * @param startTime time in seconds to start playing the audio. If empty, starts at beginning
 	 */
 	public void setupAudio(String inputPath, long startTime) {
+		initialSetup = false;
 		if (audioPlayer != null) {
 			audioPlayer.stop();
 		}
@@ -75,8 +81,12 @@ public class SoundPlayerFX implements Runnable {
 		audioPlayer = null;
 		try {
 			audioPlayer = new MediaPlayer(new Media(audioFilePath));
+			audioPlayer.play(); //check if it works
+			audioPlayer.stop();
+			//TODO: slow to throw exception when illegal
 			
 			length = convertTime(audioPlayer.getTotalDuration().toSeconds());
+			System.out.println("lengtH: " + length);
 			outputTime();
 			isPaused = true;
 			
@@ -86,10 +96,12 @@ public class SoundPlayerFX implements Runnable {
 			
 			System.out.println("Player configured");
 			addInfoToQueue();
+			
+			initialSetup = true;
 		}
 		//TODO: error handling
 		catch (MediaException me) {
-			System.err.println("MediaException");
+			popupDialog.showError("Invalid file path", "Error");
 		}
 		catch (IllegalArgumentException iae) {
 			System.err.println("IllegalArgumentException");
@@ -105,8 +117,7 @@ public class SoundPlayerFX implements Runnable {
 	@Override
 	public void run() {
 		String[] message = null;
-
-		boolean initialSetup = false;
+		
 		//listen to all message
 		while (true) {
 			message = audioQueue.poll();
@@ -118,7 +129,6 @@ public class SoundPlayerFX implements Runnable {
 				
 				switch (message[0]) {
 				case "init":
-					initialSetup = true;
 					long startTime;
 					try {
 						startTime = Long.parseLong(message[2]);

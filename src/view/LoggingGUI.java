@@ -161,7 +161,7 @@ public class LoggingGUI extends JFrame {
         outputQueue = new LinkedBlockingQueue<String>();
         menuQueue = new LinkedBlockingQueue<String>();
         performSaveQueue = new LinkedBlockingQueue<String[]>();
-        player = new SoundPlayerFX(audioQueue, timeStamp, currentAudioSource, time, playpause, performSaveQueue);
+        player = new SoundPlayerFX(audioQueue, timeStamp, currentAudioSource, time, playpause, performSaveQueue,this);
         timeQueue = new LinkedBlockingQueue<String>();
         this.outputLogDisplay = new OutputLogDisplay(outputQueue, commentField, outputLog, time);
         this.menuController = new MenuController(menuQueue,this);
