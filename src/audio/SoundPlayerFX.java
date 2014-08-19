@@ -85,8 +85,7 @@ public class SoundPlayerFX implements Runnable {
 			audioPlayer.stop();
 			//TODO: slow to throw exception when illegal
 			
-			length = convertTime(audioPlayer.getTotalDuration().toSeconds());
-			System.out.println("lengtH: " + length);
+			length = convertTime(audioPlayer.getTotalDuration().toSeconds()); //TODO: getTotalDuration returns unknown
 			outputTime();
 			isPaused = true;
 			
@@ -96,12 +95,12 @@ public class SoundPlayerFX implements Runnable {
 			
 			System.out.println("Player configured");
 			addInfoToQueue();
-			
+			outputTime();
 			initialSetup = true;
 		}
 		//TODO: error handling
 		catch (MediaException me) {
-			popupDialog.showError("Invalid file path", "Error");
+			popupDialog.showError("Invalid file", "Error");
 		}
 		catch (IllegalArgumentException iae) {
 			System.err.println("IllegalArgumentException");
@@ -121,9 +120,8 @@ public class SoundPlayerFX implements Runnable {
 		//listen to all message
 		while (true) {
 			message = audioQueue.poll();
-			long index;
 			int timeGain = 250000; //quarter second
-
+			
 			if (message != null) {
 				if (Constants.debug) System.out.println("message: " + message[0]);
 				
@@ -182,7 +180,6 @@ public class SoundPlayerFX implements Runnable {
 	private void playpause() {
 		if (isPaused && audioPlayer != null) {
 			if (Constants.debug) System.out.println("SoundPlayer: play");
-			System.out.println("in play case");
 			audioPlayer.play();
 			isPaused = false;
 			playpause.setText("Pause");

@@ -1,11 +1,13 @@
 Features to add:
 Essential:
 -variable playback speed
--allow volume control before audio file is entered
 -error logging system
 -help documentation
 -make everything synchronized
--notification if incorrect java version
+-notification if incorrect java version (need 8 for JFX)
+-re-implement rewind and fastforward
+-file dialog for open audio
+-file dialog class
 
 Good:
 -key listeners for easy playback control
@@ -35,6 +37,7 @@ Bugs to fix:
 -Can't write to pdf
 -length is NaN
 -After clicking 'save' then canceling, 'open' doesn't display properly
+-volume doesn't work
 
 Problems to consider:
 -holding focus when typing
@@ -54,3 +57,4 @@ Done:
 -clear log button
 -opening and saving
 -save as
+-allow volume control before audio file is entered

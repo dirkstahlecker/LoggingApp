@@ -1,48 +1,81 @@
 package model;
 
 import java.awt.FileDialog;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
-public class FileDialogClass implements ActionListener {
+import model.Constants.FileAction;
 
-	private final JFrame frame;
+/**
+ * Used for creating load and save file dialogs
+ * @author Dirk
+ *
+ */
+public class FileDialogClass {
 
-	public FileDialogClass(JFrame frame) {
-		this.frame = frame;
-	}
-
-	private void open() {
-		System.setProperty("apple.awt.fileDialogForDirectories", "true");
-		FileDialog fileDialog = new FileDialog(frame, "Choose a folder to save to", FileDialog.SAVE);
-		fileDialog.setFile("*.txt");
+	public static String performShowDialog(JFrame frame, FileAction action, String fileType, boolean forDirectories) throws LoggingException {
+		FileDialog fileDialog = null;
+		if (action == FileAction.SAVE) {
+			fileDialog = new FileDialog(frame, "Choose a folder to save to", FileDialog.SAVE);
+		}
+		else if (action == FileAction.OPEN) {
+			fileDialog = new FileDialog(frame, "Choose a file to open", FileDialog.LOAD);
+		}
+		else {
+			throw new LoggingException();
+		}
+		
+		if (!forDirectories) {
+			System.setProperty("apple.awt.fileDialogForDirectories", "true");
+		}
+		
+		if (fileType != "" && fileType != null) {
+			fileDialog.setFile(fileType);
+		}
 		fileDialog.setVisible(true);
 
 		if (fileDialog.getFile() != null) { //user clicked okay and not cancel 
 			String outputFilePath = fileDialog.getDirectory() + fileDialog.getFile();
-			File file = new File(outputFilePath);
-
-			PrintWriter fileWriter;
-			try {
-				fileWriter = new PrintWriter(file,"UTF-8");
-				//fileWriter.write(out);
-				fileWriter.close();
-				JOptionPane.showMessageDialog(frame, "File created");
-			} catch (FileNotFoundException | UnsupportedEncodingException e) {
-				JOptionPane.showMessageDialog(frame, "Error creating file","Error",JOptionPane.ERROR_MESSAGE);
-			}
+			return outputFilePath;
+		}
+		else {
+			return null;
 		}
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		open();
+	
+	/**
+	 * Shows a file dialog for the specified action
+	 * @param frame frame to display dialog within
+	 * @param action shows either a save or load dialog
+	 * @return path to selected file or directory
+	 * @throws LoggingException if incorrect file action or fatal error
+	 */
+	public static String showDialog(JFrame frame, FileAction action) throws LoggingException {
+		return performShowDialog(frame,action,"",true);
+	}
+	
+	/**
+	 * Shows a file dialog for the specified action
+	 * @param frameframe to display dialog within
+	 * @param action shows either a save or load dialog
+	 * @param fileType extension of file to choose
+	 * @return path to selected file or directory
+	 * @throws LoggingException if incorrect file action or fatal error
+	 */
+	public static String showDialog(JFrame frame, FileAction action, String fileType) throws LoggingException {
+		return performShowDialog(frame,action,fileType,true);
+	}
+	
+	/**
+	 * 
+	 * Shows a file dialog for the specified action
+	 * @param frameframe to display dialog within
+	 * @param action shows either a save or load dialog
+	 * @param fileType extension of file to choose
+	 * @param forDirectories true allows slection of directories
+	 * @return path to selected file or directory
+	 * @throws LoggingException if incorrect file action or fatal error
+	 */
+	public static String showDialog(JFrame frame, FileAction action, String fileType, boolean forDirectories) throws LoggingException {
+		return performShowDialog(frame,action,fileType,forDirectories);
 	}
 }

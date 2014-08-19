@@ -185,7 +185,7 @@ public class PerformFileAction implements ActionListener {
 			}
 			
 			if (!validFile) {
-				PopupDialog.showError(frame,"Incorrect File Format","error");
+				PopupDialog.showError(frame,"Invalid save file","Error");
 				return;
 			}
 			else
