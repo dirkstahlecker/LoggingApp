@@ -12,7 +12,20 @@ import model.Constants.FileAction;
  */
 public class FileDialogClass {
 
+	/**
+	 * Helper method for showDialog, performing the actual tasks
+	 * @param frame
+	 * @param action
+	 * @param fileType
+	 * @param forDirectories
+	 * @return
+	 * @throws LoggingException
+	 */
 	public static String performShowDialog(JFrame frame, FileAction action, String fileType, boolean forDirectories) throws LoggingException {
+		if (forDirectories) {
+			System.setProperty("apple.awt.fileDialogForDirectories", "true");
+		}
+		
 		FileDialog fileDialog = null;
 		if (action == FileAction.SAVE) {
 			fileDialog = new FileDialog(frame, "Choose a folder to save to", FileDialog.SAVE);
@@ -22,10 +35,6 @@ public class FileDialogClass {
 		}
 		else {
 			throw new LoggingException();
-		}
-		
-		if (!forDirectories) {
-			System.setProperty("apple.awt.fileDialogForDirectories", "true");
 		}
 		
 		if (fileType != "" && fileType != null) {

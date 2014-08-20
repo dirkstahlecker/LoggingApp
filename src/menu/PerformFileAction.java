@@ -24,11 +24,13 @@ import javax.swing.JTextArea;
 import sun.misc.IOUtils;
 import view.LoggingGUI;
 import model.Constants.FileAction;
+import model.FileDialogClass;
+import model.LoggingException;
 import model.OutputLogDisplay;
 import model.PopupDialog;
 
 /**
- * Performs open and save operations
+ * Performs open, save, and new menu operations
  * @author Dirk
  *
  */
@@ -40,7 +42,6 @@ public class PerformFileAction implements ActionListener {
 	private final JFrame frame;
 	private final FileAction action;
 	private final OutputLogDisplay outputLogDisplay;
-	private String saveFilePath = "";
 	private final AtomicReference<String> audioFilePathReference;
 	private final PopupDialog popupDialog;
 	
@@ -121,13 +122,17 @@ public class PerformFileAction implements ActionListener {
 	 * Open a previously saved file
 	 */
 	private void performOpen() {
-		//System.setProperty("apple.awt.fileDialogForDirectories", "true");
-		FileDialog fileDialog = new FileDialog(frame, "Choose a file to open", FileDialog.LOAD);
-		fileDialog.setFile("*.txt");
-		fileDialog.setVisible(true);
+		
+		String filePath;
+		try {
+			filePath = FileDialogClass.showDialog(frame, FileAction.OPEN, "*.txt",false);
+		}
+		catch (LoggingException e) {
+			filePath = "";
+		}
 
-		if (fileDialog.getFile() != null) { //user clicked okay and not cancel 
-			String filePath = fileDialog.getDirectory() + fileDialog.getFile();
+		if (filePath != null) { //user clicked okay and not cancel 
+			//String filePath = fileDialog.getDirectory() + fileDialog.getFile();
 			String audioFilePath = null;
 			String playbackPosition = "";
 			List<String> logText = new ArrayList<String>();
@@ -198,6 +203,9 @@ public class PerformFileAction implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Creates a new file
+	 */
 	private void performNew() {
 		audioQueue.add(new String[]{"init",""});
 		outputLogDisplay.rewriteField(new ArrayList<String>());

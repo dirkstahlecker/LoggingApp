@@ -113,6 +113,7 @@ public class SoundPlayerFX implements Runnable {
 		}
 	}
 
+	//just a handler - all specific implementations are abstracted into separate functions
 	@Override
 	public void run() {
 		String[] message = null;

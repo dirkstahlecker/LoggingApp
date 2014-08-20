@@ -7,7 +7,6 @@ Essential:
 -notification if incorrect java version (need 8 for JFX)
 -re-implement rewind and fastforward
 -file dialog for open audio
--file dialog class
 
 Good:
 -key listeners for easy playback control
@@ -58,3 +57,4 @@ Done:
 -opening and saving
 -save as
 -allow volume control before audio file is entered
+-file dialog class

@@ -212,7 +212,7 @@ public class LoggingGUI extends JFrame {
         menuControllerThread.start();
     }
     
-    
+   
     private void configureLayouts() {
     	//Set up the user interface panel
         GroupLayout userLayout = new GroupLayout(userPanel);
