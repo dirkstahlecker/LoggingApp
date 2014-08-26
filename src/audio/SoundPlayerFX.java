@@ -1,9 +1,5 @@
 package audio;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -84,14 +80,21 @@ public class SoundPlayerFX implements Runnable {
 			audioPlayer.play(); //check if it works
 			audioPlayer.stop();
 			//TODO: slow to throw exception when illegal
-			
-			length = convertTime(audioPlayer.getTotalDuration().toSeconds()); //TODO: getTotalDuration returns unknown
+			System.out.println("audioPlayer: " + audioPlayer.toString());
+			Duration rawDuration = audioPlayer.getTotalDuration();
+			System.out.println("rawDuration: " + rawDuration.toString());
+			double rawLength = rawDuration.toSeconds();
+			System.out.println("rawLength: " + rawLength);
+			length = convertTime(rawLength); //TODO: getTotalDuration returns unknown
+			System.out.println("length: " + length);
 			outputTime();
 			isPaused = true;
 			
 			currentAudioSource.setText("File: " + audioFilePath);
 			volume = audioPlayer.getVolume();
 			audioPlayer.setStartTime(new Duration(startTime)); //startTime in milliseconds
+			
+			changeRate(Constants.playbackRate,false);
 			
 			System.out.println("Player configured");
 			addInfoToQueue();
@@ -121,7 +124,6 @@ public class SoundPlayerFX implements Runnable {
 		//listen to all message
 		while (true) {
 			message = audioQueue.poll();
-			int timeGain = 250000; //quarter second
 			
 			if (message != null) {
 				if (Constants.debug) System.out.println("message: " + message[0]);
@@ -141,26 +143,27 @@ public class SoundPlayerFX implements Runnable {
 					if (!initialSetup) break;
 					playpause();
 					break;
-				/*
+				case "rate":
+					if (message[2] == null || message[2].equals("") || message[2].equals(" ")) {
+						break;
+					}
+					
+					try {
+						double newRate = Double.parseDouble(message[2]);
+						changeRate(newRate,true);
+					}
+					catch (NumberFormatException e) {
+						//PopupDialog.showError(frame, "Rate must be an integer", "Error");
+						//TODO: throw error here?
+						System.err.println("Error converting rate to double");
+					}
+					break;
 				case "rewind":
-					if (!initialSetup) break;
-					index = audioClip.getMicrosecondPosition();
-					index -= timeGain;
-					if (index < 0) index = 0;
-					audioClip.setMicrosecondPosition(index);
-					System.out.println("rewinding");
-					outputTime();
+					rewind();
 					break;
 				case "fastforward":
-					if (!initialSetup) break;
-					index = audioClip.getMicrosecondPosition();
-					index += timeGain;
-					if (index > length) index = (long)length;
-					audioClip.setMicrosecondPosition(index);
-					System.out.println("fast forwarding");
-					outputTime();
+					fastforward();
 					break;
-				*/
 				case "volume":
 					if (!initialSetup) break;
 					volume(message[1]);
@@ -193,6 +196,28 @@ public class SoundPlayerFX implements Runnable {
 		}
 	}
 	
+	private void rewind() {
+		if (!initialSetup) {
+			return;
+		}
+		if (Constants.debug) System.out.println("rewinding");
+		Duration index = audioPlayer.getCurrentTime();
+		index = index.subtract(Constants.rewindGain);
+		audioPlayer.seek(index);
+		outputTime();
+	}
+	
+	private void fastforward() {
+		if (!initialSetup) {
+			return;
+		}
+		if (Constants.debug) System.out.println("fastforwarding");
+		Duration index = audioPlayer.getCurrentTime();
+		index = index.add(Constants.fastforwardGain);
+		audioPlayer.seek(index);
+		outputTime();
+	}
+	
 	/**
 	 * Adjusts the volume by a constant amount, Constants.volumeGain
 	 * @param m string "up" or "down"
@@ -211,6 +236,29 @@ public class SoundPlayerFX implements Runnable {
 			volume = 0;
 		}
 		audioPlayer.setVolume(volume);
+	}
+	
+	/**
+	 * Change the rate of playback
+	 * @param rate new playback speed (0.0 to 8.0)
+	 */
+	private void changeRate(double rate, boolean showMessage) {
+		if (rate < 0.0) {
+			rate = 0.0;
+		}
+		else if (rate > 8.0) {
+			rate = 8.0;
+		}
+		System.out.println("setting rate to: " + rate);
+		
+		if (showMessage) {
+			popupDialog.showMessage("Playback rate set to " + rate);
+		}
+		Constants.playbackRate = rate;
+		
+		if (audioPlayer != null) {
+			audioPlayer.setRate(rate);
+		}
 	}
 
 	/**

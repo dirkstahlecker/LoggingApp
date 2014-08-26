@@ -1,11 +1,8 @@
 Features to add:
 Essential:
--variable playback speed
 -error logging system
 -help documentation
 -make everything synchronized
--notification if incorrect java version (need 8 for JFX)
--re-implement rewind and fastforward
 -file dialog for open audio
 
 Good:
@@ -15,12 +12,14 @@ Good:
 	-Remove subsequent identical numbers in output 
 -wrap text that goes off screen
 -error handling class (exception class)
+-display current playback rate and rewind/fastforward gain in dialog
 
 Extra:
 -html output
 -error logging system
 -add 'menuItem.getAccessibleContext().setAccessibleDescription' to all menu items
 -all javadocs added
+-notification if incorrect java version (need 8 for JFX) (via installer or something)
 
 Maybe:
 -timestamp when started typing (?)
@@ -37,6 +36,7 @@ Bugs to fix:
 -length is NaN
 -After clicking 'save' then canceling, 'open' doesn't display properly
 -volume doesn't work
+-allow rate to be set before audio file is set
 
 Problems to consider:
 -holding focus when typing
@@ -58,3 +58,6 @@ Done:
 -save as
 -allow volume control before audio file is entered
 -file dialog class
+-variable playback speed
+-re-implement rewind and fastforward
+-option to change fastforward and rewind time

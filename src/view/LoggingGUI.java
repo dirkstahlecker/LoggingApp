@@ -34,18 +34,18 @@ import java.util.concurrent.atomic.AtomicReference;
 public class LoggingGUI extends JFrame {
     private static final long serialVersionUID = 1L; //required
     
-    private final JTextField commentField;
-    private final JTextField audioSource;
+    private final JTextField commentFieldTxt;
+    private final JTextField audioSourceTxt;
     
-    private final JButton enterText;
-    private final JButton playpause;
-    private final JButton enterAudio;
-    private final JButton rewind;
-    private final JButton fastforward;
-    private final JButton volumeUp;
-    private final JButton volumeDown;
-    private final JButton export;
-    private final JButton clearLog;
+    private final JButton enterTextBtn;
+    private final JButton playpauseBtn;
+    private final JButton enterAudioBtn;
+    private final JButton rewindBtn;
+    private final JButton fastforwardBtn;
+    private final JButton volumeUpBtn;
+    private final JButton volumeDownBtn;
+    private final JButton exportBtn;
+    private final JButton clearLogBtn;
     
     private Container contentPane;
     
@@ -61,7 +61,7 @@ public class LoggingGUI extends JFrame {
     private final BlockingQueue<String[]> audioQueue;
     private final BlockingQueue<String> timeQueue;
     private final BlockingQueue<String> outputQueue;
-    private final BlockingQueue<String> menuQueue;
+    private final BlockingQueue<String[]> menuQueue;
     private final BlockingQueue<String[]> performSaveQueue;
     
     private final OutputLogDisplay outputLogDisplay;
@@ -80,58 +80,58 @@ public class LoggingGUI extends JFrame {
     public LoggingGUI() {
 
     	//Configure the GUI elements
-        commentField = new JTextField();
-        commentField.setName("commentField");
-        commentField.setText("");
-        commentField.setMaximumSize(new Dimension(Integer.MAX_VALUE, commentField.getPreferredSize().height));
+        commentFieldTxt = new JTextField();
+        commentFieldTxt.setName("commentField");
+        commentFieldTxt.setText("");
+        commentFieldTxt.setMaximumSize(new Dimension(Integer.MAX_VALUE, commentFieldTxt.getPreferredSize().height));
         
-        audioSource = new JTextField();
-        audioSource.setName("audioSource");
-        audioSource.setText("");
-        audioSource.setMaximumSize(new Dimension(Integer.MAX_VALUE, commentField.getPreferredSize().height));
+        audioSourceTxt = new JTextField();
+        audioSourceTxt.setName("audioSource");
+        audioSourceTxt.setText("");
+        audioSourceTxt.setMaximumSize(new Dimension(Integer.MAX_VALUE, audioSourceTxt.getPreferredSize().height));
         
-        enterText = new JButton();
-        enterText.setName("enterText");
-        enterText.setText("Enter Comment");
-        enterText.setMaximumSize(new Dimension(80,enterText.getSize().height));
+        enterTextBtn = new JButton();
+        enterTextBtn.setName("enterText");
+        enterTextBtn.setText("Enter Comment");
+        enterTextBtn.setMaximumSize(new Dimension(80,enterTextBtn.getSize().height));
         
-        playpause = new JButton();
-        playpause.setName("playpause");
-        playpause.setText("Play");
-        playpause.setMinimumSize(new Dimension(80,enterText.getSize().height));
+        playpauseBtn = new JButton();
+        playpauseBtn.setName("playpause");
+        playpauseBtn.setText("Play");
+        playpauseBtn.setMinimumSize(new Dimension(80,enterTextBtn.getSize().height));
         
-        enterAudio = new JButton();
-        enterAudio.setName("enterAudio");
-        enterAudio.setText("Enter Path");
-        enterAudio.setMinimumSize(new Dimension(80,enterText.getSize().height));
+        enterAudioBtn = new JButton();
+        enterAudioBtn.setName("enterAudio");
+        enterAudioBtn.setText("Enter Path");
+        enterAudioBtn.setMinimumSize(new Dimension(80,enterTextBtn.getSize().height));
         
-        rewind = new JButton();
-        rewind.setName("rewind");
-        rewind.setText("<<");
-        rewind.setMaximumSize(new Dimension(30,rewind.getSize().height));
+        rewindBtn = new JButton();
+        rewindBtn.setName("rewind");
+        rewindBtn.setText("<<");
+        rewindBtn.setMaximumSize(new Dimension(30,rewindBtn.getSize().height));
         
-        fastforward = new JButton();
-        fastforward.setName("fastforward");
-        fastforward.setText(">>");
-        fastforward.setMaximumSize(new Dimension(30,fastforward.getSize().height));
+        fastforwardBtn = new JButton();
+        fastforwardBtn.setName("fastforward");
+        fastforwardBtn.setText(">>");
+        fastforwardBtn.setMaximumSize(new Dimension(30,fastforwardBtn.getSize().height));
         
-        volumeUp = new JButton();
-        volumeUp.setName("voluemUp");
-        volumeUp.setText("Volume Up");
-        volumeUp.setMaximumSize(new Dimension(30,volumeUp.getSize().height));
+        volumeUpBtn = new JButton();
+        volumeUpBtn.setName("voluemUp");
+        volumeUpBtn.setText("Volume Up");
+        volumeUpBtn.setMaximumSize(new Dimension(30,volumeUpBtn.getSize().height));
         
-        volumeDown = new JButton();
-        volumeDown.setName("voluemDown");
-        volumeDown.setText("Volume Down");
-        volumeDown.setMaximumSize(new Dimension(30,volumeDown.getSize().height));
+        volumeDownBtn = new JButton();
+        volumeDownBtn.setName("voluemDown");
+        volumeDownBtn.setText("Volume Down");
+        volumeDownBtn.setMaximumSize(new Dimension(30,volumeDownBtn.getSize().height));
         
-        export = new JButton();
-        export.setName("export");
-        export.setText("Export log");
+        exportBtn = new JButton();
+        exportBtn.setName("export");
+        exportBtn.setText("Export log");
         
-        clearLog = new JButton();
-        clearLog.setName("clearLog");
-        clearLog.setText("Clear");
+        clearLogBtn = new JButton();
+        clearLogBtn.setName("clearLog");
+        clearLogBtn.setText("Clear");
         
         outputLog = new JTextArea();
         outputLog.setName("outputField");
@@ -159,12 +159,12 @@ public class LoggingGUI extends JFrame {
         
         audioQueue = new LinkedBlockingQueue<String[]>();
         outputQueue = new LinkedBlockingQueue<String>();
-        menuQueue = new LinkedBlockingQueue<String>();
+        menuQueue = new LinkedBlockingQueue<String[]>(); //TODO: I don't think menuQueue does anythings
         performSaveQueue = new LinkedBlockingQueue<String[]>();
-        player = new SoundPlayerFX(audioQueue, timeStamp, currentAudioSource, time, playpause, performSaveQueue,this);
+        player = new SoundPlayerFX(audioQueue, timeStamp, currentAudioSource, time, playpauseBtn, performSaveQueue,this);
         timeQueue = new LinkedBlockingQueue<String>();
-        this.outputLogDisplay = new OutputLogDisplay(outputQueue, commentField, outputLog, time);
-        this.menuController = new MenuController(menuQueue,this);
+        this.outputLogDisplay = new OutputLogDisplay(outputQueue, commentFieldTxt, outputLog, time);
+        this.menuController = new MenuController(menuQueue,this,audioQueue);
         
         //Configure everything else, separated for readability
         configureLayouts();
@@ -182,23 +182,23 @@ public class LoggingGUI extends JFrame {
     }
     
     private void addActionListeners() {
-        playpause.addActionListener(new PauseActionListener(audioQueue));
+        playpauseBtn.addActionListener(new PauseActionListener(audioQueue));
         
-        SoundActionListener soundAction = new SoundActionListener(audioSource, audioQueue);
-        enterAudio.addActionListener(soundAction);
-        audioSource.addActionListener(soundAction);
+        SoundActionListener soundAction = new SoundActionListener(audioSourceTxt, audioQueue);
+        enterAudioBtn.addActionListener(soundAction);
+        audioSourceTxt.addActionListener(soundAction);
         
         AddToOutputQueue enterAction = new AddToOutputQueue(outputQueue,"enter");
-        enterText.addActionListener(enterAction);
-        commentField.addActionListener(enterAction);
+        enterTextBtn.addActionListener(enterAction);
+        commentFieldTxt.addActionListener(enterAction);
         
-        rewind.addActionListener(new AudioControlActionListener(audioQueue,"rewind"));
-        fastforward.addActionListener(new AudioControlActionListener(audioQueue,"fastforward"));
+        rewindBtn.addActionListener(new AudioControlActionListener(audioQueue,"rewind"));
+        fastforwardBtn.addActionListener(new AudioControlActionListener(audioQueue,"fastforward"));
         
-        volumeUp.addActionListener(new AudioControlActionListener(audioQueue,"volume","up"));
-        volumeDown.addActionListener(new AudioControlActionListener(audioQueue,"volume","down"));
+        volumeUpBtn.addActionListener(new AudioControlActionListener(audioQueue,"volume","up"));
+        volumeDownBtn.addActionListener(new AudioControlActionListener(audioQueue,"volume","down"));
         
-        clearLog.addActionListener(new AddToOutputQueue(outputQueue,"clear"));
+        clearLogBtn.addActionListener(new AddToOutputQueue(outputQueue,"clear"));
     }
     
     private void startThreads() {
@@ -221,22 +221,22 @@ public class LoggingGUI extends JFrame {
         userLayout.setHorizontalGroup(
         	userLayout.createParallelGroup()
             	.addGroup(userLayout.createSequentialGroup()
-            	    .addComponent(commentField)
-                    .addComponent(enterText)
+            	    .addComponent(commentFieldTxt)
+                    .addComponent(enterTextBtn)
                 )
                 .addGroup(userLayout.createSequentialGroup()
-                	.addComponent(audioSource)
-                	.addComponent(enterAudio)
+                	.addComponent(audioSourceTxt)
+                	.addComponent(enterAudioBtn)
                 )
                 .addGroup(userLayout.createSequentialGroup()
-                	.addComponent(rewind)
-                	.addComponent(playpause)
-                	.addComponent(fastforward)
-                	.addComponent(volumeDown)
-                	.addComponent(volumeUp)
+                	.addComponent(rewindBtn)
+                	.addComponent(playpauseBtn)
+                	.addComponent(fastforwardBtn)
+                	.addComponent(volumeDownBtn)
+                	.addComponent(volumeUpBtn)
                 )
                 .addGroup(userLayout.createSequentialGroup()
-                	.addComponent(clearLog)
+                	.addComponent(clearLogBtn)
                 	.addComponent(currentAudioSource)
                 	.addComponent(timeStamp)
                 )
@@ -245,22 +245,22 @@ public class LoggingGUI extends JFrame {
         userLayout.setVerticalGroup(
             userLayout.createSequentialGroup()
                 .addGroup(userLayout.createParallelGroup()
-                	.addComponent(commentField)
-                    .addComponent(enterText)
+                	.addComponent(commentFieldTxt)
+                    .addComponent(enterTextBtn)
                 )
                 .addGroup(userLayout.createParallelGroup()
-                  	.addComponent(audioSource)
-                  	.addComponent(enterAudio)
+                  	.addComponent(audioSourceTxt)
+                  	.addComponent(enterAudioBtn)
                 )
                 .addGroup(userLayout.createParallelGroup()
-                	.addComponent(rewind)
-                	.addComponent(playpause)
-                	.addComponent(fastforward)
-                	.addComponent(volumeDown)
-                	.addComponent(volumeUp)
+                	.addComponent(rewindBtn)
+                	.addComponent(playpauseBtn)
+                	.addComponent(fastforwardBtn)
+                	.addComponent(volumeDownBtn)
+                	.addComponent(volumeUpBtn)
                 )
                 .addGroup(userLayout.createParallelGroup()
-                	.addComponent(clearLog)
+                	.addComponent(clearLogBtn)
                 	.addComponent(currentAudioSource)
                 	.addComponent(timeStamp)
                 )
@@ -355,7 +355,7 @@ public class LoggingGUI extends JFrame {
     	menu.add(submenu);
     	 */
     	
-    	//Build second menu in the menu bar.
+    	//////////// Export Menu /////////////
     	menu = new JMenu("Export");
     	menu.setMnemonic(KeyEvent.VK_N);
     	menuBar.add(menu);
@@ -381,6 +381,22 @@ public class LoggingGUI extends JFrame {
     	menuItem.addActionListener(new ExportLogActionListener(this,outputLog,".xls"));
     	menu.add(menuItem);
     	
+    	//////////// Options Menu /////////////
+    	menu = new JMenu("Options");
+    	menu.setMnemonic(KeyEvent.VK_N);
+    	menuBar.add(menu);
+    	
+    	menuItem = new JMenuItem("Playback Rate");
+    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	menuItem.addActionListener(new MenuActionListener("playback rate",menuQueue));
+    	menu.add(menuItem);
+    	
+    	menuItem = new JMenuItem("Rewind Gain");
+    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	menuItem.addActionListener(new MenuActionListener(this,"rewind gain",menuQueue,"Choose rewind gain (seconds)","Rewind Gain"));
+    	menu.add(menuItem);
+    	
+    	//////////// Help Menu /////////////
     	menu = new JMenu("Help");
     	menu.setMnemonic(KeyEvent.VK_N);
     	menuBar.add(menu);

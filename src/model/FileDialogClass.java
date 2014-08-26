@@ -1,6 +1,9 @@
 package model;
 
 import java.awt.FileDialog;
+import java.io.File;
+
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 import model.Constants.FileAction;
@@ -22,9 +25,7 @@ public class FileDialogClass {
 	 * @throws LoggingException
 	 */
 	public static String performShowDialog(JFrame frame, FileAction action, String fileType, boolean forDirectories) throws LoggingException {
-		if (forDirectories) {
-			System.setProperty("apple.awt.fileDialogForDirectories", "true");
-		}
+		//remove forDirectories, or change it
 		
 		FileDialog fileDialog = null;
 		if (action == FileAction.SAVE) {
@@ -45,6 +46,34 @@ public class FileDialogClass {
 		if (fileDialog.getFile() != null) { //user clicked okay and not cancel 
 			String outputFilePath = fileDialog.getDirectory() + fileDialog.getFile();
 			return outputFilePath;
+		}
+		else {
+			return null;
+		}
+	}
+	
+	public static String performShowChooser(JFrame frame, FileAction action, boolean forDirectories) throws LoggingException {
+		//TODO: add file filtering
+		System.setProperty("apple.awt.fileDialogForDirectories", "true");
+		
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setVisible(true);
+		
+		if (forDirectories) {
+			fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		}
+		
+		int r = -1;
+		if (action == FileAction.OPEN) {
+			r = fileChooser.showOpenDialog(frame);
+		}
+		else if (action == FileAction.SAVE) {
+			r = fileChooser.showSaveDialog(frame);
+		}
+
+		if (r == JFileChooser.APPROVE_OPTION) { //user clicked okay and not cancel 
+			File myFile = fileChooser.getSelectedFile();
+			return myFile.getAbsolutePath();
 		}
 		else {
 			return null;

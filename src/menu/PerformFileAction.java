@@ -122,7 +122,6 @@ public class PerformFileAction implements ActionListener {
 	 * Open a previously saved file
 	 */
 	private void performOpen() {
-		
 		String filePath;
 		try {
 			filePath = FileDialogClass.showDialog(frame, FileAction.OPEN, "*.txt",false);
@@ -136,7 +135,6 @@ public class PerformFileAction implements ActionListener {
 			String audioFilePath = null;
 			String playbackPosition = "";
 			List<String> logText = new ArrayList<String>();
-			String fullFileText = "";
 			boolean validFile = true;
 			
 			FileReader fileReader;
@@ -146,10 +144,9 @@ public class PerformFileAction implements ActionListener {
 				String line;
 				int count = 0;
 				while ((line = reader.readLine()) != null) {
-					fullFileText += line;
 					switch (count) {
 					case 0:
-						if (line.matches("\\s*file:///[^\\s]+?\\.[0-9a-zA-Z]+")) { //TODO: allow no audio file to be specfied
+						if (line.matches("\\s*file:///[^\\s]+?\\.[0-9a-zA-Z]+")) { //TODO: allow no audio file to be specified
 							audioFilePath = line;
 						}
 						else {
