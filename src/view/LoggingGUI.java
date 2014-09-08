@@ -58,6 +58,8 @@ public class LoggingGUI extends JFrame {
     
     private final JScrollPane displayScrollPane;
     
+    private final JSlider slider;
+    
     private final BlockingQueue<String[]> audioQueue;
     private final BlockingQueue<String> timeQueue;
     private final BlockingQueue<String> outputQueue;
@@ -166,6 +168,18 @@ public class LoggingGUI extends JFrame {
         this.outputLogDisplay = new OutputLogDisplay(outputQueue, commentFieldTxt, outputLog, time);
         this.menuController = new MenuController(menuQueue,this,audioQueue);
         
+        int initialTime = 0;
+        int finalTime = 100; //TODO: get this somewhere
+        int startTime = 0;
+        
+        this.slider = new JSlider(JSlider.HORIZONTAL,initialTime,finalTime,startTime);
+        int tickSpacing = (finalTime - initialTime) / 5;
+        this.slider.setMajorTickSpacing(tickSpacing);
+        this.slider.setMinorTickSpacing(tickSpacing / 4);
+        this.slider.setPaintTicks(true);
+        this.slider.setPaintLabels(true);
+        
+        
         //Configure everything else, separated for readability
         configureLayouts();
         addActionListeners();
@@ -235,6 +249,7 @@ public class LoggingGUI extends JFrame {
                 	.addComponent(volumeDownBtn)
                 	.addComponent(volumeUpBtn)
                 )
+                .addComponent(slider)
                 .addGroup(userLayout.createSequentialGroup()
                 	.addComponent(clearLogBtn)
                 	.addComponent(currentAudioSource)
@@ -259,6 +274,7 @@ public class LoggingGUI extends JFrame {
                 	.addComponent(volumeDownBtn)
                 	.addComponent(volumeUpBtn)
                 )
+                .addComponent(slider)
                 .addGroup(userLayout.createParallelGroup()
                 	.addComponent(clearLogBtn)
                 	.addComponent(currentAudioSource)
@@ -271,7 +287,7 @@ public class LoggingGUI extends JFrame {
         displayScrollPane.setPreferredSize(new Dimension(750,400));
         
         //Configure the layout specifications for both panels
-        userPanel.setPreferredSize(new Dimension(750,125));
+        userPanel.setPreferredSize(new Dimension(750,200));
         
         contentPane.add(userPanel, BorderLayout.SOUTH);
         contentPane.add(displayScrollPane, BorderLayout.NORTH);
@@ -296,7 +312,7 @@ public class LoggingGUI extends JFrame {
     	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.NEW,audioQueue,outputLogDisplay,audioFilePathReference));
     	menu.add(menuItem);
     	
-    	menuItem = new JMenuItem("Open", KeyEvent.VK_T);
+    	menuItem = new JMenuItem("Open Project", KeyEvent.VK_T);
     	//menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
     	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.OPEN,audioQueue,outputLogDisplay,audioFilePathReference));
     	menu.add(menuItem);
@@ -382,9 +398,14 @@ public class LoggingGUI extends JFrame {
     	menu.add(menuItem);
     	
     	//////////// Options Menu /////////////
-    	menu = new JMenu("Options");
+    	menu = new JMenu("Audio");
     	menu.setMnemonic(KeyEvent.VK_N);
     	menuBar.add(menu);
+    	
+    	menuItem = new JMenuItem("Open Audio");
+    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	menuItem.addActionListener(new MenuActionListener("open audio",menuQueue));
+    	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Playback Rate");
     	menuItem.setMnemonic(KeyEvent.VK_B);
@@ -393,7 +414,12 @@ public class LoggingGUI extends JFrame {
     	
     	menuItem = new JMenuItem("Rewind Gain");
     	menuItem.setMnemonic(KeyEvent.VK_B);
-    	menuItem.addActionListener(new MenuActionListener(this,"rewind gain",menuQueue,"Choose rewind gain (seconds)","Rewind Gain"));
+    	menuItem.addActionListener(new MenuActionListener("rewind gain",menuQueue));
+    	menu.add(menuItem);
+    	
+    	menuItem = new JMenuItem("Fast Forward Gain");
+    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	menuItem.addActionListener(new MenuActionListener("fastforward gain",menuQueue));
     	menu.add(menuItem);
     	
     	//////////// Help Menu /////////////

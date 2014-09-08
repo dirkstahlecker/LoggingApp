@@ -260,7 +260,7 @@ public class SoundPlayerFX implements Runnable {
 			audioPlayer.setRate(rate);
 		}
 	}
-
+	
 	/**
 	 * displays the current playback location to the gui
 	 */

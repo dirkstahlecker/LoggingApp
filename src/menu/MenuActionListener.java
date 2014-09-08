@@ -24,6 +24,7 @@ public class MenuActionListener implements ActionListener {
 		this.messageText = null;
 		this.titleText = null;
 	}
+	/*
 	public MenuActionListener(JFrame frame, String actionType, BlockingQueue<String[]> queue, String messageText, String titleText) {
 		this.frame = frame;
 		this.queue = queue;
@@ -38,7 +39,7 @@ public class MenuActionListener implements ActionListener {
 			//throw new LoggingException("Invalid input to MenuActionListener (null values)");
 			//TODO: do something here
 		}
-	}
+	}*/
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

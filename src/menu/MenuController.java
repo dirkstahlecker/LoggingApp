@@ -8,6 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import model.Constants;
+import model.Constants.FileAction;
+import model.FileDialogClass;
+import model.LoggingException;
 import model.PopupDialog;
 
 /**
@@ -44,23 +47,53 @@ public class MenuController implements Runnable {
 					
 					break;
 				case "playback rate":
-					String s = PopupDialog.showInputBox(frame,"Playback rate is currently "+Constants.playbackRate+"\nEnter new playback rate between 0 and 8:","Playback Rate");
-					audioQueue.add(new String[]{"rate","",s});
+					String rateStr = PopupDialog.showInputBox(frame,"Playback rate is currently "+Constants.playbackRate+"\nEnter new playback rate between 0 and 8:","Playback Rate");
+					audioQueue.add(new String[]{"rate","",rateStr});
 					break;
 				case "rewind gain":
-					double rewindTime = Double.parseDouble(message[1]);
+					String rewindStr = PopupDialog.showInputBox(frame, "Rewind gain is currently "+Constants.rewindGain+"\nEnter new rewind gain (in seconds)", "Rewind Gain");
+					if (rewindStr == null || rewindStr.equals("") || rewindStr.equals(" ")) {
+						break;
+					}
+					double rewindTime;
+					try {
+						rewindTime = Double.parseDouble(rewindStr);
+					}
+					catch (NumberFormatException e) {
+						//TODO: something here
+						System.err.println("Problem parsing double in rewind gain");
+						break;
+					}
 					rewindTime *= 1000; //convert to milliseconds
 					Constants.rewindGain = new Duration(rewindTime); //TODO: error logging and handling
 					break;
 				case "fastforward gain":
-					double fastforwardTime = Double.parseDouble(message[1]);
-					fastforwardTime *= 1000;
-					Constants.fastforwardGain = new Duration(fastforwardTime);
+					String ffStr = PopupDialog.showInputBox(frame, "Fast Forward gain is currently "+Constants.fastforwardGain+"\nEnter new fast forward gain (in seconds)","Fast Forward Gain");
+					if (ffStr == null || ffStr.equals("") || ffStr.equals(" ")) {
+						break;
+					}
+					double ffTime;
+					try {
+						ffTime = Double.parseDouble(ffStr);
+					}
+					catch (NumberFormatException e) {
+						//TODO: something here
+						System.err.println("Problem parsing double in rewind gain");
+						break;
+					}
+					ffTime *= 1000; //convert to milliseconds
+					Constants.rewindGain = new Duration(ffTime); //TODO: error logging and handling
+					break;
+				case "open audio":
+					try {
+						String audioPath = FileDialogClass.showDialog(frame, FileAction.OPEN);
+						audioQueue.add(new String[]{"init",audioPath});
+					} catch (LoggingException e) {
+						PopupDialog.showError(frame, "Error opening file");
+					}
 					break;
 				}
 			}
 		}
 	}
-	
-
 }

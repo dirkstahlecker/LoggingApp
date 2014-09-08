@@ -3,16 +3,17 @@ Essential:
 -error logging system
 -help documentation
 -make everything synchronized
--file dialog for open audio
 
 Good:
 -key listeners for easy playback control
 -better fastforward/rewind
+	-possible ramping
+	-possible gui element (slider or something)
 -Output comments to a nice format
 	-Remove subsequent identical numbers in output 
 -wrap text that goes off screen
--error handling class (exception class)
--display current playback rate and rewind/fastforward gain in dialog
+-error handling class
+-make gains display in seconds, not milliseconds
 
 Extra:
 -html output
@@ -20,6 +21,7 @@ Extra:
 -add 'menuItem.getAccessibleContext().setAccessibleDescription' to all menu items
 -all javadocs added
 -notification if incorrect java version (need 8 for JFX) (via installer or something)
+-add file types to open audio dialog
 
 Maybe:
 -timestamp when started typing (?)
@@ -35,8 +37,7 @@ Bugs to fix:
 -Can't write to pdf
 -length is NaN
 -After clicking 'save' then canceling, 'open' doesn't display properly
--volume doesn't work
--allow rate to be set before audio file is set
+-Doesn't open _02.wav
 
 Problems to consider:
 -holding focus when typing
@@ -61,3 +62,8 @@ Done:
 -variable playback speed
 -re-implement rewind and fastforward
 -option to change fastforward and rewind time
+-file dialog for open audio
+-volume doesn't work
+-allow rate to be set before audio file is set
+-display current playback rate and rewind/fastforward gain in dialog
+-exception class

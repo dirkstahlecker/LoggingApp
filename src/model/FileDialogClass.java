@@ -15,16 +15,8 @@ import model.Constants.FileAction;
  */
 public class FileDialogClass {
 
-	/**
-	 * Helper method for showDialog, performing the actual tasks
-	 * @param frame
-	 * @param action
-	 * @param fileType
-	 * @param forDirectories
-	 * @return
-	 * @throws LoggingException
-	 */
-	public static String performShowDialog(JFrame frame, FileAction action, String fileType, boolean forDirectories) throws LoggingException {
+	//helper method
+	private static String performShowDialog(JFrame frame, FileAction action, String fileType, boolean forDirectories) throws LoggingException {
 		//remove forDirectories, or change it
 		
 		FileDialog fileDialog = null;
@@ -52,7 +44,7 @@ public class FileDialogClass {
 		}
 	}
 	
-	public static String performShowChooser(JFrame frame, FileAction action, boolean forDirectories) throws LoggingException {
+	public static String showChooser(JFrame frame, FileAction action, boolean forDirectories) throws LoggingException {
 		//TODO: add file filtering
 		System.setProperty("apple.awt.fileDialogForDirectories", "true");
 		
@@ -109,7 +101,7 @@ public class FileDialogClass {
 	 * @param frameframe to display dialog within
 	 * @param action shows either a save or load dialog
 	 * @param fileType extension of file to choose
-	 * @param forDirectories true allows slection of directories
+	 * @param forDirectories true allows selection of directories
 	 * @return path to selected file or directory
 	 * @throws LoggingException if incorrect file action or fatal error
 	 */
