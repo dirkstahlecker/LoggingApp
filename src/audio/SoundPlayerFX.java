@@ -86,22 +86,7 @@ public class SoundPlayerFX implements Runnable {
 			audioPlayer.stop();
 			//TODO: slow to throw exception when illegal
 			System.out.println("audioPlayer: " + audioPlayer.toString());
-			Duration rawDuration = audioPlayer.getTotalDuration();
-			System.out.println("rawDuration: " + rawDuration.toString());
-			double rawLength = rawDuration.toSeconds();
-			System.out.println("rawLength: " + rawLength);
-			length = convertTime(rawLength); //TODO: getTotalDuration returns unknown
-			System.out.println("length: " + length);
-			
-			//set the initial configuration of the progress bar
-			try {
-				audioProgressBar.setModel(new DefaultBoundedRangeModel(0,1,0,100)); //TODO: put length in here when its not NaN
-			}
-			catch (IllegalArgumentException iae) {
-				System.err.println("Illegal argument in progress bar");
-				//TODO: something here
-			}
-			System.out.println("got here");
+
 			outputTime();
 			isPaused = true;
 			
@@ -113,6 +98,22 @@ public class SoundPlayerFX implements Runnable {
 			
 			System.out.println("Player configured");
 			addInfoToQueue();
+			
+			audioPlayer.play();
+			Duration rawDuration = audioPlayer.getTotalDuration();
+			double rawLength = rawDuration.toSeconds();
+			length = convertTime(rawLength); //TODO: getTotalDuration returns unknown
+			audioPlayer.stop();
+			
+			//set the initial configuration of the progress bar
+			try {
+				audioProgressBar.setModel(new DefaultBoundedRangeModel(0,1,0,(int)length)); //TODO: put length in here when its not NaN
+			}
+			catch (IllegalArgumentException iae) {
+				System.err.println("Illegal argument in progress bar");
+				//TODO: something here
+			}
+			
 			outputTime();
 			initialSetup = true;
 		}
@@ -297,6 +298,12 @@ public class SoundPlayerFX implements Runnable {
 			System.err.println("Illegal Argument Exception for progress bar");
 			System.err.println("currentTime: " + currentTime);
 		}
+		/*
+		if (currentTime >= length) { //at the end of the file
+			//TODO: should this happen here? should this be more elegant?
+			playpause.setText("Play");
+		}
+		*/
 	}
 	
 	private double currentTime() {
@@ -311,5 +318,7 @@ public class SoundPlayerFX implements Runnable {
 		performSaveQueue.poll();//don't care about old value, so remove it
 		performSaveQueue.add(new String[]{audioFilePath,String.valueOf(currentTime())});
 	}
+	
+	//TODO: add listener to when the file ends, and change the playpause text to "play"
 
 }

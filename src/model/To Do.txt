@@ -35,7 +35,6 @@ Bugs to fix:
 -Error catching in EnterMessageActionListener
 	-Error catching/handling pretty much everywhere actually
 -Can't write to pdf
--length is NaN (this is possible a JFX bug)
 -Doesn't open _02.wav
 -on stopping, playpause should change to "play"
 -gain's don't work occasionally (they just don't change)
@@ -70,3 +69,4 @@ Done:
 -exception class
 -playback progress bar
 -After clicking 'save' then canceling, 'open' doesn't display properly
+-length is NaN (this is possible a JFX bug)
