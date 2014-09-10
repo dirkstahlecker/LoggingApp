@@ -65,7 +65,9 @@ public class MenuController implements Runnable {
 						break;
 					}
 					rewindTime *= 1000; //convert to milliseconds
+					System.out.println("changing rewind gain to " + rewindTime);
 					Constants.rewindGain = new Duration(rewindTime); //TODO: error logging and handling
+					System.out.println(Constants.rewindGain);
 					break;
 				case "fastforward gain":
 					String ffStr = PopupDialog.showInputBox(frame, "Fast Forward gain is currently "+Constants.fastforwardGain+"\nEnter new fast forward gain (in seconds)","Fast Forward Gain");
