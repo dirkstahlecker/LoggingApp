@@ -3,9 +3,12 @@ package audio;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.swing.BoundedRangeModel;
+import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 
 import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
@@ -37,9 +40,10 @@ public class SoundPlayerFX implements Runnable {
 	private String audioFilePath;
 	private final PopupDialog popupDialog;
 	private boolean initialSetup = false; //false if audio isn't set up, to prevent errors
+	private JProgressBar audioProgressBar;
 
 	public SoundPlayerFX(BlockingQueue<String[]> audioQueue, JLabel timeStamp, JLabel currentAudioSource, 
-			AtomicInteger time, JButton playpause, BlockingQueue<String[]> performSaveQueue, JFrame frame) {
+			AtomicInteger time, JButton playpause, BlockingQueue<String[]> performSaveQueue, JFrame frame, JProgressBar audioProgressBar) {
 
 		this.audioQueue = audioQueue;
 		this.timeStamp = timeStamp;
@@ -49,6 +53,7 @@ public class SoundPlayerFX implements Runnable {
 		this.playpause = playpause;
 		this.performSaveQueue = performSaveQueue;
 		this.popupDialog = new PopupDialog(frame);
+		this.audioProgressBar = audioProgressBar;
 	}
 
 	/**
@@ -87,6 +92,16 @@ public class SoundPlayerFX implements Runnable {
 			System.out.println("rawLength: " + rawLength);
 			length = convertTime(rawLength); //TODO: getTotalDuration returns unknown
 			System.out.println("length: " + length);
+			
+			//set the initial configuration of the progress bar
+			try {
+				audioProgressBar.setModel(new DefaultBoundedRangeModel(0,1,0,100)); //TODO: put length in here when its not NaN
+			}
+			catch (IllegalArgumentException iae) {
+				System.err.println("Illegal argument in progress bar");
+				//TODO: something here
+			}
+			System.out.println("got here");
 			outputTime();
 			isPaused = true;
 			
@@ -262,7 +277,8 @@ public class SoundPlayerFX implements Runnable {
 	}
 	
 	/**
-	 * displays the current playback location to the gui
+	 * Displays the current playback location to the gui
+	 * Also update the progress bar
 	 */
 	private void outputTime() {
 		if (audioPlayer != null) {
@@ -274,6 +290,13 @@ public class SoundPlayerFX implements Runnable {
 		currentTime = convertTime(currentTime);
 		timeStamp.setText("     " + currentTime + "/" + length);
 		time.set((int) currentTime);
+		try {
+			audioProgressBar.setValue((int)currentTime);
+		}
+		catch (IllegalArgumentException iae) {
+			System.err.println("Illegal Argument Exception for progress bar");
+			System.err.println("currentTime: " + currentTime);
+		}
 	}
 	
 	private double currentTime() {

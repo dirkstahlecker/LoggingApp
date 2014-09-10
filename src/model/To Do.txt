@@ -3,12 +3,12 @@ Essential:
 -error logging system
 -help documentation
 -make everything synchronized
+-make slider actually do something
 
 Good:
 -key listeners for easy playback control
 -better fastforward/rewind
 	-possible ramping
-	-possible gui element (slider or something)
 -Output comments to a nice format
 	-Remove subsequent identical numbers in output 
 -wrap text that goes off screen
@@ -67,3 +67,4 @@ Done:
 -allow rate to be set before audio file is set
 -display current playback rate and rewind/fastforward gain in dialog
 -exception class
+-playback progress bar

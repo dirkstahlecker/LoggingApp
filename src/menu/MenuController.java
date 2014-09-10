@@ -41,7 +41,7 @@ public class MenuController implements Runnable {
 
 				switch(message[0]) {
 				case "about":
-					JOptionPane.showMessageDialog(frame, "Created by Dirk Stahlecker\nCopyright 2014","About",JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(frame, "Created by Dirk Stahlecker\nstahdirk@mit.edu\nCopyright 2014","About",JOptionPane.PLAIN_MESSAGE);
 					break;
 				case "view help":
 					
