@@ -89,7 +89,9 @@ public class MenuController implements Runnable {
 				case "open audio":
 					try {
 						String audioPath = FileDialogClass.showDialog(frame, FileAction.OPEN);
-						audioQueue.add(new String[]{"init",audioPath});
+						if (!(audioPath == null || audioPath.trim().equals(""))) {
+							audioQueue.add(new String[]{"init",audioPath});	
+						}
 					} catch (LoggingException e) {
 						PopupDialog.showError(frame, "Error opening file");
 					}

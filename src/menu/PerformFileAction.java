@@ -57,7 +57,7 @@ public class PerformFileAction implements ActionListener {
 		this.popupDialog = new PopupDialog(frame);
 	}
 	
-	private String getSaveFile() {
+	private synchronized String getSaveFile() {
 		System.setProperty("apple.awt.fileDialogForDirectories", "true");
 		FileDialog fileDialog = new FileDialog(frame, "Choose a folder to save to", FileDialog.SAVE);
 		fileDialog.setFile("*.txt");
@@ -74,7 +74,7 @@ public class PerformFileAction implements ActionListener {
 	 * Saves all relevant information to a text file
 	 * @param saveFilePath path to output save data to
 	 */
-	private void performSave(String saveFilePath) {
+	private synchronized void performSave(String saveFilePath) {
 		String out = "";
 		//store stuff in a text file
 		/*
@@ -115,16 +115,15 @@ public class PerformFileAction implements ActionListener {
 				JOptionPane.showMessageDialog(frame, "Error creating file","Error",JOptionPane.ERROR_MESSAGE);
 			}
 		}
-
 	}
 	
 	/**
 	 * Open a previously saved file
 	 */
-	private void performOpen() {
+	private synchronized void performOpen() {
 		String filePath;
 		try {
-			filePath = FileDialogClass.showDialog(frame, FileAction.OPEN, "*.txt",false);
+			filePath = FileDialogClass.showDialog(frame, FileAction.OPEN, "*.txt", false);
 		}
 		catch (LoggingException e) {
 			filePath = "";
@@ -146,7 +145,8 @@ public class PerformFileAction implements ActionListener {
 				while ((line = reader.readLine()) != null) {
 					switch (count) {
 					case 0:
-						if (line.matches("\\s*file:///[^\\s]+?\\.[0-9a-zA-Z]+")) { //TODO: allow no audio file to be specified
+						System.out.println(line);
+						if (line.matches("\\s*file:/[^\\s]+?\\.[0-9a-zA-Z]+")) { //TODO: allow for spaces in filepath
 							audioFilePath = line;
 						}
 						else {
@@ -162,11 +162,11 @@ public class PerformFileAction implements ActionListener {
 							playbackPosition = line;
 						}
 						catch (NumberFormatException nfe) {
-							JOptionPane.showMessageDialog(frame, "Error loading file","Error",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(frame,"Error loading file","Error",JOptionPane.ERROR_MESSAGE);
 						}
 						break;
 					case 2:
-						if (!line.matches("\\d+\\s*:\\s*\\d+\\s*:\\s*.*|\n")) {
+						if (!line.matches("\\d+\\s*:\\s*\\d+\\s*:\\s*(.*|\n)")) {
 							validFile = false;
 							break;
 						}
@@ -186,12 +186,16 @@ public class PerformFileAction implements ActionListener {
 				e.printStackTrace();
 			}
 			
+			System.out.println("audioFilePath: " + audioFilePath);
+			System.out.println("playbackPosition: " + playbackPosition);
+			System.out.println("logText: " + logText);
+			
 			if (!validFile) {
 				PopupDialog.showError(frame,"Invalid save file","Error");
 				return;
 			}
 			else
-				System.out.println("successfully passed regex");
+				System.out.println("didn't die on regex");
 			
 			audioFilePath = audioFilePath.trim();
 			//give this info to wherever it needs to go
@@ -203,13 +207,13 @@ public class PerformFileAction implements ActionListener {
 	/**
 	 * Creates a new file
 	 */
-	private void performNew() {
+	private synchronized void performNew() {
 		audioQueue.add(new String[]{"init",""});
 		outputLogDisplay.rewriteField(new ArrayList<String>());
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public synchronized void actionPerformed(ActionEvent e) {
 		String path = audioFilePathReference.get();
 		if (action == FileAction.SAVE) {
 			if (path == null) { //not already saved

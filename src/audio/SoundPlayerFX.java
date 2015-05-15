@@ -74,9 +74,10 @@ public class SoundPlayerFX implements Runnable {
 		}
 		
 		//TODO: error handling
-		if (!audioFilePath.startsWith("file://")) { //TODO: make better
+		/*if (!audioFilePath.startsWith("file://")) { //TODO: make better
 			audioFilePath = "file://" + audioFilePath;
-		}
+		}*/
+		
 		
 		System.out.println("Audio source: " + audioFilePath); 
 		audioPlayer = null;

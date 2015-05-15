@@ -11,9 +11,14 @@ Good:
 	-possible ramping
 -Output comments to a nice format
 	-Remove subsequent identical numbers in output 
+	-Remove line numbers
 -wrap text that goes off screen
 -error handling class
 -make gains display in seconds, not milliseconds
+-convert timetamps to minute, second
+-Remove "enter path" text box from main screen 
+-Make main display box vertically draggable in size
+
 
 Extra:
 -html output
@@ -22,11 +27,12 @@ Extra:
 -all javadocs added
 -notification if incorrect java version (need 8 for JFX) (via installer or something)
 -add file types to open audio dialog
+-change image on popups
+-allow collaboration with multiple people
 
 Maybe:
 -timestamp when started typing (?)
 -file dialog class?
-
 
 -------------------------------------------------------------
 Bugs to fix:
@@ -34,14 +40,21 @@ Bugs to fix:
 -Use fixed width font for time (or make the separator somehow other than raw spaces)
 -Error catching in EnterMessageActionListener
 	-Error catching/handling pretty much everywhere actually
--Can't write to pdf
--Doesn't open _02.wav
+-Can't write to pdf or rtf
 -on stopping, playpause should change to "play"
--gain's don't work occasionally (they just don't change)
+	-also when file ends
+-gains don't work occasionally (they just don't change)
+-(possible) regex on opening has changed now that file URIs are different
+-filepaths with spaces will break the opening method
+-when opening, need to add URI stuff
+-txt output doesn't output to multiple lines on Ari's pc
+-occasional NaN on time
+-progress bar labels move back and forth sometimes
 
 Problems to consider:
 -holding focus when typing
 
+-------------------------------------------------------------
 -------------------------------------------------------------
 Done:
 -timestamp with each comment
@@ -69,4 +82,19 @@ Done:
 -exception class
 -playback progress bar
 -After clicking 'save' then canceling, 'open' doesn't display properly
--length is NaN (this is possible a JFX bug)
+-length is NaN (this is possibly a JFX bug)
+-Doesn't open _02.wav
+	-fixed by using toURI method
+-progress bar doesn't work on long files
+-when clicking open, then canceling, no audio file is loaded anymore
+
+
+
+
+-------------------------------------------------------------
+Ari's Comments:
+mark special comments - highlighting in color?
+	highlights different blocks
+when playback rate is changed, autotune to correct pitch
+
+

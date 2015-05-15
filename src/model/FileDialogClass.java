@@ -36,8 +36,8 @@ public class FileDialogClass {
 		fileDialog.setVisible(true);
 
 		if (fileDialog.getFile() != null) { //user clicked okay and not cancel 
-			String outputFilePath = fileDialog.getDirectory() + fileDialog.getFile();
-			return outputFilePath;
+			File outputFilePath = new File(fileDialog.getDirectory(), fileDialog.getFile());
+			return outputFilePath.toURI().toString(); //this method fixes issues of opening from other directories
 		}
 		else {
 			return null;

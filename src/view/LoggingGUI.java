@@ -35,11 +35,11 @@ public class LoggingGUI extends JFrame {
     private static final long serialVersionUID = 1L; //required
     
     private final JTextField commentFieldTxt;
-    private final JTextField audioSourceTxt;
-    
+    //private final JTextField audioSourceTxt;
+      
     private final JButton enterTextBtn;
     private final JButton playpauseBtn;
-    private final JButton enterAudioBtn;
+    //private final JButton enterAudioBtn;
     private final JButton rewindBtn;
     private final JButton fastforwardBtn;
     private final JButton volumeUpBtn;
@@ -75,8 +75,8 @@ public class LoggingGUI extends JFrame {
 	private JMenuBar menuBar;
 	private JMenu menu, submenu;
 	private JMenuItem menuItem;
-	private JRadioButtonMenuItem rbMenuItem;
-	private JCheckBoxMenuItem cbMenuItem;
+	//private JRadioButtonMenuItem rbMenuItem;
+	//private JCheckBoxMenuItem cbMenuItem;
     
     private AtomicInteger time; //holds a rounded time stamp, as I don't feel its necessary to have precision greater than a second
     
@@ -87,12 +87,12 @@ public class LoggingGUI extends JFrame {
         commentFieldTxt.setName("commentField");
         commentFieldTxt.setText("");
         commentFieldTxt.setMaximumSize(new Dimension(Integer.MAX_VALUE, commentFieldTxt.getPreferredSize().height));
-        
+        /*
         audioSourceTxt = new JTextField();
         audioSourceTxt.setName("audioSource");
         audioSourceTxt.setText("");
         audioSourceTxt.setMaximumSize(new Dimension(Integer.MAX_VALUE, audioSourceTxt.getPreferredSize().height));
-        
+        */
         enterTextBtn = new JButton();
         enterTextBtn.setName("enterText");
         enterTextBtn.setText("Enter Comment");
@@ -102,12 +102,12 @@ public class LoggingGUI extends JFrame {
         playpauseBtn.setName("playpause");
         playpauseBtn.setText("Play");
         playpauseBtn.setMinimumSize(new Dimension(80,enterTextBtn.getSize().height));
-        
+        /*
         enterAudioBtn = new JButton();
         enterAudioBtn.setName("enterAudio");
         enterAudioBtn.setText("Enter Path");
         enterAudioBtn.setMinimumSize(new Dimension(80,enterTextBtn.getSize().height));
-        
+        */
         rewindBtn = new JButton();
         rewindBtn.setName("rewind");
         rewindBtn.setText("<<");
@@ -202,9 +202,9 @@ public class LoggingGUI extends JFrame {
     private void addActionListeners() {
         playpauseBtn.addActionListener(new PauseActionListener(audioQueue));
         
-        SoundActionListener soundAction = new SoundActionListener(audioSourceTxt, audioQueue);
-        enterAudioBtn.addActionListener(soundAction);
-        audioSourceTxt.addActionListener(soundAction);
+        //SoundActionListener soundAction = new SoundActionListener(audioSourceTxt, audioQueue);
+        //enterAudioBtn.addActionListener(soundAction);
+        //audioSourceTxt.addActionListener(soundAction);
         
         AddToOutputQueue enterAction = new AddToOutputQueue(outputQueue,"enter");
         enterTextBtn.addActionListener(enterAction);
@@ -242,10 +242,10 @@ public class LoggingGUI extends JFrame {
             	    .addComponent(commentFieldTxt)
                     .addComponent(enterTextBtn)
                 )
-                .addGroup(userLayout.createSequentialGroup()
+                /*.addGroup(userLayout.createSequentialGroup()
                 	.addComponent(audioSourceTxt)
                 	.addComponent(enterAudioBtn)
-                )
+                )*/
                 .addGroup(userLayout.createSequentialGroup()
                 	.addComponent(rewindBtn)
                 	.addComponent(playpauseBtn)
@@ -267,11 +267,11 @@ public class LoggingGUI extends JFrame {
                 .addGroup(userLayout.createParallelGroup()
                 	.addComponent(commentFieldTxt)
                     .addComponent(enterTextBtn)
-                )
+                )/*
                 .addGroup(userLayout.createParallelGroup()
                   	.addComponent(audioSourceTxt)
-                  	.addComponent(enterAudioBtn)
-                )
+                  	//.addComponent(enterAudioBtn)
+                )*/
                 .addGroup(userLayout.createParallelGroup()
                 	.addComponent(rewindBtn)
                 	.addComponent(playpauseBtn)
