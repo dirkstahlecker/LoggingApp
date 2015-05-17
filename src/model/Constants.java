@@ -8,6 +8,7 @@ public class Constants {
 	public static Duration rewindGain = new Duration(5000); //5 seconds
 	public static Duration fastforwardGain = new Duration(5000);
 	public static Double playbackRate = new Double(1.0);
+	public static final int displayTimeDigits = 8; //how many digits is displayed in the timeStamp (decimal counts as a digit)
 	
 	public enum FileAction {
 		OPEN, SAVE, SAVE_AS, NEW

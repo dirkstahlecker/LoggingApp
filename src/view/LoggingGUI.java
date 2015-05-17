@@ -140,8 +140,8 @@ public class LoggingGUI extends JFrame {
         outputLog.setName("outputField");
         outputLog.setText("");
         outputLog.setEditable(false);
-        Font font = new Font("Courier New", Font.PLAIN, 14);
-        outputLog.setFont(font);
+        Font fixedWidthFont = new Font("Courier", Font.PLAIN, 14);
+        outputLog.setFont(fixedWidthFont);
         
         contentPane = getContentPane();
         userPanel = new JPanel();
@@ -155,6 +155,7 @@ public class LoggingGUI extends JFrame {
         
         timeStamp = new JLabel();
         timeStamp.setName("timeStamp");
+        timeStamp.setFont(fixedWidthFont);
         timeStamp.setText("      0:00 / 0:00"); //TODO: space this somehow else, so it doesn't jump around
         
         time = new AtomicInteger();

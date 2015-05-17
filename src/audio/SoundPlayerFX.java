@@ -155,6 +155,7 @@ public class SoundPlayerFX implements Runnable {
 						startTime = 0;
 					}
 					setupAudio(message[1],startTime);
+					timeStamp.setText("     " + truncateTime(0) + "/" + truncateTime(0)); //reset time counter
 					break;
 				case "playpause":
 					if (!initialSetup) break;
@@ -290,7 +291,10 @@ public class SoundPlayerFX implements Runnable {
 			currentTime = 0;
 		}
 		currentTime = convertTime(currentTime);
-		timeStamp.setText("     " + currentTime + "/" + length);
+		
+		
+		
+		timeStamp.setText("     " + truncateTime(currentTime) + "/" + truncateTime(length));
 		time.set((int) currentTime);
 		try {
 			audioProgressBar.setValue((int)currentTime);
@@ -305,6 +309,27 @@ public class SoundPlayerFX implements Runnable {
 			playpause.setText("Play");
 		}
 		*/
+	}
+	
+	/**
+	 * Truncates time to the correct length to display on the gui
+	 * Adds spaces to the front if it's shorter
+	 * @param timeIn double to truncate
+	 * @return string of the correct length
+	 */
+	private String truncateTime(double timeIn) {
+		String outTime = "";
+		String time = String.valueOf(timeIn);
+		if (time.length() < Constants.displayTimeDigits) {
+			int zerosToAdd = Constants.displayTimeDigits - time.length();
+			for (int i = 0; i < zerosToAdd; i++) {
+				time = ' ' + time;
+			}
+		}
+		for (int i = 0; i < Constants.displayTimeDigits; i++) {
+			outTime += time.charAt(i);
+		}
+		return outTime;
 	}
 	
 	private double currentTime() {

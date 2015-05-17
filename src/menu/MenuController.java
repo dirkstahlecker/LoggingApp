@@ -1,5 +1,6 @@
 package menu;
 
+import java.io.File;
 import java.util.concurrent.BlockingQueue;
 
 import javafx.util.Duration;
@@ -41,7 +42,7 @@ public class MenuController implements Runnable {
 
 				switch(message[0]) {
 				case "about":
-					JOptionPane.showMessageDialog(frame, "Created by Dirk Stahlecker\nstahdirk@mit.edu\nCopyright 2014","About",JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(frame, "Created by Dirk Stahlecker\nstahdirk@mit.edu\nCopyright 2015","About",JOptionPane.PLAIN_MESSAGE);
 					break;
 				case "view help":
 					
@@ -88,7 +89,8 @@ public class MenuController implements Runnable {
 					break;
 				case "open audio":
 					try {
-						String audioPath = FileDialogClass.showDialog(frame, FileAction.OPEN);
+						File audioPathFile = FileDialogClass.showDialog(frame, FileAction.OPEN);
+						String audioPath = audioPathFile.toURI().toString();
 						if (!(audioPath == null || audioPath.trim().equals(""))) {
 							audioQueue.add(new String[]{"init",audioPath});	
 						}

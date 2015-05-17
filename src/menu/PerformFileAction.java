@@ -5,14 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicReference;
@@ -21,8 +19,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
-import sun.misc.IOUtils;
-import view.LoggingGUI;
 import model.Constants.FileAction;
 import model.FileDialogClass;
 import model.LoggingException;
@@ -89,6 +85,7 @@ public class PerformFileAction implements ActionListener {
 		message = performSaveQueue.poll();
 		if (message != null) {
 			audioPath = message[0];
+			audioPath = audioPath.replace(" ", "%20");
 			position = (int)Double.parseDouble(message[1]);
 		}
 		else {
@@ -121,12 +118,14 @@ public class PerformFileAction implements ActionListener {
 	 * Open a previously saved file
 	 */
 	private synchronized void performOpen() {
-		String filePath;
+		File filePath;
 		try {
 			filePath = FileDialogClass.showDialog(frame, FileAction.OPEN, "*.txt", false);
+			System.out.println("filePath: " + filePath);
+			System.out.println("absolute path: " + new File("").getAbsolutePath());
 		}
 		catch (LoggingException e) {
-			filePath = "";
+			filePath = null;
 		}
 
 		if (filePath != null) { //user clicked okay and not cancel 
@@ -146,8 +145,10 @@ public class PerformFileAction implements ActionListener {
 					switch (count) {
 					case 0:
 						System.out.println(line);
-						if (line.matches("\\s*file:/[^\\s]+?\\.[0-9a-zA-Z]+")) { //TODO: allow for spaces in filepath
+						if (line.matches("^\\s*file:/[\\w|%20|/]+\\.[\\w]+")) { //TODO: allow for spaces in filepath
 							audioFilePath = line;
+							audioFilePath = audioFilePath.replace("%20", " ");
+							System.out.println("audioFilePath: " + audioFilePath);
 						}
 						else {
 							validFile = false;

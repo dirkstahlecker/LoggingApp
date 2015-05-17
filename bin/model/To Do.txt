@@ -37,7 +37,6 @@ Maybe:
 -------------------------------------------------------------
 Bugs to fix:
 -Size of fastforward and rewind buttons is too big
--Use fixed width font for time (or make the separator somehow other than raw spaces)
 -Error catching in EnterMessageActionListener
 	-Error catching/handling pretty much everywhere actually
 -Can't write to pdf or rtf
@@ -45,11 +44,18 @@ Bugs to fix:
 	-also when file ends
 -gains don't work occasionally (they just don't change)
 -(possible) regex on opening has changed now that file URIs are different
--filepaths with spaces will break the opening method
 -when opening, need to add URI stuff
 -txt output doesn't output to multiple lines on Ari's pc
 -occasional NaN on time
 -progress bar labels move back and forth sometimes
+-spacing on display time is wrong
+-FileDialogClass has Apple specific stuff
+-saving without audio opened results in error when opening
+-opening doesn't move audio track to saved point
+-save doesn't behave as expected
+
+Critical bugs:
+-open dialog doesn't allow for selecting files sometimes (after saving)
 
 Problems to consider:
 -holding focus when typing
@@ -87,6 +93,10 @@ Done:
 	-fixed by using toURI method
 -progress bar doesn't work on long files
 -when clicking open, then canceling, no audio file is loaded anymore
+-filepaths with spaces will break the opening method
+-Use fixed width font for time (or make the separator somehow other than raw spaces)
+-playback time doesn't reset when making a new file
+-open doesn't work anymore
 
 
 

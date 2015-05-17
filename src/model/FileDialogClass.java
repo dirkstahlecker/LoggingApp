@@ -16,7 +16,7 @@ import model.Constants.FileAction;
 public class FileDialogClass {
 
 	//helper method
-	private static String performShowDialog(JFrame frame, FileAction action, String fileType, boolean forDirectories) throws LoggingException {
+	private static File performShowDialog(JFrame frame, FileAction action, String fileType, boolean forDirectories) throws LoggingException {
 		//remove forDirectories, or change it
 		
 		FileDialog fileDialog = null;
@@ -37,7 +37,11 @@ public class FileDialogClass {
 
 		if (fileDialog.getFile() != null) { //user clicked okay and not cancel 
 			File outputFilePath = new File(fileDialog.getDirectory(), fileDialog.getFile());
-			return outputFilePath.toURI().toString(); //this method fixes issues of opening from other directories
+			System.out.println("Trace in File Dialog Class:");
+			System.out.println("outputFilePath: " + outputFilePath);
+			System.out.println("outputFilePath.toURI(): " + outputFilePath.toURI());
+			System.out.println("outputFilePath.toURI().toString(): " + outputFilePath.toURI().toString());
+			return outputFilePath; //this method fixes issues of opening from other directories
 		}
 		else {
 			return null;
@@ -79,7 +83,7 @@ public class FileDialogClass {
 	 * @return path to selected file or directory
 	 * @throws LoggingException if incorrect file action or fatal error
 	 */
-	public static String showDialog(JFrame frame, FileAction action) throws LoggingException {
+	public static File showDialog(JFrame frame, FileAction action) throws LoggingException {
 		return performShowDialog(frame,action,"",true);
 	}
 	
@@ -91,7 +95,7 @@ public class FileDialogClass {
 	 * @return path to selected file or directory
 	 * @throws LoggingException if incorrect file action or fatal error
 	 */
-	public static String showDialog(JFrame frame, FileAction action, String fileType) throws LoggingException {
+	public static File showDialog(JFrame frame, FileAction action, String fileType) throws LoggingException {
 		return performShowDialog(frame,action,fileType,true);
 	}
 	
@@ -105,7 +109,7 @@ public class FileDialogClass {
 	 * @return path to selected file or directory
 	 * @throws LoggingException if incorrect file action or fatal error
 	 */
-	public static String showDialog(JFrame frame, FileAction action, String fileType, boolean forDirectories) throws LoggingException {
+	public static File showDialog(JFrame frame, FileAction action, String fileType, boolean forDirectories) throws LoggingException {
 		return performShowDialog(frame,action,fileType,forDirectories);
 	}
 }
