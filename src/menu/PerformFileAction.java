@@ -100,6 +100,7 @@ public class PerformFileAction implements ActionListener {
 		
 		if (saveFilePath != null) {
 			audioFilePathReference.set(saveFilePath);
+			System.out.println("Updating audioFilePathReference: " + audioFilePathReference);
 			File file = new File(saveFilePath);
 
 			PrintWriter fileWriter;
@@ -211,6 +212,7 @@ public class PerformFileAction implements ActionListener {
 	private synchronized void performNew() {
 		audioQueue.add(new String[]{"init",""});
 		outputLogDisplay.rewriteField(new ArrayList<String>());
+		audioFilePathReference.set(null);
 	}
 
 	@Override

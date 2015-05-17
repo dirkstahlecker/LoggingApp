@@ -43,8 +43,6 @@ Bugs to fix:
 -on stopping, playpause should change to "play"
 	-also when file ends
 -gains don't work occasionally (they just don't change)
--(possible) regex on opening has changed now that file URIs are different
--when opening, need to add URI stuff
 -txt output doesn't output to multiple lines on Ari's pc
 -occasional NaN on time
 -progress bar labels move back and forth sometimes
@@ -52,7 +50,7 @@ Bugs to fix:
 -FileDialogClass has Apple specific stuff
 -saving without audio opened results in error when opening
 -opening doesn't move audio track to saved point
--save doesn't behave as expected
+
 
 Critical bugs:
 -open dialog doesn't allow for selecting files sometimes (after saving)
@@ -97,6 +95,9 @@ Done:
 -Use fixed width font for time (or make the separator somehow other than raw spaces)
 -playback time doesn't reset when making a new file
 -open doesn't work anymore
+-(possible) regex on opening has changed now that file URIs are different
+-when opening, need to add URI stuff
+-save (vs save as) doesn't behave as expected
 
 
 
