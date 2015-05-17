@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import model.Constants.FileAction;
+import model.Constants;
 import model.FileDialogClass;
 import model.LoggingException;
 import model.OutputLogDisplay;
@@ -86,10 +87,13 @@ public class PerformFileAction implements ActionListener {
 		if (message != null) {
 			audioPath = message[0];
 			audioPath = audioPath.replace(" ", "%20");
+			System.out.println("audioPath to save: " + audioPath);
+
 			position = (int)Double.parseDouble(message[1]);
 		}
 		else {
-			//TODO: raise error
+			//TODO: raise error (maybe - is it actually bad?)
+			audioPath = Constants.nullPath;
 			System.err.println("Message empty");
 		}
 
@@ -123,7 +127,6 @@ public class PerformFileAction implements ActionListener {
 		try {
 			filePath = FileDialogClass.showDialog(frame, FileAction.OPEN, "*.txt", false);
 			System.out.println("filePath: " + filePath);
-			System.out.println("absolute path: " + new File("").getAbsolutePath());
 		}
 		catch (LoggingException e) {
 			filePath = null;
@@ -150,6 +153,11 @@ public class PerformFileAction implements ActionListener {
 							audioFilePath = line;
 							audioFilePath = audioFilePath.replace("%20", " ");
 							System.out.println("audioFilePath: " + audioFilePath);
+						}
+						else if (line.equals(Constants.nullPath)) {
+							audioFilePath = "";
+							System.out.println("audioFilePath: No file selected"); 
+							JOptionPane.showMessageDialog(frame, "No audio file saved with project","Warning",JOptionPane.WARNING_MESSAGE);
 						}
 						else {
 							validFile = false;
