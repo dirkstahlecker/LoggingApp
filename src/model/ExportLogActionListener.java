@@ -17,15 +17,16 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 
 public class ExportLogActionListener implements ActionListener {
 
-	private final JTextArea log;
+	private final JTextPane log;
 	private File file;
 	private final JFrame frame;
 	private final String extension;
 
-	public ExportLogActionListener(JFrame frame, JTextArea log, String format) {
+	public ExportLogActionListener(JFrame frame, JTextPane log, String format) {
 		this.log = log;
 		this.file = null;
 		this.frame = frame;

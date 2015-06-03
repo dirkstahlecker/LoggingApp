@@ -18,6 +18,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 
 import model.Constants.FileAction;
 import model.Constants;
@@ -35,14 +36,14 @@ public class PerformFileAction implements ActionListener {
 	
 	private final BlockingQueue<String[]> performSaveQueue;
 	private final BlockingQueue<String[]> audioQueue;
-	private final JTextArea log;
+	private final JTextPane log;
 	private final JFrame frame;
 	private final FileAction action;
 	private final OutputLogDisplay outputLogDisplay;
 	private final AtomicReference<String> audioFilePathReference;
 	private final PopupDialog popupDialog;
 	
-	public PerformFileAction(JFrame frame, BlockingQueue<String[]> performSaveQueue, JTextArea log, FileAction action, 
+	public PerformFileAction(JFrame frame, BlockingQueue<String[]> performSaveQueue, JTextPane log, FileAction action, 
 			BlockingQueue<String[]> audioQueue, OutputLogDisplay outputLogDisplay, AtomicReference<String> audioFilePathReference) {
 		this.log = log;
 		this.performSaveQueue = performSaveQueue;

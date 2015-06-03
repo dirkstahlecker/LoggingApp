@@ -54,7 +54,7 @@ public class LoggingGUI extends JFrame {
     private final JLabel currentAudioSource;
     private final JLabel timeStamp;
     
-    private final JTextArea outputLog;
+    private final JTextPane outputLog;
     
     private final JScrollPane displayScrollPane;
     
@@ -136,7 +136,7 @@ public class LoggingGUI extends JFrame {
         clearLogBtn.setName("clearLog");
         clearLogBtn.setText("Clear");
         
-        outputLog = new JTextArea();
+        outputLog = new JTextPane();
         outputLog.setName("outputField");
         outputLog.setText("");
         outputLog.setEditable(false);

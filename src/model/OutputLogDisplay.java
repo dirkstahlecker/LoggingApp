@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -7,17 +8,21 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 public class OutputLogDisplay implements Runnable {
 
 	private final BlockingQueue<String> outputQueue;
 	private final JTextField commentField;
-	private final JTextArea logOutputField;
+	private final JTextPane logOutputField;
 	private final AtomicInteger time;
 	private int count;
 	private List<String> lines; //internal structure to hold just the comments, in order
 	
-	public OutputLogDisplay(BlockingQueue<String> outputQueue, JTextField commentField, JTextArea outputLog, AtomicInteger time) {
+	public OutputLogDisplay(BlockingQueue<String> outputQueue, JTextField commentField, JTextPane outputLog, AtomicInteger time) {
 		this.outputQueue = outputQueue;
 		this.commentField = commentField;
 		this.logOutputField = outputLog;
@@ -126,7 +131,28 @@ public class OutputLogDisplay implements Runnable {
 		logOutputField.setText(""); //clear field
 		int count = 1;
 		for (String line : this.lines) {
-			logOutputField.append(makeCol(String.valueOf(count)) + line);
+			//logOutputField.append(makeCol(String.valueOf(count)) + line);
+			
+			
+			StyledDocument doc = logOutputField.getStyledDocument();
+
+			//  Define a keyword attribute
+			SimpleAttributeSet keyWord = new SimpleAttributeSet();
+			StyleConstants.setForeground(keyWord, Color.RED);
+			StyleConstants.setBackground(keyWord, Color.YELLOW);
+			StyleConstants.setBold(keyWord, true);
+
+			//  Add some text
+			try
+			{
+			    doc.insertString(doc.getLength(), makeCol(String.valueOf(count)) + line, keyWord );
+			}
+			catch(Exception e) { 
+				System.out.println(e); 
+			}
+			
+			
+			
 			count++;
 		}
 	}
