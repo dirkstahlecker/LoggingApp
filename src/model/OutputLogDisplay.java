@@ -21,6 +21,7 @@ public class OutputLogDisplay implements Runnable {
 	private final AtomicInteger time;
 	private int count;
 	private List<OutputArrayElement> lines; //internal structure to hold just the comments, in order
+	private boolean currentlyHighlighted;
 	
 	public OutputLogDisplay(BlockingQueue<String> outputQueue, JTextField commentField, JTextPane outputLog, AtomicInteger time) {
 		this.outputQueue = outputQueue;
@@ -29,6 +30,7 @@ public class OutputLogDisplay implements Runnable {
 		this.time = time;
 		this.count = 1;
 		this.lines = new ArrayList<OutputArrayElement>();
+		this.currentlyHighlighted = false;
 	}
 	
 	@Override
@@ -39,11 +41,13 @@ public class OutputLogDisplay implements Runnable {
 			if (message != null) {
 				if (Constants.DEBUG) System.out.println("message: " + message);
 				switch(message) {
-				case "enter highlight":
-					enterText(true);
+				case "toggle highlight":
+					this.currentlyHighlighted = !this.currentlyHighlighted;
+					//if (Constants.DEBUG) 
+						System.out.println("highlighting is now " + (this.currentlyHighlighted ? "on" : "off"));
 					break;
 				case "enter":
-					enterText(false);
+					enterText();
 					break;
 				case "clear":
 					clear();
@@ -60,7 +64,7 @@ public class OutputLogDisplay implements Runnable {
 	/**
 	 * Add text to the output log
 	 */
-	public void enterText(boolean highlight) {
+	public void enterText() {
 		String comment = commentField.getText();
 		if (comment.matches("(\\s*rm)|(\\s*rm\\s+.*)")) { //remove command, handle and don't add comment
 			comment = comment.trim();
@@ -118,35 +122,15 @@ public class OutputLogDisplay implements Runnable {
 			out += comment;
 			out += '\n';
 
-			lines.add(new OutputArrayElement(out));
+			if (this.currentlyHighlighted)
+				lines.add(new OutputArrayElement(out, true, Constants.YELLOW));
+			else
+				lines.add(new OutputArrayElement(out));
 			count++;
-			writeArrayToField(highlight);
+			writeArrayToField(this.currentlyHighlighted);
 			//appendToField(out, null, new Color(255,255,0));
 		}
 		commentField.setText("");
-	}
-	
-	/**
-	 * Instead of clearing and rewriting, this just appends to the end
-	 * @param textColor
-	 * @param background
-	 */
-	private void appendToField(String line, Color textColor, Color background) {
-		StyledDocument doc = logOutputField.getStyledDocument();
-		SimpleAttributeSet keyWord = new SimpleAttributeSet();
-		if (textColor != null) {
-			StyleConstants.setForeground(keyWord, textColor);
-		}
-		if (background != null) {
-			StyleConstants.setBackground(keyWord, background);
-		}
-		
-		try {
-		    doc.insertString(doc.getLength(), makeCol(String.valueOf(count)) + line, keyWord );
-		}
-		catch(Exception e) { 
-			System.out.println(e); 
-		}
 	}
 	
 	//Overload for default text color and background
@@ -156,7 +140,7 @@ public class OutputLogDisplay implements Runnable {
 	
 	private void writeArrayToField(boolean highlight) {
 		if (highlight) {
-			writeArrayToField(null, new Color(255,255,0)); //default yellow
+			writeArrayToField(null, Constants.YELLOW); //default yellow
 		}
 		else {
 			writeArrayToField();

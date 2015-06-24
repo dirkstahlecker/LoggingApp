@@ -71,7 +71,7 @@ public class LoggingGUI extends JFrame {
     private final SoundPlayerFX player;
     private final MenuController menuController;
     
-    private final JButton highlightBtn;
+    private final JRadioButton highlightBtn;
     
     //menu bar
 	private JMenuBar menuBar;
@@ -148,7 +148,7 @@ public class LoggingGUI extends JFrame {
         contentPane = getContentPane();
         userPanel = new JPanel();
         
-        highlightBtn= new JButton();
+        highlightBtn= new JRadioButton();
         highlightBtn.setName("highlightBtn");
         highlightBtn.setText("Highlight");
         
@@ -224,8 +224,7 @@ public class LoggingGUI extends JFrame {
         volumeDownBtn.addActionListener(new AudioControlActionListener(audioQueue,"volume","down"));
         
         clearLogBtn.addActionListener(new AddToOutputQueue(outputQueue,"clear"));
-        
-        highlightBtn.addActionListener(new AddToOutputQueue(outputQueue, "enter highlight"));
+        highlightBtn.addActionListener(new AddToOutputQueue(outputQueue, "toggle highlight"));
     }
     
     private void startThreads() {
