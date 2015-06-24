@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import view.OutputArrayElement;
 
 public class OutputLogDisplay implements Runnable {
 
@@ -20,7 +20,7 @@ public class OutputLogDisplay implements Runnable {
 	private final JTextPane logOutputField;
 	private final AtomicInteger time;
 	private int count;
-	private List<String> lines; //internal structure to hold just the comments, in order
+	private List<OutputArrayElement> lines; //internal structure to hold just the comments, in order
 	
 	public OutputLogDisplay(BlockingQueue<String> outputQueue, JTextField commentField, JTextPane outputLog, AtomicInteger time) {
 		this.outputQueue = outputQueue;
@@ -28,7 +28,7 @@ public class OutputLogDisplay implements Runnable {
 		this.logOutputField = outputLog;
 		this.time = time;
 		this.count = 1;
-		this.lines = new ArrayList<String>();
+		this.lines = new ArrayList<OutputArrayElement>();
 	}
 	
 	@Override
@@ -37,10 +37,13 @@ public class OutputLogDisplay implements Runnable {
 		while (true) {
 			String message = outputQueue.poll();
 			if (message != null) {
-				if (Constants.debug) System.out.println("message: " + message);
+				if (Constants.DEBUG) System.out.println("message: " + message);
 				switch(message) {
+				case "enter highlight":
+					enterText(true);
+					break;
 				case "enter":
-					enterText();
+					enterText(false);
 					break;
 				case "clear":
 					clear();
@@ -57,7 +60,7 @@ public class OutputLogDisplay implements Runnable {
 	/**
 	 * Add text to the output log
 	 */
-	public void enterText() {
+	public void enterText(boolean highlight) {
 		String comment = commentField.getText();
 		if (comment.matches("(\\s*rm)|(\\s*rm\\s+.*)")) { //remove command, handle and don't add comment
 			comment = comment.trim();
@@ -106,8 +109,7 @@ public class OutputLogDisplay implements Runnable {
 				//TODO: alert user of invalid command?
 				System.err.println("Removal index out of bound");
 			}
-
-			writeArrayToField(lineNum);
+			writeArrayToField();
 		}
 		else { //comment, add like normal
 			String out = "";
@@ -116,42 +118,79 @@ public class OutputLogDisplay implements Runnable {
 			out += comment;
 			out += '\n';
 
-			lines.add(out);
+			lines.add(new OutputArrayElement(out));
 			count++;
-			writeArrayToField(-1);
+			writeArrayToField(highlight);
+			//appendToField(out, null, new Color(255,255,0));
 		}
 		commentField.setText("");
 	}
-
+	
+	/**
+	 * Instead of clearing and rewriting, this just appends to the end
+	 * @param textColor
+	 * @param background
+	 */
+	private void appendToField(String line, Color textColor, Color background) {
+		StyledDocument doc = logOutputField.getStyledDocument();
+		SimpleAttributeSet keyWord = new SimpleAttributeSet();
+		if (textColor != null) {
+			StyleConstants.setForeground(keyWord, textColor);
+		}
+		if (background != null) {
+			StyleConstants.setBackground(keyWord, background);
+		}
+		
+		try {
+		    doc.insertString(doc.getLength(), makeCol(String.valueOf(count)) + line, keyWord );
+		}
+		catch(Exception e) { 
+			System.out.println(e); 
+		}
+	}
+	
+	//Overload for default text color and background
+	private void writeArrayToField() {
+		writeArrayToField(null, null);
+	}
+	
+	private void writeArrayToField(boolean highlight) {
+		if (highlight) {
+			writeArrayToField(null, new Color(255,255,0)); //default yellow
+		}
+		else {
+			writeArrayToField();
+		}
+	}
+	
 	/**
 	 * Clear and replace the output text
 	 * @param lineToRemove
 	 */
-	private void writeArrayToField(int lineToRemove) {
+	private void writeArrayToField(Color textColor, Color background) {
 		logOutputField.setText(""); //clear field
 		int count = 1;
-		for (String line : this.lines) {
-			//logOutputField.append(makeCol(String.valueOf(count)) + line);
-			
-			
+		for (OutputArrayElement lineObj : this.lines) {
+			String line = lineObj.getLine();
+
 			StyledDocument doc = logOutputField.getStyledDocument();
 
-			//  Define a keyword attribute
 			SimpleAttributeSet keyWord = new SimpleAttributeSet();
-			StyleConstants.setForeground(keyWord, Color.RED);
-			StyleConstants.setBackground(keyWord, Color.YELLOW);
-			StyleConstants.setBold(keyWord, true);
+			if (textColor != null) {
+				StyleConstants.setForeground(keyWord, textColor); //TODO: do something with this
+			}
+			if (lineObj.isHighlighted()) {
+				StyleConstants.setBackground(keyWord, lineObj.getHighhlightColor());
+			}
+			//StyleConstants.setBold(keyWord, true);
 
-			//  Add some text
-			try
-			{
-			    doc.insertString(doc.getLength(), makeCol(String.valueOf(count)) + line, keyWord );
+			//Add text
+			try {
+			    doc.insertString(doc.getLength(), makeCol(String.valueOf(count)) + line, keyWord);
 			}
 			catch(Exception e) { 
 				System.out.println(e); 
 			}
-			
-			
 			
 			count++;
 		}
@@ -166,7 +205,7 @@ public class OutputLogDisplay implements Runnable {
 		if (newLines.size() == 0) {
 			logOutputField.setText("");
 		}
-		this.lines = new ArrayList<String>();
+		this.lines = new ArrayList<OutputArrayElement>();
 		for (String line : newLines) {
 			String out = "";
 			out += time.get();
@@ -174,8 +213,8 @@ public class OutputLogDisplay implements Runnable {
 			out += line;
 			out += '\n';
 
-			lines.add(out);
-			writeArrayToField(-1);
+			lines.add(new OutputArrayElement(out));
+			writeArrayToField();
 		}
 	}
 

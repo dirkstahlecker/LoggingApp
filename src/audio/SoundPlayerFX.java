@@ -143,7 +143,7 @@ public class SoundPlayerFX implements Runnable {
 			message = audioQueue.poll();
 			
 			if (message != null) {
-				if (Constants.debug) System.out.println("message: " + message[0]);
+				if (Constants.DEBUG) System.out.println("message: " + message[0]);
 				
 				switch (message[0]) {
 				case "init":
@@ -201,13 +201,13 @@ public class SoundPlayerFX implements Runnable {
 	 */
 	private void playpause() {
 		if (isPaused && audioPlayer != null) {
-			if (Constants.debug) System.out.println("SoundPlayer: play");
+			if (Constants.DEBUG) System.out.println("SoundPlayer: play");
 			audioPlayer.play();
 			isPaused = false;
 			playpause.setText("Pause");
 		}
 		else if (audioPlayer != null) {
-			if (Constants.debug) System.out.println("SoundPlayer: pause"); 
+			if (Constants.DEBUG) System.out.println("SoundPlayer: pause"); 
 			audioPlayer.pause();
 			isPaused = true;
 			playpause.setText("Play");
@@ -218,7 +218,7 @@ public class SoundPlayerFX implements Runnable {
 		if (!initialSetup) {
 			return;
 		}
-		if (Constants.debug) System.out.println("rewinding");
+		if (Constants.DEBUG) System.out.println("rewinding");
 		Duration index = audioPlayer.getCurrentTime();
 		index = index.subtract(Constants.rewindGain);
 		audioPlayer.seek(index);
@@ -229,7 +229,7 @@ public class SoundPlayerFX implements Runnable {
 		if (!initialSetup) {
 			return;
 		}
-		if (Constants.debug) System.out.println("fastforwarding");
+		if (Constants.DEBUG) System.out.println("fastforwarding");
 		Duration index = audioPlayer.getCurrentTime();
 		index = index.add(Constants.fastforwardGain);
 		audioPlayer.seek(index);

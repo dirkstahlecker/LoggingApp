@@ -71,6 +71,8 @@ public class LoggingGUI extends JFrame {
     private final SoundPlayerFX player;
     private final MenuController menuController;
     
+    private final JButton highlightBtn;
+    
     //menu bar
 	private JMenuBar menuBar;
 	private JMenu menu, submenu;
@@ -139,12 +141,16 @@ public class LoggingGUI extends JFrame {
         outputLog = new JTextPane();
         outputLog.setName("outputField");
         outputLog.setText("");
-        outputLog.setEditable(false);
+        outputLog.setEditable(true);
         Font fixedWidthFont = new Font("Courier", Font.PLAIN, 14);
         outputLog.setFont(fixedWidthFont);
         
         contentPane = getContentPane();
         userPanel = new JPanel();
+        
+        highlightBtn= new JButton();
+        highlightBtn.setName("highlightBtn");
+        highlightBtn.setText("Highlight");
         
         //displayPanel = new DisplayBox(); //this is the old version
         displayScrollPane = new JScrollPane(outputLog);
@@ -218,6 +224,8 @@ public class LoggingGUI extends JFrame {
         volumeDownBtn.addActionListener(new AudioControlActionListener(audioQueue,"volume","down"));
         
         clearLogBtn.addActionListener(new AddToOutputQueue(outputQueue,"clear"));
+        
+        highlightBtn.addActionListener(new AddToOutputQueue(outputQueue, "enter highlight"));
     }
     
     private void startThreads() {
@@ -253,6 +261,7 @@ public class LoggingGUI extends JFrame {
                 	.addComponent(fastforwardBtn)
                 	.addComponent(volumeDownBtn)
                 	.addComponent(volumeUpBtn)
+                	.addComponent(highlightBtn)
                 )
                 .addComponent(slider)
                 .addComponent(audioProgressBar)
@@ -279,6 +288,7 @@ public class LoggingGUI extends JFrame {
                 	.addComponent(fastforwardBtn)
                 	.addComponent(volumeDownBtn)
                 	.addComponent(volumeUpBtn)
+                	.addComponent(highlightBtn)
                 )
                 .addComponent(slider)
                 .addComponent(audioProgressBar)

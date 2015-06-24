@@ -114,12 +114,12 @@ public class SoundPlayer implements Runnable {
 						audioClip.stop();
 					}
 					setupAudio(message[1]);
-					if (Constants.debug) System.out.println("SoundPlayer: init");
+					if (Constants.DEBUG) System.out.println("SoundPlayer: init");
 					break;
 				case "playpause":
 					if (isPaused && audioClip != null) {
 						audioClip.start();
-						if (Constants.debug) System.out.println("SoundPlayer: play");
+						if (Constants.DEBUG) System.out.println("SoundPlayer: play");
 						isPaused = false;
 					}
 					else if (audioClip != null) {

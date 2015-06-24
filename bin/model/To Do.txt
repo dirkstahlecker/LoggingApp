@@ -35,7 +35,11 @@ Maybe:
 -file dialog class?
 
 -------------------------------------------------------------
-Bugs to fix:
+Critical bugs:
+-open dialog doesn't allow for selecting files sometimes (after saving)
+
+
+Bugs:
 -Size of fastforward and rewind buttons is too big
 -Error catching in EnterMessageActionListener
 	-Error catching/handling pretty much everywhere actually
@@ -50,10 +54,6 @@ Bugs to fix:
 -FileDialogClass has Apple specific stuff
 -saving without audio opened results in error when opening
 -opening doesn't move audio track to saved point
-
-
-Critical bugs:
--open dialog doesn't allow for selecting files sometimes (after saving)
 
 Problems to consider:
 -holding focus when typing
