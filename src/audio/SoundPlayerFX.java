@@ -97,7 +97,7 @@ public class SoundPlayerFX implements Runnable {
 			
 			currentAudioSource.setText("File: " + audioFilePath);
 			volume = audioPlayer.getVolume();
-			audioPlayer.setStartTime(new Duration(startTime)); //startTime in milliseconds
+			audioPlayer.setStartTime(new Duration(startTime * 1000)); //startTime is in seconds, so convert to milliseconds
 			
 			changeRate(Constants.playbackRate,false);
 			

@@ -145,7 +145,7 @@ public class PerformFileAction implements ActionListener {
 				fileReader = new FileReader(filePath);
 				BufferedReader reader = new BufferedReader(fileReader);
 				String line;
-				int count = 0;
+				int count = 0; //check lines in the order they are supposed to be in
 				while ((line = reader.readLine()) != null) {
 					switch (count) {
 					case 0:

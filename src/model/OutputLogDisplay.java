@@ -145,6 +145,7 @@ public class OutputLogDisplay implements Runnable {
 		String text = "";
 		for (String s : textIn) {
 			text += s;
+			text += '\n';
 		}
 		logOutputField.setText(text);
 	}
