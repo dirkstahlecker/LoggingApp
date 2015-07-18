@@ -211,7 +211,8 @@ public class PerformFileAction implements ActionListener {
 			audioFilePath = audioFilePath.trim();
 			//give this info to wherever it needs to go
 			audioQueue.add(new String[]{"init",audioFilePath,playbackPosition});
-			outputLogDisplay.rewriteField(logText);
+			//outputLogDisplay.rewriteField(logText);
+			outputLogDisplay.enterTextNoAdditionalMarkup(logText); //enter text directly
 		}
 	}
 	

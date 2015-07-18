@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
+import javax.swing.JSlider;
 
 import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
@@ -41,9 +42,11 @@ public class SoundPlayerFX implements Runnable {
 	private final PopupDialog popupDialog;
 	private boolean initialSetup = false; //false if audio isn't set up, to prevent errors
 	private JProgressBar audioProgressBar;
+	//private final JSlider slider;
 
 	public SoundPlayerFX(BlockingQueue<String[]> audioQueue, JLabel timeStamp, JLabel currentAudioSource, 
-			AtomicInteger time, JButton playpause, BlockingQueue<String[]> performSaveQueue, JFrame frame, JProgressBar audioProgressBar) {
+			AtomicInteger time, JButton playpause, BlockingQueue<String[]> performSaveQueue, JFrame frame, 
+			JProgressBar audioProgressBar) {
 
 		this.audioQueue = audioQueue;
 		this.timeStamp = timeStamp;
@@ -54,6 +57,7 @@ public class SoundPlayerFX implements Runnable {
 		this.performSaveQueue = performSaveQueue;
 		this.popupDialog = new PopupDialog(frame);
 		this.audioProgressBar = audioProgressBar;
+		//this.slider = slider;
 	}
 
 	/**

@@ -133,6 +133,22 @@ public class OutputLogDisplay implements Runnable {
 		commentField.setText("");
 	}
 	
+	/**
+	 * Used to enter a string directly into the pane
+	 * Does not additional markup on it; enters exactly as passed
+	 * @param textIn String to enter
+	 */
+	public void enterTextNoAdditionalMarkup(String textIn) {
+		logOutputField.setText(textIn);
+	}
+	public void enterTextNoAdditionalMarkup(List<String> textIn) {
+		String text = "";
+		for (String s : textIn) {
+			text += s;
+		}
+		logOutputField.setText(text);
+	}
+	
 	//Overload for default text color and background
 	private void writeArrayToField() {
 		writeArrayToField(null, null);

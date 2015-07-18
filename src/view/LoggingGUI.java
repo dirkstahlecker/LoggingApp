@@ -58,7 +58,7 @@ public class LoggingGUI extends JFrame {
     
     private final JScrollPane displayScrollPane;
     
-    private final JSlider slider;
+    //private final JSlider slider;
     private final JProgressBar audioProgressBar;
     
     private final BlockingQueue<String[]> audioQueue;
@@ -174,7 +174,8 @@ public class LoggingGUI extends JFrame {
         outputQueue = new LinkedBlockingQueue<String>();
         menuQueue = new LinkedBlockingQueue<String[]>(); //TODO: I don't think menuQueue does anythings
         performSaveQueue = new LinkedBlockingQueue<String[]>();
-        player = new SoundPlayerFX(audioQueue, timeStamp, currentAudioSource, time, playpauseBtn, performSaveQueue,this,audioProgressBar);
+        player = new SoundPlayerFX(audioQueue, timeStamp, currentAudioSource, time, playpauseBtn, 
+        		performSaveQueue,this,audioProgressBar);
         timeQueue = new LinkedBlockingQueue<String>();
         this.outputLogDisplay = new OutputLogDisplay(outputQueue, commentFieldTxt, outputLog, time);
         this.menuController = new MenuController(menuQueue,this,audioQueue);
@@ -184,12 +185,9 @@ public class LoggingGUI extends JFrame {
         int finalTime = 100; //TODO: get this somewhere
         int startTime = 0;
         
-        this.slider = new JSlider(JSlider.HORIZONTAL,initialTime,finalTime,startTime);
-        int tickSpacing = (finalTime - initialTime) / 5;
-        this.slider.setMajorTickSpacing(tickSpacing);
-        this.slider.setMinorTickSpacing(tickSpacing / 4);
-        this.slider.setPaintTicks(true);
-        this.slider.setPaintLabels(true);
+        //TODO: re-enable slider once it actually does something
+        //this.slider = new JSlider(JSlider.HORIZONTAL,initialTime,finalTime,startTime);
+        //SetupUtils.setupSlider(slider, initialTime, finalTime, startTime, 4, 5);
         
         //Configure everything else, separated for readability
         configureLayouts();
@@ -262,7 +260,7 @@ public class LoggingGUI extends JFrame {
                 	.addComponent(volumeUpBtn)
                 	.addComponent(highlightBtn)
                 )
-                .addComponent(slider)
+                //.addComponent(slider)
                 .addComponent(audioProgressBar)
                 .addGroup(userLayout.createSequentialGroup()
                 	.addComponent(clearLogBtn)
@@ -289,7 +287,7 @@ public class LoggingGUI extends JFrame {
                 	.addComponent(volumeUpBtn)
                 	.addComponent(highlightBtn)
                 )
-                .addComponent(slider)
+                //.addComponent(slider)
                 .addComponent(audioProgressBar)
                 .addGroup(userLayout.createParallelGroup()
                 	.addComponent(clearLogBtn)

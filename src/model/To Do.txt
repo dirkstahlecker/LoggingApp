@@ -4,6 +4,7 @@ Essential:
 -help documentation
 -make everything synchronized
 -make slider actually do something
+-save stylings
 
 Good:
 -key listeners for easy playback control
@@ -12,12 +13,11 @@ Good:
 -Output comments to a nice format
 	-Remove subsequent identical numbers in output 
 	-Remove line numbers
--wrap text that goes off screen
 -error handling class
 -make gains display in seconds, not milliseconds
 -convert timetamps to minute, second
--Remove "enter path" text box from main screen 
--Make main display box vertically draggable in size
+-manual highlighting
+-when editing, carriage return automatically add line numbers and whatnot
 
 
 Extra:
@@ -29,18 +29,21 @@ Extra:
 -add file types to open audio dialog
 -change image on popups
 -allow collaboration with multiple people
+-default save file name to be the audio file - maybe customizable template
+-allow custom hotkeys
+	-like live templates
+	
 
 Maybe:
 -timestamp when started typing (?)
--file dialog class?
 
 -------------------------------------------------------------
 Critical bugs:
 -open dialog doesn't allow for selecting files sometimes (after saving)
+-fast forward gain is broken
 
 
 Bugs:
--Size of fastforward and rewind buttons is too big
 -Error catching in EnterMessageActionListener
 	-Error catching/handling pretty much everywhere actually
 -Can't write to pdf or rtf
@@ -52,8 +55,9 @@ Bugs:
 -progress bar labels move back and forth sometimes
 -spacing on display time is wrong
 -FileDialogClass has Apple specific stuff
--saving without audio opened results in error when opening
--opening doesn't move audio track to saved point
+-opening:
+	-doesn't move audio track to saved point
+	-adds additional numbers before each line
 
 Problems to consider:
 -holding focus when typing
@@ -98,6 +102,11 @@ Done:
 -(possible) regex on opening has changed now that file URIs are different
 -when opening, need to add URI stuff
 -save (vs save as) doesn't behave as expected
+-added highlighting functionality
+-wrap text that goes off screen
+-Remove "enter path" text box from main screen 
+-Make main display box vertically draggable in size
+
 
 
 
