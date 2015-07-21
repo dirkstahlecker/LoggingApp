@@ -395,7 +395,7 @@ public class LoggingGUI extends JFrame {
     	//menuItem.addActionListener(new MenuActionListener("export txt",menuQueue));
     	menuItem.addActionListener(new ExportLogActionListener(this,outputLog,".txt"));
     	menu.add(menuItem);
-    	
+    	/*
     	menuItem = new JMenuItem("Export as .rtf");
     	menuItem.setMnemonic(KeyEvent.VK_B);
     	menuItem.addActionListener(new ExportLogActionListener(this,outputLog,".rtf"));
@@ -410,7 +410,7 @@ public class LoggingGUI extends JFrame {
     	menuItem.setMnemonic(KeyEvent.VK_B);
     	menuItem.addActionListener(new ExportLogActionListener(this,outputLog,".xls"));
     	menu.add(menuItem);
-    	
+    	*/
     	//////////// Options Menu /////////////
     	menu = new JMenu("Audio");
     	menu.setMnemonic(KeyEvent.VK_N);

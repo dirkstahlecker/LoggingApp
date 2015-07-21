@@ -42,10 +42,15 @@ public class MenuController implements Runnable {
 
 				switch(message[0]) {
 				case "about":
-					JOptionPane.showMessageDialog(frame, "Created by Dirk Stahlecker\nstahdirk@mit.edu\nCopyright 2015","About",JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(frame,"Created by Dirk Stahlecker\nstahdirk@mit.edu\nCopyright 2015","About",JOptionPane.PLAIN_MESSAGE);
 					break;
 				case "view help":
-					
+					JOptionPane.showMessageDialog(frame,"Click \"Open Audio\" to import an audio file\n"
+							+ "Clicking \"Fast Forward\" or \"Rewind\" moves the audio file forward or backward an amount set by the gain.\n"
+							+ "You can change the gain in its respective menu.\n"
+							+ "Saving a project allows you to open it again for editing.\n"
+							+ "Exporting a project saves the log to a file format of your choosing.\n"
+							,"Help",JOptionPane.PLAIN_MESSAGE);
 					break;
 				case "playback rate":
 					String rateStr = PopupDialog.showInputBox(frame,"Playback rate is currently "+Constants.playbackRate+"\nEnter new playback rate between 0 and 8:","Playback Rate");
