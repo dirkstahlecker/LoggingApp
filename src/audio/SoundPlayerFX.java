@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.JSlider;
 
+import view.SetupUtils;
 import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.Media;
@@ -110,6 +111,8 @@ public class SoundPlayerFX implements Runnable {
 			length = convertTime(rawLength); //TODO: getTotalDuration returns unknown
 			audioPlayer.stop();
 			
+			SetupUtils.setTimeStampText(timeStamp, startTime * 1000, length);
+			
 			//set the initial configuration of the progress bar
 			try {
 				audioProgressBar.setModel(new DefaultBoundedRangeModel(0,1,0,(int)length)); //TODO: put length in here when its not NaN
@@ -158,8 +161,7 @@ public class SoundPlayerFX implements Runnable {
 					catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
 						startTime = 0;
 					}
-					setupAudio(message[1],startTime);
-					timeStamp.setText("     " + truncateTime(0) + "/" + truncateTime(0)); //reset time counter
+					setupAudio(message[1],startTime); 
 					break;
 				case "playpause":
 					if (!initialSetup) break;
@@ -296,9 +298,7 @@ public class SoundPlayerFX implements Runnable {
 		}
 		currentTime = convertTime(currentTime);
 		
-		
-		
-		timeStamp.setText("     " + truncateTime(currentTime) + "/" + truncateTime(length));
+		timeStamp.setText("     " + currentTime + "/" + length);
 		time.set((int) currentTime);
 		try {
 			audioProgressBar.setValue((int)currentTime);
@@ -313,27 +313,6 @@ public class SoundPlayerFX implements Runnable {
 			playpause.setText("Play");
 		}
 		*/
-	}
-	
-	/**
-	 * Truncates time to the correct length to display on the gui
-	 * Adds spaces to the front if it's shorter
-	 * @param timeIn double to truncate
-	 * @return string of the correct length
-	 */
-	private String truncateTime(double timeIn) {
-		String outTime = "";
-		String time = String.valueOf(timeIn);
-		if (time.length() < Constants.displayTimeDigits) {
-			int zerosToAdd = Constants.displayTimeDigits - time.length();
-			for (int i = 0; i < zerosToAdd; i++) {
-				time = ' ' + time;
-			}
-		}
-		for (int i = 0; i < Constants.displayTimeDigits; i++) {
-			outTime += time.charAt(i);
-		}
-		return outTime;
 	}
 	
 	private double currentTime() {

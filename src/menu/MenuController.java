@@ -66,7 +66,7 @@ public class MenuController implements Runnable {
 						break;
 					}
 					rewindTime *= 1000; //convert to milliseconds
-					System.out.println("changing rewind gain to " + rewindTime);
+					if (Constants.DEBUG) System.out.println("changing rewind gain to " + rewindTime);
 					Constants.rewindGain = new Duration(rewindTime); //TODO: error logging and handling
 					System.out.println(Constants.rewindGain);
 					break;
@@ -85,7 +85,8 @@ public class MenuController implements Runnable {
 						break;
 					}
 					ffTime *= 1000; //convert to milliseconds
-					Constants.rewindGain = new Duration(ffTime); //TODO: error logging and handling
+					if (Constants.DEBUG) System.out.println("changing fastforward gain to " + ffTime);
+					Constants.fastforwardGain = new Duration(ffTime); //TODO: error logging and handling
 					break;
 				case "open audio":
 					try {

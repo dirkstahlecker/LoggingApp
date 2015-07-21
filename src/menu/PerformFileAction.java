@@ -88,7 +88,7 @@ public class PerformFileAction implements ActionListener {
 		if (message != null) {
 			audioPath = message[0];
 			audioPath = audioPath.replace(" ", "%20");
-			System.out.println("audioPath to save: " + audioPath);
+			if (Constants.DEBUG) System.out.println("audioPath to save: " + audioPath);
 
 			position = (int)Double.parseDouble(message[1]);
 		}
@@ -105,7 +105,7 @@ public class PerformFileAction implements ActionListener {
 		
 		if (saveFilePath != null) {
 			audioFilePathReference.set(saveFilePath);
-			System.out.println("Updating audioFilePathReference: " + audioFilePathReference);
+			if (Constants.DEBUG) System.out.println("Updating audioFilePathReference: " + audioFilePathReference);
 			File file = new File(saveFilePath);
 
 			PrintWriter fileWriter;
@@ -149,15 +149,15 @@ public class PerformFileAction implements ActionListener {
 				while ((line = reader.readLine()) != null) {
 					switch (count) {
 					case 0:
-						System.out.println(line);
+						if (Constants.DEBUG) System.out.println(line);
 						if (line.matches("^\\s*file:/[\\w|%20|/]+\\.[\\w]+")) { //TODO: allow for spaces in filepath
 							audioFilePath = line;
 							audioFilePath = audioFilePath.replace("%20", " ");
-							System.out.println("audioFilePath: " + audioFilePath);
+							if (Constants.DEBUG) System.out.println("audioFilePath: " + audioFilePath);
 						}
 						else if (line.equals(Constants.nullPath)) {
 							audioFilePath = "";
-							System.out.println("audioFilePath: No file selected"); 
+							if (Constants.DEBUG) System.out.println("audioFilePath: No file selected"); 
 							JOptionPane.showMessageDialog(frame, "No audio file saved with project","Warning",JOptionPane.WARNING_MESSAGE);
 						}
 						else {
@@ -197,16 +197,17 @@ public class PerformFileAction implements ActionListener {
 				e.printStackTrace();
 			}
 			
-			System.out.println("audioFilePath: " + audioFilePath);
-			System.out.println("playbackPosition: " + playbackPosition);
-			System.out.println("logText: " + logText);
+			if (Constants.DEBUG) {
+				System.out.println("audioFilePath: " + audioFilePath);
+				System.out.println("playbackPosition: " + playbackPosition);
+				System.out.println("logText: " + logText);
+			}
+
 			
 			if (!validFile) {
 				PopupDialog.showError(frame,"Invalid save file","Error");
 				return;
 			}
-			else
-				System.out.println("didn't die on regex");
 			
 			audioFilePath = audioFilePath.trim();
 			//give this info to wherever it needs to go

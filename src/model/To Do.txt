@@ -19,7 +19,7 @@ Good:
 -manual highlighting
 -when editing, carriage return automatically add line numbers and whatnot
 -make main display box vertically draggable in size
-
+-save playback rate (?)
 
 Extra:
 -html output
@@ -41,7 +41,6 @@ Maybe:
 -------------------------------------------------------------
 Critical bugs:
 -open dialog doesn't allow for selecting files sometimes (after saving)
--fast forward gain is broken
 
 
 Bugs:
@@ -56,7 +55,6 @@ Bugs:
 -progress bar labels move back and forth sometimes
 -spacing on display time is wrong
 -FileDialogClass has Apple specific stuff
--opening doesn't move audio track to saved point
 
 Problems to consider:
 -holding focus when typing
@@ -105,6 +103,9 @@ Done:
 -wrap text that goes off screen
 -Remove "enter path" text box from main screen 
 -opening adds additional numbers before each line
+-opening doesn't move audio track to saved point
+-when opening, change label to reflect startTime of audio
+-fast forward gain sets rewind gain instead
 
 
 
