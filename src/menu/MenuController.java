@@ -42,7 +42,8 @@ public class MenuController implements Runnable {
 
 				switch(message[0]) {
 				case "about":
-					JOptionPane.showMessageDialog(frame,"Created by Dirk Stahlecker\nstahdirk@mit.edu\nCopyright 2015","About",JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(frame,"Version " + Constants.VERSION + "\n\n"
+							+ "Created by Dirk Stahlecker\nstahdirk@mit.edu\nCopyright 2015","About",JOptionPane.PLAIN_MESSAGE);
 					break;
 				case "view help":
 					JOptionPane.showMessageDialog(frame,"Click \"Open Audio\" to import an audio file\n"
@@ -53,11 +54,13 @@ public class MenuController implements Runnable {
 							,"Help",JOptionPane.PLAIN_MESSAGE);
 					break;
 				case "playback rate":
-					String rateStr = PopupDialog.showInputBox(frame,"Playback rate is currently "+Constants.playbackRate+"\nEnter new playback rate between 0 and 8:","Playback Rate");
+					String rateStr = PopupDialog.showInputBox(frame,"Playback rate is currently "
+							+Constants.playbackRate+"\nEnter new playback rate between 0 and 8:","Playback Rate");
 					audioQueue.add(new String[]{"rate","",rateStr});
 					break;
 				case "rewind gain":
-					String rewindStr = PopupDialog.showInputBox(frame, "Rewind gain is currently "+Constants.rewindGain+"\nEnter new rewind gain (in seconds)", "Rewind Gain");
+					String rewindStr = PopupDialog.showInputBox(frame, "Rewind gain is currently "+Constants.rewindGain.toSeconds()
+							+" second\nEnter new rewind gain (in seconds)", "Rewind Gain");
 					if (rewindStr == null || rewindStr.equals("") || rewindStr.equals(" ")) {
 						break;
 					}
@@ -76,7 +79,8 @@ public class MenuController implements Runnable {
 					System.out.println(Constants.rewindGain);
 					break;
 				case "fastforward gain":
-					String ffStr = PopupDialog.showInputBox(frame, "Fast Forward gain is currently "+Constants.fastforwardGain+"\nEnter new fast forward gain (in seconds)","Fast Forward Gain");
+					String ffStr = PopupDialog.showInputBox(frame, "Fast Forward gain is currently "+Constants.fastforwardGain.toSeconds()
+							+" seconds\nEnter new fast forward gain (in seconds)","Fast Forward Gain");
 					if (ffStr == null || ffStr.equals("") || ffStr.equals(" ")) {
 						break;
 					}
@@ -103,6 +107,9 @@ public class MenuController implements Runnable {
 					} catch (LoggingException e) {
 						PopupDialog.showError(frame, "Error opening file");
 					}
+					break;
+				case "debug":
+					Constants.DEBUG = !Constants.DEBUG;
 					break;
 				}
 			}

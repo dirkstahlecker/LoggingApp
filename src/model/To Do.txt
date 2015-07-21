@@ -14,12 +14,12 @@ Good:
 	-Remove subsequent identical numbers in output 
 	-Remove line numbers
 -error handling class
--make gains display in seconds, not milliseconds
 -convert timetamps to minute, second
 -manual highlighting
 -when editing, carriage return automatically add line numbers and whatnot
 -make main display box vertically draggable in size
 -save playback rate (?)
+-clicking on time in log jumps to that time in audio file
 
 Extra:
 -html output
@@ -33,6 +33,7 @@ Extra:
 -default save file name to be the audio file - maybe customizable template
 -allow custom hotkeys
 	-like live templates
+-don't key anything off UI labels - keep internal variable
 	
 
 Maybe:
@@ -106,6 +107,8 @@ Done:
 -opening doesn't move audio track to saved point
 -when opening, change label to reflect startTime of audio
 -fast forward gain sets rewind gain instead
+-make gains display in seconds, not milliseconds
+-allowed enabling of debug mode in UI
 
 
 

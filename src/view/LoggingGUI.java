@@ -2,6 +2,12 @@ package view;
 import javafx.embed.swing.JFXPanel;
 
 import javax.swing.*;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.html.HTML;
+import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTMLEditorKit;
 
 import audio.AudioControlActionListener;
 import audio.SoundActionListener;
@@ -24,6 +30,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -82,7 +89,7 @@ public class LoggingGUI extends JFrame {
     
     private AtomicInteger time; //holds a rounded time stamp, as I don't feel its necessary to have precision greater than a second
     
-    public LoggingGUI() {
+    public LoggingGUI() throws BadLocationException, IOException { //TODO: remove throws eventually
 
     	//Configure the GUI elements
         commentFieldTxt = new JTextField();
@@ -141,9 +148,14 @@ public class LoggingGUI extends JFrame {
         outputLog = new JTextPane();
         outputLog.setName("outputField");
         outputLog.setText("");
-        outputLog.setEditable(true);
+        outputLog.addHyperlinkListener(new TextPaneHyperLinkListener());
+        outputLog.setEditable(false);
         Font fixedWidthFont = new Font("Courier", Font.PLAIN, 14);
         outputLog.setFont(fixedWidthFont);
+	    //HTMLDocument doc = new HTMLDocument();
+	    outputLog.setEditorKit(JEditorPane.createEditorKitForContentType("text/html"));
+	    //outputLog.setDocument(doc);
+	    //outputLog.setText("<a href='#'>C</a>");
         
         contentPane = getContentPane();
         userPanel = new JPanel();
@@ -450,6 +462,11 @@ public class LoggingGUI extends JFrame {
     	menuItem.setMnemonic(KeyEvent.VK_B);
     	menuItem.addActionListener(new MenuActionListener("view help",menuQueue));
     	menu.add(menuItem);
+    	
+    	menuItem = new JCheckBoxMenuItem("Enable debug mode");
+    	menuItem.setSelected(false);
+    	menuItem.addActionListener(new MenuActionListener("debug",menuQueue));
+    	menu.add(menuItem);
 
     	this.setJMenuBar(menuBar);
 
@@ -469,7 +486,17 @@ public class LoggingGUI extends JFrame {
         		new JFXPanel(); // initializes JavaFX environment
         		latch.countDown();
         		
-                LoggingGUI main = new LoggingGUI();
+                LoggingGUI main = null;
+                //TODO: get rid of try catch eventually
+				try {
+					main = new LoggingGUI();
+				} catch (BadLocationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                 main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 
                 main.requestFocus();

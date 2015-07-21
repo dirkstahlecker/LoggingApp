@@ -11,6 +11,8 @@ import javax.swing.JTextPane;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import javax.swing.text.html.HTMLDocument;
+
 import view.OutputArrayElement;
 
 public class OutputLogDisplay implements Runnable {
@@ -174,7 +176,8 @@ public class OutputLogDisplay implements Runnable {
 		for (OutputArrayElement lineObj : this.lines) {
 			String line = lineObj.getLine();
 
-			StyledDocument doc = logOutputField.getStyledDocument();
+			//StyledDocument doc = logOutputField.getStyledDocument();
+			HTMLDocument doc = new HTMLDocument();
 
 			SimpleAttributeSet keyWord = new SimpleAttributeSet();
 			if (textColor != null) {
@@ -187,7 +190,7 @@ public class OutputLogDisplay implements Runnable {
 
 			//Add text
 			try {
-			    doc.insertString(doc.getLength(), makeCol(String.valueOf(count)) + line, keyWord);
+			    doc.insertString(doc.getLength(), makeCol(String.valueOf(count)) + line + " <a href='#'>Click here</a>", keyWord);
 			}
 			catch(Exception e) { 
 				System.out.println(e); 
