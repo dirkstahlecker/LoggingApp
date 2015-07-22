@@ -451,17 +451,18 @@ public class LoggingGUI extends JFrame {
     	
     	//////////// Help Menu /////////////
     	menu = new JMenu("Help");
-    	menu.setMnemonic(KeyEvent.VK_N);
     	menuBar.add(menu);
     	
     	menuItem = new JMenuItem("About");
-    	menuItem.setMnemonic(KeyEvent.VK_B);
     	menuItem.addActionListener(new MenuActionListener("about",menuQueue));
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("View Help");
-    	menuItem.setMnemonic(KeyEvent.VK_B);
     	menuItem.addActionListener(new MenuActionListener("view help",menuQueue));
+    	menu.add(menuItem);
+    	
+    	menuItem = new JMenuItem("Known Bugs");
+    	menuItem.addActionListener(new MenuActionListener("known bugs",menuQueue));
     	menu.add(menuItem);
     	
     	menuItem = new JCheckBoxMenuItem("Enable debug mode");

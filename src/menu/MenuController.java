@@ -55,7 +55,18 @@ public class MenuController implements Runnable {
 							+ "You can change the gain in its respective menu.\n"
 							+ "Saving a project allows you to open it again for editing.\n"
 							+ "Exporting a project saves the log to a file format of your choosing.\n"
+							+ "Clicking \"Highlight\" will highlights whatever text you enter. There is no way to highlight after entering.\n"
+							+ "\nReminder: There is no autosave feature. Save frequently, because if the app crashes it can't recover your log."
 							,"Help",JOptionPane.PLAIN_MESSAGE);
+					break;
+				case "known bugs":
+					JOptionPane.showMessageDialog(frame,"Known Bugs:"
+							+ "After saving, you cannot open a file without restarting the app.\n"
+							+ "Length of audio file occasionally shows up as \"NaN\" for some unknown reason. No known fix.\n"
+							+ "Occasionally, changing the rewind and fastforward gains doesn't work. No known fix.\n"
+							+ "Occasional crashes. Restart the app and it should be fine.\n"
+							+ "Many, many other bugs exist. Feel free to email stahdirk@mit.edu if you experience problems.",
+							"About",JOptionPane.PLAIN_MESSAGE);
 					break;
 				case "playback rate":
 					String rateStr = PopupDialog.showInputBox(frame,"Playback rate is currently "
