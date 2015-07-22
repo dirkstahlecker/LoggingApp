@@ -145,32 +145,15 @@ public class LoggingGUI extends JFrame {
         clearLogBtn.setName("clearLog");
         clearLogBtn.setText("Clear");
         
-        outputLog = new JTextPane();
-        outputLog.setName("outputField");
-        outputLog.setText("");
-        outputLog.addHyperlinkListener(new TextPaneHyperLinkListener());
-        outputLog.setEditable(false);
-        Font fixedWidthFont = new Font("Courier", Font.PLAIN, 14);
-        outputLog.setFont(fixedWidthFont);
-	    //HTMLDocument doc = new HTMLDocument();
-	    outputLog.setEditorKit(JEditorPane.createEditorKitForContentType("text/html"));
-	    //outputLog.setDocument(doc);
-	    //outputLog.setText("<a href='#'>C</a>");
-        
-        contentPane = getContentPane();
-        userPanel = new JPanel();
-        
         highlightBtn= new JRadioButton();
         highlightBtn.setName("highlightBtn");
         highlightBtn.setText("Highlight");
-        
-        //displayPanel = new DisplayBox(); //this is the old version
-        displayScrollPane = new JScrollPane(outputLog);
         
         currentAudioSource = new JLabel();
         currentAudioSource.setName("currentAudioSource");
         currentAudioSource.setText("File: None");
         
+        Font fixedWidthFont = new Font("Courier", Font.PLAIN, 14);
         timeStamp = new JLabel();
         timeStamp.setName("timeStamp");
         timeStamp.setFont(fixedWidthFont);
@@ -189,8 +172,26 @@ public class LoggingGUI extends JFrame {
         player = new SoundPlayerFX(audioQueue, timeStamp, currentAudioSource, time, playpauseBtn, 
         		performSaveQueue,this,audioProgressBar);
         timeQueue = new LinkedBlockingQueue<String>();
+        
+        outputLog = new JTextPane();
+        outputLog.setName("outputField");
+        outputLog.setText("");
+        outputLog.addHyperlinkListener(new TextPaneHyperLinkListener(audioQueue));
+        outputLog.setEditable(false);
+        outputLog.setFont(fixedWidthFont);
+	    //HTMLDocument doc = new HTMLDocument();
+	    outputLog.setEditorKit(JEditorPane.createEditorKitForContentType("text/html"));
+	    //outputLog.setDocument(doc);
+	    //outputLog.setText("<a href='#'>C</a>");
+	    
         this.outputLogDisplay = new OutputLogDisplay(outputQueue, commentFieldTxt, outputLog, time);
         this.menuController = new MenuController(menuQueue,this,audioQueue);
+        
+        contentPane = getContentPane();
+        userPanel = new JPanel();
+        
+        //displayPanel = new DisplayBox(); //this is the old version
+        displayScrollPane = new JScrollPane(outputLog);
         
         //Configure slider
         int initialTime = 0;

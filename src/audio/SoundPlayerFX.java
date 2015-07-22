@@ -192,6 +192,9 @@ public class SoundPlayerFX implements Runnable {
 					if (!initialSetup) break;
 					volume(message[1]);
 					break;
+				case "seek":
+					seek(message[1]);
+					break;
 				}
 			}
 			
@@ -240,6 +243,19 @@ public class SoundPlayerFX implements Runnable {
 		index = index.add(Constants.fastforwardGain);
 		audioPlayer.seek(index);
 		outputTime();
+	}
+	
+	/**
+	 * Moves the audio to a particular point
+	 * Used to jump to positions when clicking a link
+	 * @param pos
+	 */
+	private void seek(String pos) {
+		//TODO: error handling
+		int index = Integer.parseInt(pos);
+		audioPlayer.seek(new Duration(index * 1000));
+		outputTime();
+		System.out.println("Seeking to " + new Duration(index * 1000).toString());
 	}
 	
 	/**

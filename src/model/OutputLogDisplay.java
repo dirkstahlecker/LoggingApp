@@ -45,8 +45,7 @@ public class OutputLogDisplay implements Runnable {
 				switch(message) {
 				case "toggle highlight":
 					this.currentlyHighlighted = !this.currentlyHighlighted;
-					//if (Constants.DEBUG) 
-						System.out.println("highlighting is now " + (this.currentlyHighlighted ? "on" : "off"));
+					if (Constants.DEBUG) System.out.println("highlighting is now " + (this.currentlyHighlighted ? "on" : "off"));
 					break;
 				case "enter":
 					enterText();
@@ -119,7 +118,7 @@ public class OutputLogDisplay implements Runnable {
 		}
 		else { //comment, add like normal
 			String out = "";
-			out += time.get();
+			out += " <a href=\"http://" + time.get() + "\">" + time.get() + "</a>";
 			out += ": ";
 			out += comment;
 			out += '\n';
@@ -173,11 +172,12 @@ public class OutputLogDisplay implements Runnable {
 	private void writeArrayToField(Color textColor, Color background) {
 		logOutputField.setText(""); //clear field
 		int count = 1;
+		String newText = "";
 		for (OutputArrayElement lineObj : this.lines) {
 			String line = lineObj.getLine();
 
 			//StyledDocument doc = logOutputField.getStyledDocument();
-			HTMLDocument doc = new HTMLDocument();
+			//HTMLDocument doc = (HTMLDocument) logOutputField.getStyledDocument();
 
 			SimpleAttributeSet keyWord = new SimpleAttributeSet();
 			if (textColor != null) {
@@ -190,14 +190,17 @@ public class OutputLogDisplay implements Runnable {
 
 			//Add text
 			try {
-			    doc.insertString(doc.getLength(), makeCol(String.valueOf(count)) + line + " <a href='#'>Click here</a>", keyWord);
+			    //doc.insertString(doc.getLength(), makeCol(String.valueOf(count)) + line + " <a href='#'>Click here</a>", keyWord);
+				newText += makeCol(String.valueOf(count)) + line + "<br />";
 			}
 			catch(Exception e) { 
-				System.out.println(e); 
+				System.err.println(e); 
 			}
 			
 			count++;
 		}
+		System.out.println("newText: " + newText);
+		logOutputField.setText(newText);
 	}
 	
 	/**
@@ -236,7 +239,7 @@ public class OutputLogDisplay implements Runnable {
 		else 
 			diff = 0;
 		for (int i = 0; i < diff; i++) 
-			out += ' ';
+			out += "&nbsp;";
 		return out + ": ";
 	}
 }
