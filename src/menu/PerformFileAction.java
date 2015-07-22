@@ -177,10 +177,10 @@ public class PerformFileAction implements ActionListener {
 						}
 						break;
 					case 2:
-						if (!line.matches("\\d+\\s*:\\s*\\d+\\s*:\\s*(.*|\n)")) {
+						/*if (!line.matches("\\d+\\s*:\\s*\\d+\\s*:\\s*(.*|\n)")) {
 							validFile = false;
 							break;
-						}
+						}*/ //TODO: add this logic back in eventually, updated for html
 						//don't break here, because we want it to get into default to add the line
 					default:
 						logText.add(line);

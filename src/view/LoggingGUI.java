@@ -89,7 +89,7 @@ public class LoggingGUI extends JFrame {
     
     private AtomicInteger time; //holds a rounded time stamp, as I don't feel its necessary to have precision greater than a second
     
-    public LoggingGUI() throws BadLocationException, IOException { //TODO: remove throws eventually
+    public LoggingGUI() throws IOException {
 
     	//Configure the GUI elements
         commentFieldTxt = new JTextField();
@@ -491,9 +491,6 @@ public class LoggingGUI extends JFrame {
                 //TODO: get rid of try catch eventually
 				try {
 					main = new LoggingGUI();
-				} catch (BadLocationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

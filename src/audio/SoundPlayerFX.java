@@ -67,7 +67,7 @@ public class SoundPlayerFX implements Runnable {
 	 * @param inputPath path to the audio file to play. If empty, initialize no file (but don't throw exception)
 	 * @param startTime time in seconds to start playing the audio. If empty, starts at beginning
 	 */
-	public void setupAudio(String inputPath, long startTime) {
+	public synchronized void setupAudio(String inputPath, long startTime) {
 		initialSetup = false;
 		if (audioPlayer != null) {
 			audioPlayer.stop();
@@ -83,7 +83,6 @@ public class SoundPlayerFX implements Runnable {
 			audioFilePath = "file://" + audioFilePath;
 		}*/
 		
-		
 		System.out.println("Audio source: " + audioFilePath); 
 		audioPlayer = null;
 		try {
@@ -98,7 +97,7 @@ public class SoundPlayerFX implements Runnable {
 			
 			currentAudioSource.setText("File: " + audioFilePath);
 			volume = audioPlayer.getVolume();
-			audioPlayer.setStartTime(new Duration(startTime * 1000)); //startTime is in seconds, so convert to milliseconds
+			//audioPlayer.setStartTime(new Duration(startTime * 1000)); //startTime is in seconds, so convert to milliseconds TODO: reenable
 			
 			changeRate(Constants.playbackRate,false);
 			
@@ -108,8 +107,10 @@ public class SoundPlayerFX implements Runnable {
 			audioPlayer.play();
 			Duration rawDuration = audioPlayer.getTotalDuration();
 			double rawLength = rawDuration.toSeconds();
-			length = convertTime(rawLength); //TODO: getTotalDuration returns unknown
+			length = convertTime(rawLength);
 			audioPlayer.stop();
+			
+			seek(startTime * 10000);
 			
 			SetupUtils.setTimeStampText(timeStamp, startTime * 1000, length);
 			
@@ -142,7 +143,7 @@ public class SoundPlayerFX implements Runnable {
 
 	//just a handler - all specific implementations are abstracted into separate functions
 	@Override
-	public void run() {
+	public synchronized void run() {
 		String[] message = null;
 		
 		//listen to all message
@@ -208,7 +209,7 @@ public class SoundPlayerFX implements Runnable {
 	/**
 	 * Plays or pauses the audio, depending on its current state
 	 */
-	private void playpause() {
+	private synchronized void playpause() {
 		if (isPaused && audioPlayer != null) {
 			if (Constants.DEBUG) System.out.println("SoundPlayer: play");
 			audioPlayer.play();
@@ -223,7 +224,7 @@ public class SoundPlayerFX implements Runnable {
 		}
 	}
 	
-	private void rewind() {
+	private synchronized void rewind() {
 		if (!initialSetup) {
 			return;
 		}
@@ -234,7 +235,7 @@ public class SoundPlayerFX implements Runnable {
 		outputTime();
 	}
 	
-	private void fastforward() {
+	private synchronized void fastforward() {
 		if (!initialSetup) {
 			return;
 		}
@@ -250,19 +251,20 @@ public class SoundPlayerFX implements Runnable {
 	 * Used to jump to positions when clicking a link
 	 * @param pos
 	 */
-	private void seek(String pos) {
+	private synchronized void seek(String pos) {
 		//TODO: error handling
-		int index = Integer.parseInt(pos);
+		seek(Long.parseLong(pos));
+	}
+	private synchronized void seek(long index) {
 		audioPlayer.seek(new Duration(index * 1000));
 		outputTime();
-		System.out.println("Seeking to " + new Duration(index * 1000).toString());
 	}
 	
 	/**
 	 * Adjusts the volume by a constant amount, Constants.volumeGain
 	 * @param m string "up" or "down"
 	 */
-	private void volume(String m) {
+	private synchronized void volume(String m) {
 		if (m.equals("up")) {
 			volume = audioPlayer.getVolume() + Constants.volumeGain;
 		}
@@ -282,7 +284,7 @@ public class SoundPlayerFX implements Runnable {
 	 * Change the rate of playback
 	 * @param rate new playback speed (0.0 to 8.0)
 	 */
-	private void changeRate(double rate, boolean showMessage) {
+	private synchronized void changeRate(double rate, boolean showMessage) {
 		if (rate < 0.0) {
 			rate = 0.0;
 		}
@@ -305,7 +307,7 @@ public class SoundPlayerFX implements Runnable {
 	 * Displays the current playback location to the gui
 	 * Also update the progress bar
 	 */
-	private void outputTime() {
+	private synchronized void outputTime() {
 		if (audioPlayer != null) {
 			currentTime = audioPlayer.getCurrentTime().toSeconds();
 		}
@@ -331,15 +333,15 @@ public class SoundPlayerFX implements Runnable {
 		*/
 	}
 	
-	private double currentTime() {
+	private synchronized double currentTime() {
 		return audioPlayer.getCurrentTime().toSeconds();
 	}
 	
-	private double convertTime(double time) {
+	private synchronized double convertTime(double time) {
 		return time;
 	}
 	
-	private void addInfoToQueue() {
+	private synchronized void addInfoToQueue() {
 		performSaveQueue.poll();//don't care about old value, so remove it
 		performSaveQueue.add(new String[]{audioFilePath,String.valueOf(currentTime())});
 	}

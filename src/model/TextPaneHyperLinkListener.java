@@ -20,14 +20,12 @@ public class TextPaneHyperLinkListener implements HyperlinkListener  {
     	if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
     		URL url = event.getURL();
     		String urlStr = url.toString();
-    		System.out.println(urlStr);
-    		//System.out.println(urlStr.matches("http://([0-9]+)"));
-    				
+
     		//Pattern pattern = Pattern.compile("http://([0-9]+)");
     		//Matcher matcher = pattern.matcher(urlStr);
     		
     		String num = urlStr.substring(7, urlStr.length());
-    		
+    		System.out.println(num);
     		audioQueue.add(new String[]{"seek",num});
     	}
     }

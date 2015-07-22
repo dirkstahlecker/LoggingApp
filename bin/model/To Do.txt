@@ -19,7 +19,6 @@ Good:
 -when editing, carriage return automatically add line numbers and whatnot
 -make main display box vertically draggable in size
 -save playback rate (?)
--clicking on time in log jumps to that time in audio file
 
 Extra:
 -html output
@@ -109,6 +108,7 @@ Done:
 -fast forward gain sets rewind gain instead
 -make gains display in seconds, not milliseconds
 -allowed enabling of debug mode in UI
+-make clicking on time in log jump to that time in audio file
 
 
 
