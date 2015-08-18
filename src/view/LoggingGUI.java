@@ -42,11 +42,9 @@ public class LoggingGUI extends JFrame {
     private static final long serialVersionUID = 1L; //required
     
     private final JTextField commentFieldTxt;
-    //private final JTextField audioSourceTxt;
       
     private final JButton enterTextBtn;
     private final JButton playpauseBtn;
-    //private final JButton enterAudioBtn;
     private final JButton rewindBtn;
     private final JButton fastforwardBtn;
     private final JButton volumeUpBtn;
@@ -69,7 +67,6 @@ public class LoggingGUI extends JFrame {
     private final JProgressBar audioProgressBar;
     
     private final BlockingQueue<String[]> audioQueue;
-    private final BlockingQueue<String> timeQueue;
     private final BlockingQueue<String> outputQueue;
     private final BlockingQueue<String[]> menuQueue;
     private final BlockingQueue<String[]> performSaveQueue;
@@ -96,12 +93,7 @@ public class LoggingGUI extends JFrame {
         commentFieldTxt.setName("commentField");
         commentFieldTxt.setText("");
         commentFieldTxt.setMaximumSize(new Dimension(Integer.MAX_VALUE, commentFieldTxt.getPreferredSize().height));
-        /*
-        audioSourceTxt = new JTextField();
-        audioSourceTxt.setName("audioSource");
-        audioSourceTxt.setText("");
-        audioSourceTxt.setMaximumSize(new Dimension(Integer.MAX_VALUE, audioSourceTxt.getPreferredSize().height));
-        */
+
         enterTextBtn = new JButton();
         enterTextBtn.setName("enterText");
         enterTextBtn.setText("Enter Comment");
@@ -111,12 +103,7 @@ public class LoggingGUI extends JFrame {
         playpauseBtn.setName("playpause");
         playpauseBtn.setText("Play");
         playpauseBtn.setMinimumSize(new Dimension(80,enterTextBtn.getSize().height));
-        /*
-        enterAudioBtn = new JButton();
-        enterAudioBtn.setName("enterAudio");
-        enterAudioBtn.setText("Enter Path");
-        enterAudioBtn.setMinimumSize(new Dimension(80,enterTextBtn.getSize().height));
-        */
+
         rewindBtn = new JButton();
         rewindBtn.setName("rewind");
         rewindBtn.setText("<<");
@@ -171,7 +158,6 @@ public class LoggingGUI extends JFrame {
         performSaveQueue = new LinkedBlockingQueue<String[]>();
         player = new SoundPlayerFX(audioQueue, timeStamp, currentAudioSource, time, playpauseBtn, 
         		performSaveQueue,this,audioProgressBar);
-        timeQueue = new LinkedBlockingQueue<String>();
         
         outputLog = new JTextPane();
         outputLog.setName("outputField");

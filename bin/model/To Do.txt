@@ -33,7 +33,7 @@ Extra:
 -allow custom hotkeys
 	-like live templates
 -don't key anything off UI labels - keep internal variable
-	
+
 
 Maybe:
 -timestamp when started typing (?)
@@ -41,7 +41,6 @@ Maybe:
 -------------------------------------------------------------
 Critical bugs:
 -open dialog doesn't allow for selecting files sometimes (after saving)
-
 
 Bugs:
 -Error catching in EnterMessageActionListener
@@ -109,7 +108,8 @@ Done:
 -make gains display in seconds, not milliseconds
 -allowed enabling of debug mode in UI
 -make clicking on time in log jump to that time in audio file
-
+-when clicking "clear", it removes text from the screen, but next time you enter text, all the previous text reappears
+-exception when clicking link when no audio file is open
 
 
 

@@ -56,11 +56,12 @@ public class MenuController implements Runnable {
 							+ "Saving a project allows you to open it again for editing.\n"
 							+ "Exporting a project saves the log to a file format of your choosing.\n"
 							+ "Clicking \"Highlight\" will highlights whatever text you enter. There is no way to highlight after entering.\n"
-							+ "\nReminder: There is no autosave feature. Save frequently, because if the app crashes it can't recover your log."
+							+ "\nReminder: There is no autosave feature. Save frequently, because if the app crashes it can't recover your log.\n"
+							+ "Java 8 is required for the proper function of this application."
 							,"Help",JOptionPane.PLAIN_MESSAGE);
 					break;
 				case "known bugs":
-					JOptionPane.showMessageDialog(frame,"Known Bugs:"
+					JOptionPane.showMessageDialog(frame,"Known Bugs:\n"
 							+ "After saving, you cannot open a file without restarting the app.\n"
 							+ "Length of audio file occasionally shows up as \"NaN\" for some unknown reason. No known fix.\n"
 							+ "Occasionally, changing the rewind and fastforward gains doesn't work. No known fix.\n"

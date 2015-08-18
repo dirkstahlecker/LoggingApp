@@ -120,7 +120,11 @@ public class SoundPlayerFX implements Runnable {
 			}
 			catch (IllegalArgumentException iae) {
 				System.err.println("Illegal argument in progress bar");
+				System.out.println("length: " + length);
+				System.out.println("rawLength: " + rawLength);
 				//TODO: something here
+				
+				//this exception is triggered only sometimes - maybe based on specific threading calls
 			}
 			
 			outputTime();
@@ -256,8 +260,13 @@ public class SoundPlayerFX implements Runnable {
 		seek(Long.parseLong(pos));
 	}
 	private synchronized void seek(long index) {
-		audioPlayer.seek(new Duration(index * 1000));
-		outputTime();
+		if (audioPlayer != null) {
+			audioPlayer.seek(new Duration(index * 1000));
+			outputTime();
+		}
+		else {
+			if (Constants.DEBUG) System.out.println("audioPlayer is null; can't seek");
+		}
 	}
 	
 	/**

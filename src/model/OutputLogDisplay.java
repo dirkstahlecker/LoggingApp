@@ -60,6 +60,8 @@ public class OutputLogDisplay implements Runnable {
 	
 	public void clear() {
 		logOutputField.setText("");
+		//TODO: need to actually clear the text from the internal log as well
+		lines.removeAll(lines);
 	}
 	
 	/**
@@ -199,7 +201,7 @@ public class OutputLogDisplay implements Runnable {
 			
 			count++;
 		}
-		System.out.println("newText: " + newText);
+		if (Constants.DEBUG) System.out.println("newText: " + newText);
 		logOutputField.setText(newText);
 	}
 	
