@@ -66,7 +66,7 @@ public class MenuController implements Runnable {
 							+ "Length of audio file occasionally shows up as \"NaN\" for some unknown reason. No known fix.\n"
 							+ "Occasionally, changing the rewind and fastforward gains doesn't work. No known fix.\n"
 							+ "Occasional crashes. Restart the app and it should be fine.\n"
-							+ "Many, many other bugs exist. Feel free to email stahdirk@mit.edu if you experience problems.",
+							+ "Many other bugs likely exist. Feel free to email stahdirk@mit.edu if you experience problems.",
 							"About",JOptionPane.PLAIN_MESSAGE);
 					break;
 				case "playback rate":

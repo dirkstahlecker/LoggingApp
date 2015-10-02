@@ -31,6 +31,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -87,7 +89,10 @@ public class LoggingGUI extends JFrame {
     private AtomicInteger time; //holds a rounded time stamp, as I don't feel its necessary to have precision greater than a second
     
     public LoggingGUI() throws IOException {
-
+    	
+    	Globals.log("----------------------------------\n"
+    			+ "Started at " + LocalDateTime.now() + " " + ZonedDateTime.now());
+    	
     	//Configure the GUI elements
         commentFieldTxt = new JTextField();
         commentFieldTxt.setName("commentField");
