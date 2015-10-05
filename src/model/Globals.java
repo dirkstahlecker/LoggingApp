@@ -12,8 +12,9 @@ public class Globals {
 	private static String filename = "/log.txt";
 	
 	public static void log(String msg) {
-		String currentDir;
+		if (Constants.DEBUG) System.out.println(msg);
 		
+		String currentDir;
 		File directory = new File ("");
 		try {
 		    currentDir = directory.getAbsolutePath();
@@ -32,5 +33,11 @@ public class Globals {
 		} finally {
 		   try {writer.close();} catch (Exception ex) {/*ignore*/}
 		}
+	}
+	
+	public static void logConstants() {
+		log(Constants.DEBUG ? "Debug: true" : "Debug: false");
+		//log(Constants.rewindGain)
+		//TODO: finish this
 	}
 }

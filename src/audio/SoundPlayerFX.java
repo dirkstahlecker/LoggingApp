@@ -3,13 +3,11 @@ package audio;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.swing.BoundedRangeModel;
 import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
-import javax.swing.JSlider;
 
 import view.SetupUtils;
 import javafx.scene.media.MediaException;
@@ -17,6 +15,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.Media;
 import javafx.util.Duration;
 import model.Constants;
+import model.Globals;
 import model.PopupDialog;
 
 /**
@@ -155,7 +154,7 @@ public class SoundPlayerFX implements Runnable {
 			message = audioQueue.poll();
 			
 			if (message != null) {
-				if (Constants.DEBUG) System.out.println("message: " + message[0]);
+				Globals.log("message: " + message[0]);
 				
 				switch (message[0]) {
 				case "init":
@@ -215,13 +214,13 @@ public class SoundPlayerFX implements Runnable {
 	 */
 	private synchronized void playpause() {
 		if (isPaused && audioPlayer != null) {
-			if (Constants.DEBUG) System.out.println("SoundPlayer: play");
+			Globals.log("SoundPlayer: play");
 			audioPlayer.play();
 			isPaused = false;
 			playpause.setText("Pause");
 		}
 		else if (audioPlayer != null) {
-			if (Constants.DEBUG) System.out.println("SoundPlayer: pause"); 
+			Globals.log("SoundPlayer: pause"); 
 			audioPlayer.pause();
 			isPaused = true;
 			playpause.setText("Play");
@@ -232,7 +231,7 @@ public class SoundPlayerFX implements Runnable {
 		if (!initialSetup) {
 			return;
 		}
-		if (Constants.DEBUG) System.out.println("rewinding");
+		Globals.log("rewinding");
 		Duration index = audioPlayer.getCurrentTime();
 		index = index.subtract(Constants.rewindGain);
 		audioPlayer.seek(index);
@@ -243,7 +242,7 @@ public class SoundPlayerFX implements Runnable {
 		if (!initialSetup) {
 			return;
 		}
-		if (Constants.DEBUG) System.out.println("fastforwarding");
+		Globals.log("fastforwarding");
 		Duration index = audioPlayer.getCurrentTime();
 		index = index.add(Constants.fastforwardGain);
 		audioPlayer.seek(index);
@@ -265,7 +264,7 @@ public class SoundPlayerFX implements Runnable {
 			outputTime();
 		}
 		else {
-			if (Constants.DEBUG) System.out.println("audioPlayer is null; can't seek");
+			Globals.log("audioPlayer is null; can't seek");
 		}
 	}
 	

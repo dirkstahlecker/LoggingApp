@@ -5,6 +5,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import model.Constants.FileAction;
 
@@ -111,5 +112,17 @@ public class FileDialogClass {
 	 */
 	public static File showDialog(JFrame frame, FileAction action, String fileType, boolean forDirectories) throws LoggingException {
 		return performShowDialog(frame,action,fileType,forDirectories);
+	}
+	
+	/**
+	 * Shows a confirmation dialog
+	 * @param msg message to be displayed to the user
+	 * @param title title on the dialog
+	 * @return true if user clicked yes
+	 */
+	public static boolean showConfirmation(String msg, String title) {
+		int dialogButton = JOptionPane.YES_NO_OPTION;
+		int dialogResult = JOptionPane.showConfirmDialog(null, msg, title, dialogButton);
+		return dialogResult == 0;
 	}
 }

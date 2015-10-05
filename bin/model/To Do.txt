@@ -110,6 +110,7 @@ Done:
 -make clicking on time in log jump to that time in audio file
 -when clicking "clear", it removes text from the screen, but next time you enter text, all the previous text reappears
 -exception when clicking link when no audio file is open
+-confirmation before clearing log
 
 
 

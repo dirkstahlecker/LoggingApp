@@ -91,7 +91,7 @@ public class LoggingGUI extends JFrame {
     public LoggingGUI() throws IOException {
     	
     	Globals.log("----------------------------------\n"
-    			+ "Started at " + LocalDateTime.now() + " " + ZonedDateTime.now());
+    			+ "Started at " + ZonedDateTime.now());
     	
     	//Configure the GUI elements
         commentFieldTxt = new JTextField();
@@ -262,7 +262,7 @@ public class LoggingGUI extends JFrame {
                 	.addComponent(fastforwardBtn)
                 	.addComponent(volumeDownBtn)
                 	.addComponent(volumeUpBtn)
-                	.addComponent(highlightBtn)
+                	//.addComponent(highlightBtn)
                 )
                 //.addComponent(slider)
                 .addComponent(audioProgressBar)
@@ -289,7 +289,7 @@ public class LoggingGUI extends JFrame {
                 	.addComponent(fastforwardBtn)
                 	.addComponent(volumeDownBtn)
                 	.addComponent(volumeUpBtn)
-                	.addComponent(highlightBtn)
+                	//.addComponent(highlightBtn)
                 )
                 //.addComponent(slider)
                 .addComponent(audioProgressBar)

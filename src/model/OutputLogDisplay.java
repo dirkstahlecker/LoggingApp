@@ -13,6 +13,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import javax.swing.text.html.HTMLDocument;
 
+import menu.PerformFileAction;
 import view.OutputArrayElement;
 
 public class OutputLogDisplay implements Runnable {
@@ -59,9 +60,11 @@ public class OutputLogDisplay implements Runnable {
 	}
 	
 	public void clear() {
-		logOutputField.setText("");
-		//TODO: need to actually clear the text from the internal log as well
-		lines.removeAll(lines);
+		//show confirmation and make sure user clicks yes
+		if (FileDialogClass.showConfirmation("Are you sure you want to clear the log? (There is no undo)", "Are you sure?")) {
+			logOutputField.setText("");
+			lines.removeAll(lines);
+		}
 	}
 	
 	/**
