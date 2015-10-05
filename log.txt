@@ -12,3 +12,9 @@ Started at 2015-10-05T01:16:35.352-04:00[America/New_York]
 message: init
 audioPlayer: javafx.scene.media.MediaPlayer@26e6a00
 Player configured
+----------------------------------
+Started at 2015-10-05T01:31:29.388-04:00[America/New_York]
+Running outputLogDisplay
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />
