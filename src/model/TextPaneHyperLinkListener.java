@@ -25,7 +25,7 @@ public class TextPaneHyperLinkListener implements HyperlinkListener  {
     		//Matcher matcher = pattern.matcher(urlStr);
     		
     		String num = urlStr.substring(7, urlStr.length());
-    		if (Constants.DEBUG) System.out.println("Parsed hyperlink number: " + num);
+    		Globals.log("Parsed hyperlink number: " + num);
     		audioQueue.add(new String[]{"seek",num});
     	}
     }

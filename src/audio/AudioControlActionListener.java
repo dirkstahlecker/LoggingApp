@@ -7,6 +7,8 @@ import java.util.concurrent.BlockingQueue;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import model.Globals;
+
 public class AudioControlActionListener implements ActionListener {
 	
 	private final BlockingQueue<String[]> audioQueue;
@@ -32,7 +34,7 @@ public class AudioControlActionListener implements ActionListener {
 		this.message2 = "";
 		this.rateField = rateField;
 		
-		System.out.println("instantiated action listener for rate");
+		Globals.log("instantiated action listener for rate");
 	}
 
 	@Override

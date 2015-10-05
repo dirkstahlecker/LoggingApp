@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import model.Constants;
 import model.Constants.FileAction;
 import model.FileDialogClass;
+import model.Globals;
 import model.LoggingException;
 import model.PopupDialog;
 
@@ -90,9 +91,8 @@ public class MenuController implements Runnable {
 						break;
 					}
 					rewindTime *= 1000; //convert to milliseconds
-					if (Constants.DEBUG) System.out.println("changing rewind gain to " + rewindTime);
+					Globals.log("changing rewind gain to " + rewindTime);
 					Constants.rewindGain = new Duration(rewindTime); //TODO: error logging and handling
-					System.out.println(Constants.rewindGain);
 					break;
 				case "fastforward gain":
 					String ffStr = PopupDialog.showInputBox(frame, "Fast Forward gain is currently "+Constants.fastforwardGain.toSeconds()
@@ -106,11 +106,11 @@ public class MenuController implements Runnable {
 					}
 					catch (NumberFormatException e) {
 						//TODO: something here
-						System.err.println("Problem parsing double in rewind gain");
+						Globals.log("Problem parsing double in rewind gain", true);
 						break;
 					}
 					ffTime *= 1000; //convert to milliseconds
-					if (Constants.DEBUG) System.out.println("changing fastforward gain to " + ffTime);
+					Globals.log("changing fastforward gain to " + ffTime);
 					Constants.fastforwardGain = new Duration(ffTime); //TODO: error logging and handling
 					break;
 				case "open audio":

@@ -23,6 +23,7 @@ import javax.swing.JTextPane;
 import model.Constants.FileAction;
 import model.Constants;
 import model.FileDialogClass;
+import model.Globals;
 import model.LoggingException;
 import model.OutputLogDisplay;
 import model.PopupDialog;
@@ -88,14 +89,14 @@ public class PerformFileAction implements ActionListener {
 		if (message != null) {
 			audioPath = message[0];
 			audioPath = audioPath.replace(" ", "%20");
-			if (Constants.DEBUG) System.out.println("audioPath to save: " + audioPath);
+			Globals.log("audioPath to save: " + audioPath);
 
 			position = (int)Double.parseDouble(message[1]);
 		}
 		else {
 			//TODO: raise error (maybe - is it actually bad?)
 			audioPath = Constants.nullPath;
-			System.err.println("Message empty");
+			Globals.log("Message empty", true);
 		}
 
 		out += audioPath + '\n';
@@ -105,7 +106,7 @@ public class PerformFileAction implements ActionListener {
 		
 		if (saveFilePath != null) {
 			audioFilePathReference.set(saveFilePath);
-			if (Constants.DEBUG) System.out.println("Updating audioFilePathReference: " + audioFilePathReference);
+			Globals.log("Updating audioFilePathReference: " + audioFilePathReference);
 			File file = new File(saveFilePath);
 
 			PrintWriter fileWriter;
@@ -127,7 +128,7 @@ public class PerformFileAction implements ActionListener {
 		File filePath;
 		try {
 			filePath = FileDialogClass.showDialog(frame, FileAction.OPEN, "*.txt", false);
-			System.out.println("filePath: " + filePath);
+			Globals.log("filePath: " + filePath);
 		}
 		catch (LoggingException e) {
 			filePath = null;
@@ -153,7 +154,7 @@ public class PerformFileAction implements ActionListener {
 						if (line.matches("^\\s*file:/[\\w|%20|/]+\\.[\\w]+")) { //TODO: allow for spaces in filepath
 							audioFilePath = line;
 							audioFilePath = audioFilePath.replace("%20", " ");
-							if (Constants.DEBUG) System.out.println("audioFilePath: " + audioFilePath);
+							Globals.log("audioFilePath: " +  audioFilePath);
 						}
 						else if (line.equals(Constants.nullPath)) {
 							audioFilePath = "";
@@ -197,11 +198,9 @@ public class PerformFileAction implements ActionListener {
 				e.printStackTrace();
 			}
 			
-			if (Constants.DEBUG) {
-				System.out.println("audioFilePath: " + audioFilePath);
-				System.out.println("playbackPosition: " + playbackPosition);
-				System.out.println("logText: " + logText);
-			}
+			Globals.log("audioFilePath: " + audioFilePath);
+			Globals.log("playbackPosition: " + playbackPosition);
+			Globals.log("logText: " + logText);
 
 			
 			if (!validFile) {
