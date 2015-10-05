@@ -1,1 +1,14 @@
-message: seek
+----------------------------------
+Started at 2015-10-05T00:51:32.512-04:00[America/New_York]
+message: playpause
+message: playpause
+message: init
+message: playpause
+SoundPlayer: play
+message: playpause
+SoundPlayer: pause
+----------------------------------
+Started at 2015-10-05T01:16:35.352-04:00[America/New_York]
+message: init
+audioPlayer: javafx.scene.media.MediaPlayer@26e6a00
+Player configured

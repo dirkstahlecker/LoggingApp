@@ -38,10 +38,10 @@ public class FileDialogClass {
 
 		if (fileDialog.getFile() != null) { //user clicked okay and not cancel 
 			File outputFilePath = new File(fileDialog.getDirectory(), fileDialog.getFile());
-			System.out.println("Trace in File Dialog Class:");
-			System.out.println("outputFilePath: " + outputFilePath);
-			System.out.println("outputFilePath.toURI(): " + outputFilePath.toURI());
-			System.out.println("outputFilePath.toURI().toString(): " + outputFilePath.toURI().toString());
+			Globals.log("Trace in File Dialog Class:");
+			Globals.log("outputFilePath: " + outputFilePath);
+			Globals.log("outputFilePath.toURI(): " + outputFilePath.toURI());
+			Globals.log("outputFilePath.toURI().toString(): " + outputFilePath.toURI().toString());
 			return outputFilePath; //this method fixes issues of opening from other directories
 		}
 		else {

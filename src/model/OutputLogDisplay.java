@@ -38,15 +38,15 @@ public class OutputLogDisplay implements Runnable {
 	
 	@Override
 	public void run() {
-		System.out.println("Running outputLogDisplay");
+		Globals.log("Running outputLogDisplay");
 		while (true) {
 			String message = outputQueue.poll();
 			if (message != null) {
-				if (Constants.DEBUG) System.out.println("message: " + message);
+				Globals.log("message: " + message);
 				switch(message) {
 				case "toggle highlight":
 					this.currentlyHighlighted = !this.currentlyHighlighted;
-					if (Constants.DEBUG) System.out.println("highlighting is now " + (this.currentlyHighlighted ? "on" : "off"));
+					Globals.log("highlighting is now " + (this.currentlyHighlighted ? "on" : "off"));
 					break;
 				case "enter":
 					enterText();
@@ -87,7 +87,7 @@ public class OutputLogDisplay implements Runnable {
 					lineNum = Integer.parseInt(parts[1]) - 1;
 				}
 				catch (NumberFormatException nfe) {
-					System.err.println("Arguments must be integers");
+					Globals.log("Arguments must be integers", true);
 				}
 				break;
 			case 3:
@@ -96,11 +96,11 @@ public class OutputLogDisplay implements Runnable {
 					lineNum2 = Integer.parseInt(parts[2]) - 1;
 				}
 				catch (NumberFormatException nfe) {
-					System.err.println("Arguments must be integers");
+					Globals.log("Arguments must be integers", true);
 				}
 				break;
 			default:
-				System.err.println("Incorrect number of arguments");
+				Globals.log("Incorrect number of arguments", true);
 				break;
 			}
 			//TODO: error catching
@@ -117,7 +117,7 @@ public class OutputLogDisplay implements Runnable {
 			}
 			catch (IndexOutOfBoundsException obe) {
 				//TODO: alert user of invalid command?
-				System.err.println("Removal index out of bound");
+				Globals.log("Removal index out of bounds");
 			}
 			writeArrayToField();
 		}
@@ -199,12 +199,12 @@ public class OutputLogDisplay implements Runnable {
 				newText += makeCol(String.valueOf(count)) + line + "<br />";
 			}
 			catch(Exception e) { 
-				System.err.println(e); 
+				Globals.log(e.toString(), true);
 			}
 			
 			count++;
 		}
-		if (Constants.DEBUG) System.out.println("newText: " + newText);
+		Globals.log("newText: " + newText);
 		logOutputField.setText(newText);
 	}
 	

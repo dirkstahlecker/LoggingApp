@@ -89,8 +89,8 @@ public class SoundPlayerFX implements Runnable {
 			audioPlayer.play(); //check if it works
 			audioPlayer.stop();
 			//TODO: slow to throw exception when illegal
-			System.out.println("audioPlayer: " + audioPlayer.toString());
-
+			Globals.log("audioPlayer: " + audioPlayer.toString());
+			
 			outputTime();
 			isPaused = true;
 			
@@ -100,7 +100,7 @@ public class SoundPlayerFX implements Runnable {
 			
 			changeRate(Constants.playbackRate,false);
 			
-			System.out.println("Player configured");
+			Globals.log("Player configured");
 			addInfoToQueue();
 			
 			audioPlayer.play();
@@ -118,9 +118,9 @@ public class SoundPlayerFX implements Runnable {
 				audioProgressBar.setModel(new DefaultBoundedRangeModel(0,1,0,(int)length)); //TODO: put length in here when its not NaN
 			}
 			catch (IllegalArgumentException iae) {
-				System.err.println("Illegal argument in progress bar");
-				System.out.println("length: " + length);
-				System.out.println("rawLength: " + rawLength);
+				Globals.log("Illegal argument in progress bar", true);
+				Globals.log("length: " + length, true);
+				Globals.log("rawLength: " + rawLength, true);
 				//TODO: something here
 				
 				//this exception is triggered only sometimes - maybe based on specific threading calls
