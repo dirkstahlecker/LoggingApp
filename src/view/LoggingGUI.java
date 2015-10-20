@@ -326,7 +326,7 @@ public class LoggingGUI extends JFrame {
     	
     	//a group of JMenuItems
     	menuItem = new JMenuItem("New");
-    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	//menuItem.setMnemonic(KeyEvent.VK_B);
     	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.NEW,audioQueue,outputLogDisplay,audioFilePathReference));
     	menu.add(menuItem);
     	
@@ -336,13 +336,18 @@ public class LoggingGUI extends JFrame {
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Save");
-    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	//menuItem.setMnemonic(KeyEvent.VK_B);
     	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.SAVE,audioQueue,outputLogDisplay,audioFilePathReference));
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Save As");
-    	menuItem.setMnemonic(KeyEvent.VK_B);
+    	//menuItem.setMnemonic(KeyEvent.VK_B);
     	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.SAVE_AS,audioQueue,outputLogDisplay,audioFilePathReference));
+    	menu.add(menuItem);
+    	
+    	menuItem = new JMenuItem("Preferences");
+    	//menuItem.setMnemonic(KeyEvent.VK_B);
+    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.UPDATE_PREFS,audioQueue,outputLogDisplay,audioFilePathReference));
     	menu.add(menuItem);
     	
     	

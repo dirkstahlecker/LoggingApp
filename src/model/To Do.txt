@@ -19,6 +19,7 @@ Good:
 -when editing, carriage return automatically add line numbers and whatnot
 -make main display box vertically draggable in size
 -save playback rate (?)
+-make preferences do something
 
 Extra:
 -html output
@@ -123,7 +124,6 @@ mark special comments - highlighting in color?
 when playback rate is changed, autotune to correct pitch
 
 
-ß
 
 -remove links in text output
 -NaN in length is a threading issue (not consistently reproducable)

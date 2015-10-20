@@ -34,7 +34,7 @@ public class MenuController implements Runnable {
 	}
 
 	@Override
-	public void run() {
+	public synchronized void run() {
 		String[] message = null;
 		
 		while(true) {

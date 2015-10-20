@@ -223,3 +223,486 @@ SoundPlayer: pause
 Started at 2015-10-20T14:05:22.721-04:00[America/New_York]
 Running outputLogDisplay
 message: rate
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/140309_02.WAV
+message: init
+audioPlayer: javafx.scene.media.MediaPlayer@53281043
+Player configured
+message: playpause
+SoundPlayer: play
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: testes
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: testes
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: as
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: testes
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: as
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: d
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: testes
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: as
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: d
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: testes
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: as
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: d
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: testes
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: as
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: d
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: testes
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: as
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: d
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: as
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: d
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: a
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: as
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: d
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: a
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://16">16</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: as
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: d
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: a
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://16">16</a>: a
+<br />10&nbsp;&nbsp;:  <a href="http://16">16</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: as
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: d
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: a
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://16">16</a>: a
+<br />10&nbsp;&nbsp;:  <a href="http://16">16</a>: a
+<br />11&nbsp;&nbsp;:  <a href="http://16">16</a>: sd
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: as
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: d
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: a
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: a
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://16">16</a>: a
+<br />10&nbsp;&nbsp;:  <a href="http://16">16</a>: a
+<br />11&nbsp;&nbsp;:  <a href="http://16">16</a>: sd
+<br />12&nbsp;&nbsp;:  <a href="http://17">17</a>: s
+<br />
+message: playpause
+SoundPlayer: pause
+----------------------------------
+Started at 2015-10-20T14:21:55.655-04:00[America/New_York]
+Running outputLogDisplay
+----------------------------------
+Started at 2015-10-20T14:27:58.325-04:00[America/New_York]
+Running outputLogDisplay
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: ets
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: ets
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: ets
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: ets
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: ets
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: ets
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: ets
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: ets
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: ets
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />10&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+Exporting file
+----------------------------------
+Started at 2015-10-20T14:30:54.724-04:00[America/New_York]
+Running outputLogDisplay
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: ta
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: ta
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: ta
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: ta
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: ta
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: ta
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+Exporting file
+----------------------------------
+Started at 2015-10-20T14:33:35.564-04:00[America/New_York]
+Running outputLogDisplay
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: rea
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: rea
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fdas
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: rea
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fdas
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: df
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: rea
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fdas
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: df
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: rea
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fdas
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: df
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: rea
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fdas
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: df
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdfasdf
+<br />
+Exporting file
+----------------------------------
+Started at 2015-10-20T14:34:44.390-04:00[America/New_York]
+Running outputLogDisplay
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asd
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asd
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asd
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asd
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asd
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />10&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />
+Exporting file
+----------------------------------
+Started at 2015-10-20T14:37:01.998-04:00[America/New_York]
+Running outputLogDisplay
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: tesat
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: tesat
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: tesat
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: tesat
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: qwe
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: tesat
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: qwe
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: rq
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: tesat
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: qwe
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: rq
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: r
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: tesat
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: qwe
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: rq
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: r
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: tesat
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: qwe
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: rq
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: r
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: qe
+<br />
+Exporting file
+----------------------------------
+Started at 2015-10-20T14:39:06.721-04:00[America/New_York]
+Running outputLogDisplay
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asfd
+<br />
+Exporting file
+----------------------------------
+Started at 2015-10-20T14:40:33.659-04:00[America/New_York]
+Running outputLogDisplay
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />
+Exporting file

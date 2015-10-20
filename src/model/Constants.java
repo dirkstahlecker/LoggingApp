@@ -17,6 +17,6 @@ public class Constants {
 	public static final double VERSION = 0.1;
 	
 	public static enum FileAction {
-		OPEN, SAVE, SAVE_AS, NEW
+		OPEN, SAVE, SAVE_AS, NEW, UPDATE_PREFS
 	}
 }

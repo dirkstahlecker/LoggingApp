@@ -17,7 +17,6 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
 import model.Constants.FileAction;
@@ -27,6 +26,7 @@ import model.Globals;
 import model.LoggingException;
 import model.OutputLogDisplay;
 import model.PopupDialog;
+import model.Preferences;
 
 /**
  * Performs open, save, and new menu operations
@@ -95,7 +95,6 @@ public class PerformFileAction implements ActionListener {
 			position = (int)Double.parseDouble(message[1]);
 		}
 		else {
-			//TODO: raise error (maybe - is it actually bad?)
 			audioPath = Constants.nullPath;
 			Globals.log("Message empty", true);
 		}
@@ -254,6 +253,10 @@ public class PerformFileAction implements ActionListener {
 		}
 		else if (action == FileAction.NEW) {
 			performNew();
+		}
+		else if (action == FileAction.UPDATE_PREFS) {
+			//PopupDialog.showInputBox(frame, "", "");
+			//Preferences.exportLineNumbers = true;
 		}
 	}
 }
