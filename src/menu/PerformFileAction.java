@@ -74,6 +74,7 @@ public class PerformFileAction implements ActionListener {
 	 * @param saveFilePath path to output save data to
 	 */
 	private synchronized void performSave(String saveFilePath) {
+		Globals.log("Saving file");
 		String out = "";
 		//store stuff in a text file
 		/*
@@ -125,6 +126,8 @@ public class PerformFileAction implements ActionListener {
 	 * Open a previously saved file
 	 */
 	private synchronized void performOpen() {
+		Globals.log("--------------------\n--------------------");
+		Globals.log("Opening file:");
 		File filePath;
 		try {
 			filePath = FileDialogClass.showDialog(frame, FileAction.OPEN, "*.txt", false);
@@ -132,6 +135,7 @@ public class PerformFileAction implements ActionListener {
 		}
 		catch (LoggingException e) {
 			filePath = null;
+			Globals.log("Exception: file path is null", true);
 		}
 
 		if (filePath != null) { //user clicked okay and not cancel 
@@ -150,7 +154,7 @@ public class PerformFileAction implements ActionListener {
 				while ((line = reader.readLine()) != null) {
 					switch (count) {
 					case 0:
-						if (Constants.DEBUG) System.out.println(line);
+						Globals.log(line);
 						if (line.matches("^\\s*file:/[\\w|%20|/]+\\.[\\w]+")) { //TODO: allow for spaces in filepath
 							audioFilePath = line;
 							audioFilePath = audioFilePath.replace("%20", " ");
@@ -158,7 +162,7 @@ public class PerformFileAction implements ActionListener {
 						}
 						else if (line.equals(Constants.nullPath)) {
 							audioFilePath = "";
-							if (Constants.DEBUG) System.out.println("audioFilePath: No file selected"); 
+							Globals.log("audioFilePath: No file selected"); 
 							JOptionPane.showMessageDialog(frame, "No audio file saved with project","Warning",JOptionPane.WARNING_MESSAGE);
 						}
 						else {
@@ -168,6 +172,7 @@ public class PerformFileAction implements ActionListener {
 					case 1:
 						if (!line.matches("\\d+")) { //TODO: make more robust
 							validFile = false;
+							Globals.log("Invalid file! Breaking in case 1");
 							break;
 						}
 						try {
@@ -175,6 +180,7 @@ public class PerformFileAction implements ActionListener {
 						}
 						catch (NumberFormatException nfe) {
 							JOptionPane.showMessageDialog(frame,"Error loading file","Error",JOptionPane.ERROR_MESSAGE);
+							Globals.log("Number format exception in case 1 when opening");
 						}
 						break;
 					case 2:
@@ -205,6 +211,7 @@ public class PerformFileAction implements ActionListener {
 			
 			if (!validFile) {
 				PopupDialog.showError(frame,"Invalid save file","Error");
+				Globals.log("Invalid file!", true);
 				return;
 			}
 			
@@ -220,6 +227,8 @@ public class PerformFileAction implements ActionListener {
 	 * Creates a new file
 	 */
 	private synchronized void performNew() {
+		Globals.log("--------------------\n--------------------");
+		Globals.log("Creating new file");
 		audioQueue.add(new String[]{"init",""});
 		outputLogDisplay.rewriteField(new ArrayList<String>());
 		audioFilePathReference.set(null);

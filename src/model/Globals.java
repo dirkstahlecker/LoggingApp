@@ -72,4 +72,34 @@ public class Globals {
 		//log(Constants.rewindGain)
 		//TODO: finish this
 	}
+	
+	/**
+	 * Return the text to show on the help menu
+	 */
+	public static String getHelpText() {
+		return "This app helps radio logging by automatically timestamping comments and offering other features.\n"
+				+ "Type in the comment box, then click \"Enter Text\" or press enter to submit text to the log\n"
+				+ "Clicking on a timestamp in the log will jump to that point in the audio file.\n"
+				+ "Change the playback rate of the audio in the \"Options\" menu.\n"
+				+ "Click \"Open Audio\" to import an audio file\n"
+				+ "Clicking \"Fast Forward\" or \"Rewind\" moves the audio file forward or backward an amount set by the gain.\n"
+				+ "You can change the gain in its respective menu.\n"
+				+ "Saving a project allows you to open it again for editing.\n"
+				+ "Exporting a project saves the log to a file format of your choosing.\n"
+				//+ "Clicking \"Highlight\" will highlights whatever text you enter. There is no way to highlight after entering.\n"
+				+ "\nReminder: There is no autosave feature. Save frequently, because if the app crashes it can't recover your log.\n"
+				+ "Java 7 is required for the proper function of this application.";
+	}
+	
+	/**
+	 * Return the text to show on the known bugs menu
+	 */
+	public static String getKnownBugsText() {
+		return "Known Bugs:\n"
+				+ "After saving, you cannot open a file without restarting the app.\n"
+				+ "Length of audio file occasionally shows up as \"NaN\" for some unknown reason. No known fix.\n"
+				+ "Occasionally, changing the rewind and fastforward gains doesn't work. No known fix.\n"
+				+ "Occasional crashes. Restart the app and it should be fine.\n"
+				+ "Many other bugs likely exist. Feel free to email stahdirk@mit.edu if you experience problems.";
+	}
 }

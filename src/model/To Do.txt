@@ -98,7 +98,7 @@ Done:
 -(possible) regex on opening has changed now that file URIs are different
 -when opening, need to add URI stuff
 -save (vs save as) doesn't behave as expected
--added highlighting functionality
+-added highlighting functionalityß
 -wrap text that goes off screen
 -Remove "enter path" text box from main screen 
 -opening adds additional numbers before each line
@@ -111,6 +111,7 @@ Done:
 -when clicking "clear", it removes text from the screen, but next time you enter text, all the previous text reappears
 -exception when clicking link when no audio file is open
 -confirmation before clearing log
+-update help to remove highlighting
 
 
 
@@ -122,3 +123,10 @@ mark special comments - highlighting in color?
 when playback rate is changed, autotune to correct pitch
 
 
+ß
+
+-remove links in text output
+-NaN in length is a threading issue (not consistently reproducable)
+-parsing broken in opening save files
+	-add more log debug to parsing and opening of save files
+-
