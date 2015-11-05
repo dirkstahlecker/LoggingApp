@@ -74,6 +74,7 @@ public class SoundPlayerFX implements Runnable {
 		audioFilePath = inputPath;
 		if (audioFilePath == "" || audioFilePath == null) { //don't do anything if empty or null - there's no file to load
 			currentAudioSource.setText("File: none");
+			Globals.log("No audio file to set up");
 			return;
 		}
 		
@@ -82,7 +83,7 @@ public class SoundPlayerFX implements Runnable {
 			audioFilePath = "file://" + audioFilePath;
 		}*/
 		
-		System.out.println("Audio source: " + audioFilePath); 
+		Globals.log("Audio source: " + audioFilePath); 
 		audioPlayer = null;
 		try {
 			audioPlayer = new MediaPlayer(new Media(audioFilePath));
@@ -113,6 +114,15 @@ public class SoundPlayerFX implements Runnable {
 			
 			SetupUtils.setTimeStampText(timeStamp, startTime * 1000, length);
 			
+			int count = 0;
+			while (audioPlayer.getStatus() != MediaPlayer.Status.READY) {
+				count++;
+				if (count > 100000) { //naive safeguard against infinite looping
+					break;
+				}
+				continue;
+			}
+			
 			//set the initial configuration of the progress bar
 			try {
 				audioProgressBar.setModel(new DefaultBoundedRangeModel(0,1,0,(int)length)); //TODO: put length in here when its not NaN
@@ -121,26 +131,29 @@ public class SoundPlayerFX implements Runnable {
 				Globals.log("Illegal argument in progress bar", true);
 				Globals.log("length: " + length, true);
 				Globals.log("rawLength: " + rawLength, true);
-				//TODO: something here
-				
+
 				//this exception is triggered only sometimes - maybe based on specific threading calls
+				//TODO: this must run in a non-deterministic order - exception is thrown sometimes, not others
 			}
 			
 			outputTime();
 			initialSetup = true;
 		}
-		//TODO: error handling
 		catch (MediaException me) {
 			popupDialog.showError("Invalid file", "Error");
+			Globals.log("Invalid file", true);
 		}
 		catch (IllegalArgumentException iae) {
-			System.err.println("IllegalArgumentException");
+			popupDialog.showError("Invalid file", "Error");
+			Globals.log("IllegalArgumentException",true);
 		}
 		catch (UnsupportedOperationException uoe) {
-			System.err.println("UnsupportedOperationException");
+			popupDialog.showError("Invalid file", "Error");
+			Globals.log("UnsupportedOperationException",true);
 		}
 		catch (NullPointerException npe) {
-			System.err.println("NullPointerException");
+			popupDialog.showError("Invalid file", "Error");
+			Globals.log("NullPointerException",true);
 		}
 	}
 
@@ -181,9 +194,9 @@ public class SoundPlayerFX implements Runnable {
 						changeRate(newRate,true);
 					}
 					catch (NumberFormatException e) {
-						//PopupDialog.showError(frame, "Rate must be an integer", "Error");
+						//PopupDialog.showError(frame, "Rate must be an integer", "Error"); //need frame here
 						//TODO: throw error here?
-						System.err.println("Error converting rate to double");
+						Globals.log("Error converting rate to double",true);
 					}
 					break;
 				case "rewind":
@@ -330,8 +343,8 @@ public class SoundPlayerFX implements Runnable {
 			audioProgressBar.setValue((int)currentTime);
 		}
 		catch (IllegalArgumentException iae) {
-			System.err.println("Illegal Argument Exception for progress bar");
-			System.err.println("currentTime: " + currentTime);
+			Globals.log("Illegal Argument Exception for progress bar",true);
+			Globals.log("currentTime: " + currentTime,true);
 		}
 		/*
 		if (currentTime >= length) { //at the end of the file

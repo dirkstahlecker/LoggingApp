@@ -21,7 +21,7 @@ public class SetupUtils {
 	 * @param timeIn double to truncate
 	 * @return string of the correct length
 	 */
-	private static String truncateTime(double timeIn) {
+	private synchronized static String truncateTime(double timeIn) {
 		String outTime = "";
 		String time = String.valueOf(timeIn);
 		if (time.length() < Constants.displayTimeDigits) {
@@ -36,7 +36,7 @@ public class SetupUtils {
 		return outTime;
 	}
 
-	public static void setTimeStampText(JLabel timeStamp, double curNum, double totalNum) {
+	public synchronized static void setTimeStampText(JLabel timeStamp, double curNum, double totalNum) {
 		timeStamp.setText("     " + truncateTime(curNum) + "/" + truncateTime(totalNum));
 	}
 }

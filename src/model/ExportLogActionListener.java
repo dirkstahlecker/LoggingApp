@@ -28,17 +28,17 @@ public class ExportLogActionListener implements ActionListener {
 
 	@Override
 	public synchronized void actionPerformed(ActionEvent e) {
-		Globals.log("Exporting file");
+		Globals.log("Exporting file with extension " + extension);
 		String logText = log.getText();
-		System.out.println(logText);
+		//remove html and tabs, replace with single space after colon
 		logText = logText.replaceAll("\\n|\\s","");
 		logText = logText.replaceAll("<br>","\n");
 		logText = logText.replaceAll("\\<[^>]*>","");
 		logText = logText.replaceAll("&#160;","");
 		logText = logText.replaceAll(":",": ");
 		logText = logText.trim();
-		System.out.println(logText);
-		//TODO: need to strip html
+		Globals.log("File contents:\n");
+		Globals.log(logText);
 
 		System.setProperty("apple.awt.fileDialogForDirectories", "true");
 		FileDialog fileDialog = new FileDialog(frame, "Choose an output file", FileDialog.SAVE);
@@ -59,7 +59,7 @@ public class ExportLogActionListener implements ActionListener {
 				path += extension;
 			}
 			file = new File(path);
-			System.out.println("path: " + path);
+			Globals.log("path: " + path);
 			
 			//Do format-specific formatting
 			if (extension.equals(".xls") || extension.equals(".xlsx")) {
@@ -73,12 +73,15 @@ public class ExportLogActionListener implements ActionListener {
 				fileWriter.close();
 
 				JOptionPane.showMessageDialog(frame, "File created");
+				Globals.log("File successfully created.");
 			} 
 			catch (FileNotFoundException e1) {
 				JOptionPane.showMessageDialog(frame, "Error creating file: File not found","Error",JOptionPane.ERROR_MESSAGE);
+				Globals.log("Export failed with file not found error");
 			} 
 			catch (UnsupportedEncodingException e1) {
 				JOptionPane.showMessageDialog(frame, "Error creating file: Unsupported encoding","Error",JOptionPane.ERROR_MESSAGE);
+				Globals.log("Export failed with unsupported encoding error");
 			}
 		}
 	}

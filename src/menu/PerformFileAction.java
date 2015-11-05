@@ -26,7 +26,6 @@ import model.Globals;
 import model.LoggingException;
 import model.OutputLogDisplay;
 import model.PopupDialog;
-import model.Preferences;
 
 /**
  * Performs open, save, and new menu operations
@@ -138,6 +137,7 @@ public class PerformFileAction implements ActionListener {
 		}
 
 		if (filePath != null) { //user clicked okay and not cancel 
+			audioFilePathReference.set(filePath.toString()); //allow us to save without save as later
 			//String filePath = fileDialog.getDirectory() + fileDialog.getFile();
 			String audioFilePath = null;
 			String playbackPosition = "";
@@ -156,13 +156,13 @@ public class PerformFileAction implements ActionListener {
 						Globals.log(line);
 						if (line.matches("^\\s*file:/[\\w|%20|/]+\\.[\\w]+")) { //TODO: allow for spaces in filepath
 							audioFilePath = line;
-							audioFilePath = audioFilePath.replace("%20", " ");
 							Globals.log("audioFilePath: " +  audioFilePath);
 						}
 						else if (line.equals(Constants.nullPath)) {
 							audioFilePath = "";
 							Globals.log("audioFilePath: No file selected"); 
 							JOptionPane.showMessageDialog(frame, "No audio file saved with project","Warning",JOptionPane.WARNING_MESSAGE);
+							//TODO: broke here - didn't load any text and froze
 						}
 						else {
 							validFile = false;

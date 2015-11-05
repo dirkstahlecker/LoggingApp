@@ -1,7 +1,5 @@
 Features to add:
 Essential:
--error logging system
--help documentation
 -make everything synchronized
 -make slider actually do something
 -save stylings
@@ -23,7 +21,6 @@ Good:
 
 Extra:
 -html output
--error logging system
 -add 'menuItem.getAccessibleContext().setAccessibleDescription' to all menu items
 -all javadocs added
 -notification if incorrect java version (need 8 for JFX) (via installer or something)
@@ -34,6 +31,7 @@ Extra:
 -allow custom hotkeys
 	-like live templates
 -don't key anything off UI labels - keep internal variable
+-export to different formats
 
 
 Maybe:
@@ -42,16 +40,16 @@ Maybe:
 -------------------------------------------------------------
 Critical bugs:
 -open dialog doesn't allow for selecting files sometimes (after saving)
+-NaN in length is a threading issue (not consistently reproduceable)
+-save vs. save as doesn't work
+-broken on open when saved without an audio file
 
 Bugs:
 -Error catching in EnterMessageActionListener
 	-Error catching/handling pretty much everywhere actually
--Can't write to pdf or rtf
 -on stopping, playpause should change to "play"
 	-also when file ends
 -gains don't work occasionally (they just don't change)
--txt output doesn't output to multiple lines on Ari's pc
--occasional NaN on time
 -progress bar labels move back and forth sometimes
 -spacing on display time is wrong
 -FileDialogClass has Apple specific stuff
@@ -113,7 +111,12 @@ Done:
 -exception when clicking link when no audio file is open
 -confirmation before clearing log
 -update help to remove highlighting
-
+-remove links in text output
+-error logging system
+-txt output doesn't output to multiple lines on Ari's pc
+-parsing broken in opening save files
+-add more log debug to parsing and opening of save files
+-help documentation
 
 
 
@@ -123,10 +126,3 @@ mark special comments - highlighting in color?
 	highlights different blocks
 when playback rate is changed, autotune to correct pitch
 
-
-
--remove links in text output
--NaN in length is a threading issue (not consistently reproducable)
--parsing broken in opening save files
-	-add more log debug to parsing and opening of save files
--

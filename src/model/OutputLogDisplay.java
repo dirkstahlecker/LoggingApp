@@ -37,7 +37,7 @@ public class OutputLogDisplay implements Runnable {
 	}
 	
 	@Override
-	public void run() {
+	public synchronized void run() {
 		Globals.log("Running outputLogDisplay");
 		while (true) {
 			String message = outputQueue.poll();
@@ -59,7 +59,7 @@ public class OutputLogDisplay implements Runnable {
 		}	
 	}
 	
-	public void clear() {
+	public synchronized void clear() {
 		//show confirmation and make sure user clicks yes
 		if (FileDialogClass.showConfirmation("Are you sure you want to clear the log? (There is no undo)", "Are you sure?")) {
 			logOutputField.setText("");
@@ -70,7 +70,7 @@ public class OutputLogDisplay implements Runnable {
 	/**
 	 * Add text to the output log
 	 */
-	public void enterText() {
+	public synchronized void enterText() {
 		String comment = commentField.getText();
 		if (comment.matches("(\\s*rm)|(\\s*rm\\s+.*)")) { //remove command, handle and don't add comment
 			comment = comment.trim();
@@ -144,10 +144,10 @@ public class OutputLogDisplay implements Runnable {
 	 * Does not additional markup on it; enters exactly as passed
 	 * @param textIn String to enter
 	 */
-	public void enterTextNoAdditionalMarkup(String textIn) {
+	public synchronized void enterTextNoAdditionalMarkup(String textIn) {
 		logOutputField.setText(textIn);
 	}
-	public void enterTextNoAdditionalMarkup(List<String> textIn) {
+	public synchronized void enterTextNoAdditionalMarkup(List<String> textIn) {
 		String text = "";
 		for (String s : textIn) {
 			text += s;
@@ -157,11 +157,11 @@ public class OutputLogDisplay implements Runnable {
 	}
 	
 	//Overload for default text color and background
-	private void writeArrayToField() {
+	private synchronized void writeArrayToField() {
 		writeArrayToField(null, null);
 	}
 	
-	private void writeArrayToField(boolean highlight) {
+	private synchronized void writeArrayToField(boolean highlight) {
 		if (highlight) {
 			writeArrayToField(null, Constants.YELLOW); //default yellow
 		}
@@ -174,7 +174,7 @@ public class OutputLogDisplay implements Runnable {
 	 * Clear and replace the output text
 	 * @param lineToRemove
 	 */
-	private void writeArrayToField(Color textColor, Color background) {
+	private synchronized void writeArrayToField(Color textColor, Color background) {
 		logOutputField.setText(""); //clear field
 		int count = 1;
 		String newText = "";
@@ -213,7 +213,7 @@ public class OutputLogDisplay implements Runnable {
 	 * Mainly used when loading
 	 * @param newLines list of lines to add
 	 */
-	public void rewriteField(List<String> newLines) {
+	public synchronized void rewriteField(List<String> newLines) {
 		if (newLines.size() == 0) {
 			logOutputField.setText("");
 		}
