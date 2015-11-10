@@ -1352,3 +1352,6 @@ message: init
 Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
 audioPlayer: javafx.scene.media.MediaPlayer@38f4bc04
 Player configured
+----------------------------------
+Started at 2015-11-10T18:26:39.519-05:00[America/New_York]
+Running outputLogDisplay

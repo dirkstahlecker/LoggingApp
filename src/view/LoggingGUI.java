@@ -208,7 +208,7 @@ public class LoggingGUI extends JFrame {
         pack();
     }
     
-    private void addActionListeners() {
+    private synchronized void addActionListeners() {
         playpauseBtn.addActionListener(new PauseActionListener(audioQueue));
         
         //SoundActionListener soundAction = new SoundActionListener(audioSourceTxt, audioQueue);
