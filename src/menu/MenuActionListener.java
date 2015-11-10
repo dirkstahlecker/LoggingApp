@@ -42,7 +42,7 @@ public class MenuActionListener implements ActionListener {
 	}*/
 	
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public synchronized void actionPerformed(ActionEvent e) {
 		if (messageText == null) {
 			queue.add(new String[]{actionType});
 		}

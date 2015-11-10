@@ -229,7 +229,7 @@ public class LoggingGUI extends JFrame {
         highlightBtn.addActionListener(new AddToOutputQueue(outputQueue, "toggle highlight"));
     }
     
-    private void startThreads() {
+    private synchronized void startThreads() {
         Thread soundPlayerFXThread = new Thread(player);
         soundPlayerFXThread.start();
         
@@ -241,7 +241,7 @@ public class LoggingGUI extends JFrame {
     }
     
    
-    private void configureLayouts() {
+    private synchronized void configureLayouts() {
     	//Set up the user interface panel
         GroupLayout userLayout = new GroupLayout(userPanel);
         userPanel.setLayout(userLayout);
@@ -311,7 +311,7 @@ public class LoggingGUI extends JFrame {
         contentPane.add(displayScrollPane, BorderLayout.NORTH);
     }
     
-    private void setUpMenuBar() {
+    private synchronized void setUpMenuBar() {
     	AtomicReference<String> audioFilePathReference = new AtomicReference<String>();
     	audioFilePathReference.set(null);
     	
@@ -476,7 +476,7 @@ public class LoggingGUI extends JFrame {
      * @param args unused
      * @throws InterruptedException for latch.await()
      */
-    public static void main(final String[] args) throws InterruptedException {
+    public synchronized static void main(final String[] args) throws InterruptedException {
     	final CountDownLatch latch = new CountDownLatch(1);
         SwingUtilities.invokeLater(new Runnable() {
         	@Override

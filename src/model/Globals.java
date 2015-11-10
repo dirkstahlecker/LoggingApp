@@ -18,7 +18,7 @@ public class Globals {
 	 * @param msg message to log
 	 * @param err log to System.err if true, System.out if false
 	 */
-	public static void log(String msg, boolean err) {
+	public synchronized static void log(String msg, boolean err) {
 		if (err) {
 			System.err.println(msg);
 		}
@@ -63,11 +63,11 @@ public class Globals {
 	 * Overload to default err to false
 	 * @param msg message to print
 	 */
-	public static void log(String msg) {
+	public synchronized static void log(String msg) {
 		log(msg, false);
 	}
 	
-	public static void logConstants() {
+	public synchronized static void logConstants() {
 		log(Constants.DEBUG ? "Debug: true" : "Debug: false");
 		//log(Constants.rewindGain)
 		//TODO: finish this
@@ -76,7 +76,7 @@ public class Globals {
 	/**
 	 * Return the text to show on the help menu
 	 */
-	public static String getHelpText() {
+	public synchronized static String getHelpText() {
 		return "This app helps radio logging by automatically timestamping comments and offering other features.\n"
 				+ "Type in the comment box, then click \"Enter Text\" or press enter to submit text to the log\n"
 				+ "Clicking on a timestamp in the log will jump to that point in the audio file.\n"
@@ -94,7 +94,7 @@ public class Globals {
 	/**
 	 * Return the text to show on the known bugs menu
 	 */
-	public static String getKnownBugsText() {
+	public synchronized static String getKnownBugsText() {
 		return "Known Bugs:\n"
 				+ "After saving, you cannot open a file without restarting the app.\n"
 				+ "Length of audio file occasionally shows up as \"NaN\" for some unknown reason. No known fix.\n"

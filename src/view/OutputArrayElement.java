@@ -30,19 +30,19 @@ public class OutputArrayElement {
 		checkRep();
 	}
 	
-	private void checkRep() {
+	private synchronized void checkRep() {
 		if (highlighted)
 			assert highlightColor != null;
 	}
 	
 	//Getters
-	public String getLine() {
+	public synchronized String getLine() {
 		return new String(line);
 	}
-	public boolean isHighlighted() {
+	public synchronized boolean isHighlighted() {
 		return highlighted;
 	}
-	public Color getHighhlightColor() {
+	public synchronized Color getHighhlightColor() {
 		return highlightColor;
 	}
 }

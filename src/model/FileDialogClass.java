@@ -17,7 +17,7 @@ import model.Constants.FileAction;
 public class FileDialogClass {
 
 	//helper method
-	private static File performShowDialog(JFrame frame, FileAction action, String fileType, boolean forDirectories) throws LoggingException {
+	private synchronized static File performShowDialog(JFrame frame, FileAction action, String fileType, boolean forDirectories) throws LoggingException {
 		//remove forDirectories, or change it
 		
 		FileDialog fileDialog = null;
@@ -49,7 +49,7 @@ public class FileDialogClass {
 		}
 	}
 	
-	public static String showChooser(JFrame frame, FileAction action, boolean forDirectories) throws LoggingException {
+	public synchronized static String showChooser(JFrame frame, FileAction action, boolean forDirectories) throws LoggingException {
 		//TODO: add file filtering
 		System.setProperty("apple.awt.fileDialogForDirectories", "true");
 		
@@ -84,7 +84,7 @@ public class FileDialogClass {
 	 * @return path to selected file or directory
 	 * @throws LoggingException if incorrect file action or fatal error
 	 */
-	public static File showDialog(JFrame frame, FileAction action) throws LoggingException {
+	public synchronized static File showDialog(JFrame frame, FileAction action) throws LoggingException {
 		return performShowDialog(frame,action,"",true);
 	}
 	
@@ -96,7 +96,7 @@ public class FileDialogClass {
 	 * @return path to selected file or directory
 	 * @throws LoggingException if incorrect file action or fatal error
 	 */
-	public static File showDialog(JFrame frame, FileAction action, String fileType) throws LoggingException {
+	public synchronized static File showDialog(JFrame frame, FileAction action, String fileType) throws LoggingException {
 		return performShowDialog(frame,action,fileType,true);
 	}
 	
@@ -110,7 +110,7 @@ public class FileDialogClass {
 	 * @return path to selected file or directory
 	 * @throws LoggingException if incorrect file action or fatal error
 	 */
-	public static File showDialog(JFrame frame, FileAction action, String fileType, boolean forDirectories) throws LoggingException {
+	public synchronized static File showDialog(JFrame frame, FileAction action, String fileType, boolean forDirectories) throws LoggingException {
 		return performShowDialog(frame,action,fileType,forDirectories);
 	}
 	
@@ -120,7 +120,7 @@ public class FileDialogClass {
 	 * @param title title on the dialog
 	 * @return true if user clicked yes
 	 */
-	public static boolean showConfirmation(String msg, String title) {
+	public synchronized static boolean showConfirmation(String msg, String title) {
 		int dialogButton = JOptionPane.YES_NO_OPTION;
 		int dialogResult = JOptionPane.showConfirmDialog(null, msg, title, dialogButton);
 		return dialogResult == 0;

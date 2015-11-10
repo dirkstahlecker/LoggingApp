@@ -27,7 +27,7 @@ public class AddToOutputQueue implements ActionListener {
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public synchronized void actionPerformed(ActionEvent e) {
 		outputQueue.add(message);
 	}
 }

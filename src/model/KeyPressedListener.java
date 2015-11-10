@@ -10,11 +10,11 @@ public class KeyPressedListener implements KeyListener {
 	}
 	
 	@Override
-	public void keyTyped(KeyEvent e) {
+	public synchronized void keyTyped(KeyEvent e) {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e) {
+	public synchronized void keyPressed(KeyEvent e) {
 		System.out.print(e);
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			System.out.println("RIGHT");
@@ -25,7 +25,7 @@ public class KeyPressedListener implements KeyListener {
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) {
+	public synchronized void keyReleased(KeyEvent e) {
 	}
 
 }

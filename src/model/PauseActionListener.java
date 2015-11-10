@@ -24,7 +24,7 @@ public class PauseActionListener implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public synchronized void actionPerformed(ActionEvent e) {
 		audioQueue.add(new String[]{"playpause",""});
 	}
 }

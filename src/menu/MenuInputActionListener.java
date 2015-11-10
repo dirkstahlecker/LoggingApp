@@ -15,7 +15,7 @@ public class MenuInputActionListener implements ActionListener {
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public synchronized void actionPerformed(ActionEvent e) {
 		queue.add(new String[]{actionType});
 	}
 

@@ -16,7 +16,7 @@ public class TextPaneHyperLinkListener implements HyperlinkListener  {
 		this.audioQueue = audioQueue;
 	}
 
-    public void hyperlinkUpdate(HyperlinkEvent event) {
+    public synchronized void hyperlinkUpdate(HyperlinkEvent event) {
     	if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
     		URL url = event.getURL();
     		String urlStr = url.toString();

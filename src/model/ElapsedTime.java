@@ -14,7 +14,7 @@ public class ElapsedTime {
 		this.timeQueue = timeQueue;
 	}
 	
-	public void start() {
+	public synchronized void start() {
 		if (isPaused) {
 			start = System.nanoTime() - pausedLength;
 		}
@@ -24,13 +24,13 @@ public class ElapsedTime {
 		
 	}
 	
-	public void pause() {
+	public synchronized void pause() {
 		//store how long was played
 		pausedLength = System.nanoTime() - start;
 		isPaused = true;
 	}
 	
-	public long getTimestamp() {
+	public synchronized long getTimestamp() {
 		return System.nanoTime() - start;
 	}
 	

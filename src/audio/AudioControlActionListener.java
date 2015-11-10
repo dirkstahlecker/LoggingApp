@@ -38,7 +38,7 @@ public class AudioControlActionListener implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public synchronized void actionPerformed(ActionEvent e) {
 		audioQueue.add(new String[]{message,message2,rateField.getText()});
 		rateField.setText("");
 	}

@@ -24,7 +24,7 @@ public class SoundActionListener implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public synchronized void actionPerformed(ActionEvent e) {
 		String path = audioSource.getText();
 		audioQueue.add(new String[]{"init",path});
 		audioSource.setText("");

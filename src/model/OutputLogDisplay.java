@@ -235,7 +235,7 @@ public class OutputLogDisplay implements Runnable {
 	 * @param inp string to format
 	 * @return string with the proper number of spaces appended
 	 */
-	private String makeCol(String inp) {
+	private synchronized String makeCol(String inp) {
 		int maxLen = 4;
 		int diff = 0;
 		String out = inp;
