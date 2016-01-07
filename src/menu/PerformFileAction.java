@@ -94,8 +94,11 @@ public class PerformFileAction implements ActionListener {
 			position = (int)Double.parseDouble(message[1]);
 		}
 		else {
-			audioPath = Constants.nullPath;
+			PopupDialog.showError(frame, "No audio file is loaded.\n\nAn audio file is required to save a project.\n"
+					+ "Please load an audio file and try again");
+			//audioPath = Constants.nullPath; //TODO: reenable the ability to save a project without an audio file
 			Globals.log("Message empty", true);
+			return;
 		}
 
 		out += audioPath + '\n';

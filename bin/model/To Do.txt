@@ -1,6 +1,5 @@
 Features to add:
 Essential:
--make everything synchronized
 -make slider actually do something
 -save stylings
 
@@ -42,7 +41,7 @@ Critical bugs:
 -open dialog doesn't allow for selecting files sometimes (after saving)
 -NaN in length is a threading issue (not consistently reproduceable)
 -save vs. save as doesn't work
--broken on open when saved without an audio file
+-broken on open when saved without an audio file - whole application freezes
 
 Bugs:
 -Error catching in EnterMessageActionListener
@@ -117,6 +116,7 @@ Done:
 -parsing broken in opening save files
 -add more log debug to parsing and opening of save files
 -help documentation
+-make everything synchronized
 
 
 

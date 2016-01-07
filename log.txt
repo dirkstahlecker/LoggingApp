@@ -1355,3 +1355,164 @@ Player configured
 ----------------------------------
 Started at 2015-11-10T18:26:39.519-05:00[America/New_York]
 Running outputLogDisplay
+----------------------------------
+Started at 2016-01-05T19:47:43.509-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/test.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/test.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/test.txt
+filePath: /Users/Dirk/Desktop/test.txt
+@@@@@@@@@@@@@
+audioFilePath: No file selected
+audioFilePath: 
+playbackPosition: 0
+logText: [<html>,   <head>,     ,   </head>,   <body>,     1&#160;&#160;&#160;: <a href="http://0">0</a>: asdf<br>2&#160;&#160;&#160;: <a href="http://0">0</a>: ,     as<br>3&#160;&#160;&#160;: <a href="http://0">0</a>: fas<br>4&#160;&#160;&#160;: <a href="http://0">0</a>: ,     fa<br>5&#160;&#160;&#160;: <a href="http://0">0</a>: sa<br>,   </body>, </html>]
+message: init
+No audio file to set up
+----------------------------------
+Started at 2016-01-05T20:49:15.127-05:00[America/New_York]
+Running outputLogDisplay
+----------------------------------
+Started at 2016-01-07T15:53:06.138-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/test.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/test.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/test.txt
+filePath: /Users/Dirk/Desktop/test.txt
+@@@@@@@@@@@@@
+audioFilePath: No file selected
+audioFilePath: 
+playbackPosition: 0
+logText: [<html>,   <head>,     ,   </head>,   <body>,     1&#160;&#160;&#160;: <a href="http://0">0</a>: asdf<br>2&#160;&#160;&#160;: <a href="http://0">0</a>: ,     as<br>3&#160;&#160;&#160;: <a href="http://0">0</a>: fas<br>4&#160;&#160;&#160;: <a href="http://0">0</a>: ,     fa<br>5&#160;&#160;&#160;: <a href="http://0">0</a>: sa<br>,   </body>, </html>]
+message: init
+No audio file to set up
+Audio source: 
+----------------------------------
+Started at 2016-01-07T16:08:27.276-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/test.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/test.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/test.txt
+filePath: /Users/Dirk/Desktop/test.txt
+@@@@@@@@@@@@@
+audioFilePath: No file selected
+audioFilePath: 
+playbackPosition: 0
+logText: [<html>,   <head>,     ,   </head>,   <body>,     1&#160;&#160;&#160;: <a href="http://0">0</a>: asdf<br>2&#160;&#160;&#160;: <a href="http://0">0</a>: ,     as<br>3&#160;&#160;&#160;: <a href="http://0">0</a>: fas<br>4&#160;&#160;&#160;: <a href="http://0">0</a>: ,     fa<br>5&#160;&#160;&#160;: <a href="http://0">0</a>: sa<br>,   </body>, </html>]
+message: init
+No audio file to set up
+----------------------------------
+Started at 2016-01-07T16:09:42.018-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/test.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/test.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/test.txt
+filePath: /Users/Dirk/Desktop/test.txt
+@@@@@@@@@@@@@
+audioFilePath: No file selected
+audioFilePath: 
+playbackPosition: 0
+logText: [<html>,   <head>,     ,   </head>,   <body>,     1&#160;&#160;&#160;: <a href="http://0">0</a>: asdf<br>2&#160;&#160;&#160;: <a href="http://0">0</a>: ,     as<br>3&#160;&#160;&#160;: <a href="http://0">0</a>: fas<br>4&#160;&#160;&#160;: <a href="http://0">0</a>: ,     fa<br>5&#160;&#160;&#160;: <a href="http://0">0</a>: sa<br>,   </body>, </html>]
+message: init
+No audio file to set up
+----------------------------------
+Started at 2016-01-07T16:11:21.463-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/test.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/test.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/test.txt
+filePath: /Users/Dirk/Desktop/test.txt
+@@@@@@@@@@@@@
+audioFilePath: No file selected
+audioFilePath: 
+playbackPosition: 0
+logText: [<html>,   <head>,     ,   </head>,   <body>,     1&#160;&#160;&#160;: <a href="http://0">0</a>: asdf<br>2&#160;&#160;&#160;: <a href="http://0">0</a>: ,     as<br>3&#160;&#160;&#160;: <a href="http://0">0</a>: fas<br>4&#160;&#160;&#160;: <a href="http://0">0</a>: ,     fa<br>5&#160;&#160;&#160;: <a href="http://0">0</a>: sa<br>,   </body>, </html>]
+message: init
+No audio file to set up
+~~~Illegal argument in progress bar
+~~~length: 0.0
+~~~rawLength: 0.0
+----------------------------------
+Started at 2016-01-07T16:18:56.120-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/test.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/test.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/test.txt
+filePath: /Users/Dirk/Desktop/test.txt
+@@@@@@@@@@@@@
+audioFilePath: No file selected
+audioFilePath: 
+playbackPosition: 0
+logText: [<html>,   <head>,     ,   </head>,   <body>,     1&#160;&#160;&#160;: <a href="http://0">0</a>: asdf<br>2&#160;&#160;&#160;: <a href="http://0">0</a>: ,     as<br>3&#160;&#160;&#160;: <a href="http://0">0</a>: fas<br>4&#160;&#160;&#160;: <a href="http://0">0</a>: ,     fa<br>5&#160;&#160;&#160;: <a href="http://0">0</a>: sa<br>,   </body>, </html>]
+message: init
+No audio file to set up
+~~~Finished with setupAudio
+----------------------------------
+Started at 2016-01-07T16:20:01.082-05:00[America/New_York]
+Running outputLogDisplay
+----------------------------------
+Started at 2016-01-07T16:20:07.173-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/test.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/test.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/test.txt
+filePath: /Users/Dirk/Desktop/test.txt
+@@@@@@@@@@@@@
+audioFilePath: No file selected
+audioFilePath: 
+playbackPosition: 0
+logText: [<html>,   <head>,     ,   </head>,   <body>,     1&#160;&#160;&#160;: <a href="http://0">0</a>: asdf<br>2&#160;&#160;&#160;: <a href="http://0">0</a>: ,     as<br>3&#160;&#160;&#160;: <a href="http://0">0</a>: fas<br>4&#160;&#160;&#160;: <a href="http://0">0</a>: ,     fa<br>5&#160;&#160;&#160;: <a href="http://0">0</a>: sa<br>,   </body>, </html>]
+message: init
+No audio file to set up
+~~~Finished with setupAudio
+----------------------------------
+Started at 2016-01-07T16:24:43.941-05:00[America/New_York]
+Running outputLogDisplay
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: another test
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: another test
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: more testing
+<br />
+Saving file
+~~~Message empty

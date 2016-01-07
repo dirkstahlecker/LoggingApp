@@ -75,13 +75,45 @@ public class SoundPlayerFX implements Runnable {
 		if (audioFilePath == "" || audioFilePath == null) { //don't do anything if empty or null - there's no file to load
 			currentAudioSource.setText("File: none");
 			Globals.log("No audio file to set up");
-			return;
+			
+			//used to just return here - now trying to do everything else that doesn't throw an error
+			//////////////////////////////////////////
+/*			
+			audioPlayer = null;
+			
+			outputTime();
+			isPaused = true;
+			
+			currentAudioSource.setText("No audio file loaded");
+			volume = 0;
+			
+			Duration rawDuration = new Duration(0);
+			double rawLength = rawDuration.toSeconds();
+			length = convertTime(rawLength);
+			
+			SetupUtils.setTimeStampText(timeStamp, startTime * 1000, length);
+			
+			//set the initial configuration of the progress bar
+			try {
+				audioProgressBar.setModel(new DefaultBoundedRangeModel(0,1,0,(int)length));
+			}
+			catch (IllegalArgumentException iae) {
+				Globals.log("Illegal argument in progress bar", true);
+				Globals.log("length: " + length, true);
+				Globals.log("rawLength: " + rawLength, true);
+
+				//this exception is triggered only sometimes - maybe based on specific threading calls
+				//TODO: this must run in a non-deterministic order - exception is thrown sometimes, not others
+			}
+			
+			initialSetup = true;
+*/			
+			
+			//////////////////////////////////////////
+			
+			
+			return; //TODO: this is returning early I think - something needs to run after this to not freeze? 
 		}
-		
-		//TODO: error handling
-		/*if (!audioFilePath.startsWith("file://")) { //TODO: make better
-			audioFilePath = "file://" + audioFilePath;
-		}*/
 		
 		Globals.log("Audio source: " + audioFilePath); 
 		audioPlayer = null;
@@ -125,7 +157,7 @@ public class SoundPlayerFX implements Runnable {
 			
 			//set the initial configuration of the progress bar
 			try {
-				audioProgressBar.setModel(new DefaultBoundedRangeModel(0,1,0,(int)length)); //TODO: put length in here when its not NaN
+				audioProgressBar.setModel(new DefaultBoundedRangeModel(0,1,0,(int)length));
 			}
 			catch (IllegalArgumentException iae) {
 				Globals.log("Illegal argument in progress bar", true);
@@ -178,7 +210,8 @@ public class SoundPlayerFX implements Runnable {
 					catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
 						startTime = 0;
 					}
-					setupAudio(message[1],startTime); 
+					setupAudio(message[1],startTime);
+					Globals.log("Finished with setupAudio",true);
 					break;
 				case "playpause":
 					if (!initialSetup) break;
