@@ -98,7 +98,7 @@ public class PerformFileAction implements ActionListener {
 					+ "Please load an audio file and try again");
 			//audioPath = Constants.nullPath; //TODO: reenable the ability to save a project without an audio file
 			Globals.log("Message empty", true);
-			return;
+			return; //workaround for broken opening of projects with no audio file saved. Just don't allow it to happen
 		}
 
 		out += audioPath + '\n';
@@ -131,7 +131,7 @@ public class PerformFileAction implements ActionListener {
 		Globals.log("Opening file:");
 		File filePath;
 		try {
-			filePath = FileDialogClass.showDialog(frame, FileAction.OPEN, "*.txt", false);
+			filePath = FileDialogClass.showDialog(frame, FileAction.OPEN, "*.txt", false); //filePath is null
 			Globals.log("filePath: " + filePath);
 		}
 		catch (LoggingException e) {

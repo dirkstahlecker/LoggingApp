@@ -211,7 +211,7 @@ public class SoundPlayerFX implements Runnable {
 						startTime = 0;
 					}
 					setupAudio(message[1],startTime);
-					Globals.log("Finished with setupAudio",true);
+					Globals.log("Finished with setupAudio");
 					break;
 				case "playpause":
 					if (!initialSetup) break;

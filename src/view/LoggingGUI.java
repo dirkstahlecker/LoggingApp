@@ -461,7 +461,7 @@ public class LoggingGUI extends JFrame {
     	menuItem.addActionListener(new MenuActionListener("known bugs",menuQueue));
     	menu.add(menuItem);
     	
-    	menuItem = new JCheckBoxMenuItem("Enable debug mode");
+    	menuItem = new JCheckBoxMenuItem("Debug mode");
     	menuItem.setSelected(false);
     	menuItem.addActionListener(new MenuActionListener("debug",menuQueue));
     	menu.add(menuItem);

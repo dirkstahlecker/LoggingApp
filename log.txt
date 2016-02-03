@@ -1516,3 +1516,297 @@ newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
 <br />
 Saving file
 ~~~Message empty
+----------------------------------
+Started at 2016-01-07T16:47:52.344-05:00[America/New_York]
+Running outputLogDisplay
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/140309_02.WAV
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@3a3c3155
+Player configured
+~~~Finished with setupAudio
+message: playpause
+SoundPlayer: play
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://2">2</a>: testing
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://2">2</a>: testing
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: test
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://2">2</a>: testing
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://8">8</a>: test again
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://2">2</a>: testing
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://8">8</a>: test again
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://9">9</a>: more
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://2">2</a>: testing
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://8">8</a>: test again
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://9">9</a>: more
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://11">11</a>: text
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://2">2</a>: testing
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://8">8</a>: test again
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://9">9</a>: more
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://11">11</a>: text
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://13">13</a>: code
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://2">2</a>: testing
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://8">8</a>: test again
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://9">9</a>: more
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://11">11</a>: text
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://13">13</a>: code
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://38">38</a>: more
+<br />
+Parsed hyperlink number: 13
+message: seek
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://2">2</a>: testing
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://3">3</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://8">8</a>: test again
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://9">9</a>: more
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://11">11</a>: text
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://13">13</a>: code
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://38">38</a>: more
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://76">76</a>: a
+<br />
+Parsed hyperlink number: 38
+message: seek
+Parsed hyperlink number: 2
+message: seek
+Parsed hyperlink number: 76
+message: seek
+Parsed hyperlink number: 13
+message: seek
+Parsed hyperlink number: 11
+message: seek
+Parsed hyperlink number: 9
+message: seek
+Parsed hyperlink number: 8
+message: seek
+message: rate
+message: playpause
+SoundPlayer: pause
+Saving file
+audioPath to save: file:/Users/Dirk/Desktop/140309_02.WAV
+Updating audioFilePathReference: /Users/Dirk/Desktop/testingagain.txt
+Saving file
+~~~Message empty
+message: rate
+--------------------
+--------------------
+Creating new file
+message: init
+No audio file to set up
+~~~Finished with setupAudio
+----------------------------------
+Started at 2016-01-07T16:52:20.304-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/testingagain.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/testingagain.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/testingagain.txt
+filePath: /Users/Dirk/Desktop/testingagain.txt
+file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+playbackPosition: 48
+logText: [<html>,   <head>,     ,   </head>,   <body>,     1&#160;&#160;&#160;: <a href="http://2">2</a>: testing<br>2&#160;&#160;&#160;: <a href="http://3">3</a>: ,     test<br>3&#160;&#160;&#160;: <a href="http://8">8</a>: test again<br>4&#160;&#160;&#160;: <a href="http://9">9</a>: ,     more<br>5&#160;&#160;&#160;: <a href="http://11">11</a>: text<br>6&#160;&#160;&#160;: <a href="http://13">13</a>: ,     code<br>7&#160;&#160;&#160;: <a href="http://38">38</a>: more<br>8&#160;&#160;&#160;: <a href="http://76">76</a>: ,     a<br>,   </body>, </html>]
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@217ad61f
+Player configured
+~~~Finished with setupAudio
+----------------------------------
+Started at 2016-01-07T16:52:43.184-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/withaudio.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/withaudio.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/withaudio.txt
+filePath: /Users/Dirk/Desktop/withaudio.txt
+file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+playbackPosition: 0
+logText: [<html>,   <head>,     ,   </head>,   <body>,     1&#160;&#160;&#160;: <a href="http://0">0</a>: test<br>2&#160;&#160;&#160;: <a href="http://0">0</a>: ,     testing<br>,   </body>, </html>]
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@3a3c3155
+Player configured
+~~~Finished with setupAudio
+----------------------------------
+Started at 2016-01-07T17:01:20.984-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/testingagain.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/testingagain.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/testingagain.txt
+filePath: /Users/Dirk/Desktop/testingagain.txt
+----------------------------------
+Started at 2016-01-07T17:03:07.972-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/testingagain.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/testingagain.txt
+----------------------------------
+Started at 2016-01-07T17:53:21.681-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+----------------------------------
+Started at 2016-01-12T11:53:49.904-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+----------------------------------
+Started at 2016-01-12T11:56:21.498-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+~~~outputFilePath: /Users/Dirk/Desktop/testingagain.txt
+~~~outputFilePath.toURI(): file:/Users/Dirk/Desktop/testingagain.txt
+~~~outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/testingagain.txt
+filePath: /Users/Dirk/Desktop/testingagain.txt
+file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+playbackPosition: 48
+logText: [<html>,   <head>,     ,   </head>,   <body>,     1&#160;&#160;&#160;: <a href="http://2">2</a>: testing<br>2&#160;&#160;&#160;: <a href="http://3">3</a>: ,     test<br>3&#160;&#160;&#160;: <a href="http://8">8</a>: test again<br>4&#160;&#160;&#160;: <a href="http://9">9</a>: ,     more<br>5&#160;&#160;&#160;: <a href="http://11">11</a>: text<br>6&#160;&#160;&#160;: <a href="http://13">13</a>: ,     code<br>7&#160;&#160;&#160;: <a href="http://38">38</a>: more<br>8&#160;&#160;&#160;: <a href="http://76">76</a>: ,     a<br>,   </body>, </html>]
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@1dc9accc
+Player configured
+~~~Finished with setupAudio
+----------------------------------
+Started at 2016-01-12T12:18:36.904-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/testingagain.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/testingagain.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/testingagain.txt
+----------------------------------
+Started at 2016-01-12T12:19:54.150-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/testingagain.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/testingagain.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/testingagain.txt
+filePath: /Users/Dirk/Desktop/testingagain.txt
+file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+playbackPosition: 48
+logText: [<html>,   <head>,     ,   </head>,   <body>,     1&#160;&#160;&#160;: <a href="http://2">2</a>: testing<br>2&#160;&#160;&#160;: <a href="http://3">3</a>: ,     test<br>3&#160;&#160;&#160;: <a href="http://8">8</a>: test again<br>4&#160;&#160;&#160;: <a href="http://9">9</a>: ,     more<br>5&#160;&#160;&#160;: <a href="http://11">11</a>: text<br>6&#160;&#160;&#160;: <a href="http://13">13</a>: ,     code<br>7&#160;&#160;&#160;: <a href="http://38">38</a>: more<br>8&#160;&#160;&#160;: <a href="http://76">76</a>: ,     a<br>,   </body>, </html>]
+message: init
+----------------------------------
+Started at 2016-01-12T12:24:11.824-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/testingagain.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/testingagain.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/testingagain.txt
+filePath: /Users/Dirk/Desktop/testingagain.txt
+file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+playbackPosition: 48
+logText: [<html>,   <head>,     ,   </head>,   <body>,     1&#160;&#160;&#160;: <a href="http://2">2</a>: testing<br>2&#160;&#160;&#160;: <a href="http://3">3</a>: ,     test<br>3&#160;&#160;&#160;: <a href="http://8">8</a>: test again<br>4&#160;&#160;&#160;: <a href="http://9">9</a>: ,     more<br>5&#160;&#160;&#160;: <a href="http://11">11</a>: text<br>6&#160;&#160;&#160;: <a href="http://13">13</a>: ,     code<br>7&#160;&#160;&#160;: <a href="http://38">38</a>: more<br>8&#160;&#160;&#160;: <a href="http://76">76</a>: ,     a<br>,   </body>, </html>]
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@6b1ddb0a
+Player configured
+~~~Finished with setupAudio
+----------------------------------
+Started at 2016-01-12T12:25:19.856-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+----------------------------------
+Started at 2016-01-12T12:28:56.525-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/testingagain.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/testingagain.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/testingagain.txt
+filePath: /Users/Dirk/Desktop/testingagain.txt
+file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+playbackPosition: 48
+logText: [<html>,   <head>,     ,   </head>,   <body>,     1&#160;&#160;&#160;: <a href="http://2">2</a>: testing<br>2&#160;&#160;&#160;: <a href="http://3">3</a>: ,     test<br>3&#160;&#160;&#160;: <a href="http://8">8</a>: test again<br>4&#160;&#160;&#160;: <a href="http://9">9</a>: ,     more<br>5&#160;&#160;&#160;: <a href="http://11">11</a>: text<br>6&#160;&#160;&#160;: <a href="http://13">13</a>: ,     code<br>7&#160;&#160;&#160;: <a href="http://38">38</a>: more<br>8&#160;&#160;&#160;: <a href="http://76">76</a>: ,     a<br>,   </body>, </html>]
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@69acd773
+Player configured
+~~~Illegal argument in progress bar
+~~~length: NaN
+~~~rawLength: NaN
+Finished with setupAudio
+----------------------------------
+Started at 2016-01-12T12:30:08.095-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/testingagain.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/testingagain.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/testingagain.txt
+filePath: /Users/Dirk/Desktop/testingagain.txt
+file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+playbackPosition: 48
+logText: [<html>,   <head>,     ,   </head>,   <body>,     1&#160;&#160;&#160;: <a href="http://2">2</a>: testing<br>2&#160;&#160;&#160;: <a href="http://3">3</a>: ,     test<br>3&#160;&#160;&#160;: <a href="http://8">8</a>: test again<br>4&#160;&#160;&#160;: <a href="http://9">9</a>: ,     more<br>5&#160;&#160;&#160;: <a href="http://11">11</a>: text<br>6&#160;&#160;&#160;: <a href="http://13">13</a>: ,     code<br>7&#160;&#160;&#160;: <a href="http://38">38</a>: more<br>8&#160;&#160;&#160;: <a href="http://76">76</a>: ,     a<br>,   </body>, </html>]
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@2089850
+Player configured
+~~~Illegal argument in progress bar
+~~~length: NaN
+~~~rawLength: NaN
+Finished with setupAudio

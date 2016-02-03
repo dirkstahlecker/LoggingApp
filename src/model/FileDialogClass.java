@@ -33,6 +33,7 @@ public class FileDialogClass {
 		
 		if (fileType != "" && fileType != null) {
 			fileDialog.setFile(fileType);
+			
 		}
 		fileDialog.setVisible(true);
 

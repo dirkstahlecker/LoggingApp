@@ -42,8 +42,12 @@ Critical bugs:
 -NaN in length is a threading issue (not consistently reproduceable)
 -save vs. save as doesn't work
 -broken on open when saved without an audio file - whole application freezes
+-clicking "save" after "save as" gives the no audio file loaded error
+-new is broken
+-open in general is broken too
 
 Bugs:
+-change time indicator to minutes:seconds
 -Error catching in EnterMessageActionListener
 	-Error catching/handling pretty much everywhere actually
 -on stopping, playpause should change to "play"
