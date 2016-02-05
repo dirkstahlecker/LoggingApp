@@ -139,6 +139,10 @@ public class OutputLogDisplay implements Runnable {
 		commentField.setText("");
 	}
 	
+	public synchronized String getTestString() {
+		return "Test String from OutputLogDisplay";
+	}
+	
 	/**
 	 * Used to enter a string directly into the pane
 	 * Does not additional markup on it; enters exactly as passed
@@ -148,11 +152,13 @@ public class OutputLogDisplay implements Runnable {
 		logOutputField.setText(textIn);
 	}
 	public synchronized void enterTextNoAdditionalMarkup(List<String> textIn) {
+		Globals.log("In enterTextNoAdditionalMarkup");
 		String text = "";
 		for (String s : textIn) {
 			text += s;
 			text += '\n';
 		}
+		Globals.log("got here");
 		logOutputField.setText(text);
 	}
 	

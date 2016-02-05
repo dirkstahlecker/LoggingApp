@@ -5,7 +5,7 @@ import java.awt.Color;
 import javafx.util.Duration;
 
 public class Constants {
-	public static boolean DEBUG = false;
+	public static boolean DEBUG = true;
 	public static final double volumeGain = 0.2;
 	public static Duration rewindGain = new Duration(5000); //5 seconds
 	public static Duration fastforwardGain = new Duration(5000);

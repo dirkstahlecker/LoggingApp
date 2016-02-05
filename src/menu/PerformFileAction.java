@@ -140,6 +140,7 @@ public class PerformFileAction implements ActionListener {
 		}
 
 		if (filePath != null) { //user clicked okay and not cancel 
+			
 			audioFilePathReference.set(filePath.toString()); //allow us to save without save as later
 			//String filePath = fileDialog.getDirectory() + fileDialog.getFile();
 			String audioFilePath = null;
@@ -152,6 +153,7 @@ public class PerformFileAction implements ActionListener {
 				fileReader = new FileReader(filePath);
 				BufferedReader reader = new BufferedReader(fileReader);
 				String line;
+				
 				int count = 0; //check lines in the order they are supposed to be in
 				while ((line = reader.readLine()) != null) {
 					switch (count) {
@@ -186,18 +188,38 @@ public class PerformFileAction implements ActionListener {
 						}
 						break;
 					case 2:
-						/*if (!line.matches("\\d+\\s*:\\s*\\d+\\s*:\\s*(.*|\n)")) {
-							validFile = false;
-							break;
-						}*/ //TODO: add this logic back in eventually, updated for html
+					//	if (!line.matches("\\d+\\s*:\\s*\\d+\\s*:\\s*(.*|\n)")) {
+					//		validFile = false;
+					//		break;
+					//	} //TODO: add this logic back in eventually, updated for html
 						//don't break here, because we want it to get into default to add the line
 					default:
 						logText.add(line);
 					}
 					count++;
 				}
+				
 				reader.close();
 				fileReader.close();
+				
+				Globals.log("audioFilePath: " + audioFilePath);
+				Globals.log("playbackPosition: " + playbackPosition);
+				Globals.log("logText: " + logText);
+			
+				audioFilePath = audioFilePath.trim();
+				//give this info to wherever it needs to go
+				audioQueue.add(new String[]{"init",audioFilePath,playbackPosition});
+				//outputLogDisplay.rewriteField(logText);
+				Globals.log(outputLogDisplay.getTestString());
+				if (outputLogDisplay != null) {
+					Globals.log("going to outputLogDisplay, and it's not null");
+					outputLogDisplay.enterTextNoAdditionalMarkup(logText); //enter text directly //<== This line is the problem
+				}
+				else {
+					Globals.log("outputLogDisplay is null!",true);
+					//TODO: deal with this error
+				}
+				
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -205,10 +227,6 @@ public class PerformFileAction implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			Globals.log("audioFilePath: " + audioFilePath);
-			Globals.log("playbackPosition: " + playbackPosition);
-			Globals.log("logText: " + logText);
 
 			
 			if (!validFile) {
@@ -217,11 +235,6 @@ public class PerformFileAction implements ActionListener {
 				return;
 			}
 			
-			audioFilePath = audioFilePath.trim();
-			//give this info to wherever it needs to go
-			audioQueue.add(new String[]{"init",audioFilePath,playbackPosition});
-			//outputLogDisplay.rewriteField(logText);
-			outputLogDisplay.enterTextNoAdditionalMarkup(logText); //enter text directly
 		}
 	}
 	
