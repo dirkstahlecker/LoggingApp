@@ -2191,3 +2191,75 @@ Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
 audioPlayer: javafx.scene.media.MediaPlayer@7ff6ae0d
 Player configured
 Finished with setupAudio
+----------------------------------
+Started at 2016-02-05T15:21:11.980-05:00[America/New_York]
+Running outputLogDisplay
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fas
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fas
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fas
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fas
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fas
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fas
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asd
+<br />
+--------------------
+--------------------
+Creating new file
+message: init
+No audio file to set up
+Finished with setupAudio

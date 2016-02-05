@@ -59,7 +59,7 @@ public class OutputLogDisplay implements Runnable {
 		}	
 	}
 	
-	public synchronized void clear() {
+	private synchronized void clear() {
 		//show confirmation and make sure user clicks yes
 		if (FileDialogClass.showConfirmation("Are you sure you want to clear the log? (There is no undo)", "Are you sure?")) {
 			logOutputField.setText("");
@@ -70,7 +70,7 @@ public class OutputLogDisplay implements Runnable {
 	/**
 	 * Add text to the output log
 	 */
-	public synchronized void enterText() {
+	private synchronized void enterText() {
 		String comment = commentField.getText();
 		if (comment.matches("(\\s*rm)|(\\s*rm\\s+.*)")) { //remove command, handle and don't add comment
 			comment = comment.trim();
@@ -139,19 +139,15 @@ public class OutputLogDisplay implements Runnable {
 		commentField.setText("");
 	}
 	
-	public synchronized String getTestString() {
-		return "Test String from OutputLogDisplay";
-	}
-	
 	/**
 	 * Used to enter a string directly into the pane
 	 * Does not additional markup on it; enters exactly as passed
 	 * @param textIn String to enter
 	 */
-	public synchronized void enterTextNoAdditionalMarkup(String textIn) {
+	private synchronized void enterTextNoAdditionalMarkup(String textIn) {
 		logOutputField.setText(textIn);
 	}
-	public synchronized void enterTextNoAdditionalMarkup(List<String> textIn) {
+	private synchronized void enterTextNoAdditionalMarkup(List<String> textIn) {
 		Globals.log("In enterTextNoAdditionalMarkup");
 		String text = "";
 		for (String s : textIn) {
@@ -219,7 +215,7 @@ public class OutputLogDisplay implements Runnable {
 	 * Mainly used when loading
 	 * @param newLines list of lines to add
 	 */
-	public synchronized void rewriteField(List<String> newLines) {
+	private synchronized void rewriteField(List<String> newLines) {
 		if (newLines.size() == 0) {
 			logOutputField.setText("");
 		}
