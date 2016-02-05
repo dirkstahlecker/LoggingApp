@@ -2263,3 +2263,29 @@ Creating new file
 message: init
 No audio file to set up
 Finished with setupAudio
+----------------------------------
+Started at 2016-02-05T16:15:45.061-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/newlycreatedfile.txt
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/newlycreatedfile.txt
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/newlycreatedfile.txt
+filePath: /Users/Dirk/Desktop/newlycreatedfile.txt
+file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+audioFilePath: file:/Users/Dirk/Desktop/140309_02.WAV
+playbackPosition: 5
+logText: [<html>,   <head>,     ,   </head>,   <body>,     1&#160;&#160;&#160;: <a href="http://0">0</a>: test<br>2&#160;&#160;&#160;: <a href="http://0">0</a>: ,     testing<br>3&#160;&#160;&#160;: <a href="http://0">0</a>: testing<br>4&#160;&#160;&#160;: <a href="http://2">2</a>: ,     playing now<br>5&#160;&#160;&#160;: <a href="http://4">4</a>: more playing<br>,   </body>, </html>]
+In enterTextNoAdditionalMarkup
+message: init
+got here
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@38ffa160
+Player configured
+~~~Illegal argument in progress bar
+~~~length: NaN
+~~~rawLength: NaN
+Finished with setupAudio

@@ -24,7 +24,7 @@ import model.Constants;
 import model.FileDialogClass;
 import model.Globals;
 import model.LoggingException;
-import model.OutputLogDisplay;
+import model.OutputLogDisplayRunnable;
 import model.PopupDialog;
 
 /**
@@ -36,15 +36,17 @@ public class PerformFileAction implements ActionListener {
 	
 	private final BlockingQueue<String[]> performSaveQueue;
 	private final BlockingQueue<String[]> audioQueue;
+	private final BlockingQueue<String> outputQueue;
 	private final JTextPane log;
 	private final JFrame frame;
 	private final FileAction action;
-	private final OutputLogDisplay outputLogDisplay;
+	private final OutputLogDisplayRunnable outputLogDisplay;
 	private final AtomicReference<String> audioFilePathReference;
 	private final PopupDialog popupDialog;
 	
 	public PerformFileAction(JFrame frame, BlockingQueue<String[]> performSaveQueue, JTextPane log, FileAction action, 
-			BlockingQueue<String[]> audioQueue, OutputLogDisplay outputLogDisplay, AtomicReference<String> audioFilePathReference) {
+			BlockingQueue<String[]> audioQueue, OutputLogDisplayRunnable outputLogDisplay, AtomicReference<String> audioFilePathReference,
+			BlockingQueue<String> outputQueue) {
 		this.log = log;
 		this.performSaveQueue = performSaveQueue;
 		this.audioQueue = audioQueue;
@@ -53,6 +55,7 @@ public class PerformFileAction implements ActionListener {
 		this.outputLogDisplay = outputLogDisplay;
 		this.audioFilePathReference = audioFilePathReference;
 		this.popupDialog = new PopupDialog(frame);
+		this.outputQueue = outputQueue;
 	}
 	
 	private synchronized String getSaveFile() {
@@ -210,15 +213,7 @@ public class PerformFileAction implements ActionListener {
 				//give this info to wherever it needs to go
 				audioQueue.add(new String[]{"init",audioFilePath,playbackPosition});
 				//outputLogDisplay.rewriteField(logText);
-				Globals.log(outputLogDisplay.getTestString());
-				if (outputLogDisplay != null) {
-					Globals.log("going to outputLogDisplay, and it's not null");
-					outputLogDisplay.enterTextNoAdditionalMarkup(logText); //enter text directly //<== This line is the problem
-				}
-				else {
-					Globals.log("outputLogDisplay is null!",true);
-					//TODO: deal with this error
-				}
+				outputLogDisplay.outputHelper.enterTextNoAdditionalMarkup(logText); //enter text directly //<== This line is the problem
 				
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -245,7 +240,7 @@ public class PerformFileAction implements ActionListener {
 		Globals.log("--------------------\n--------------------");
 		Globals.log("Creating new file");
 		audioQueue.add(new String[]{"init",""});
-		outputLogDisplay.rewriteField(new ArrayList<String>());
+		outputQueue.add("new");
 		audioFilePathReference.set(null);
 	}
 

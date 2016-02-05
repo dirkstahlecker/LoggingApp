@@ -73,7 +73,7 @@ public class LoggingGUI extends JFrame {
     private final BlockingQueue<String[]> menuQueue;
     private final BlockingQueue<String[]> performSaveQueue;
     
-    private final OutputLogDisplay outputLogDisplay;
+    private final OutputLogDisplayRunnable outputLogDisplay;
     private final SoundPlayerFX player;
     private final MenuController menuController;
     
@@ -175,7 +175,7 @@ public class LoggingGUI extends JFrame {
 	    //outputLog.setDocument(doc);
 	    //outputLog.setText("<a href='#'>C</a>");
 	    
-        this.outputLogDisplay = new OutputLogDisplay(outputQueue, commentFieldTxt, outputLog, time);
+        this.outputLogDisplay = new OutputLogDisplayRunnable(outputQueue, commentFieldTxt, outputLog, time);
         this.menuController = new MenuController(menuQueue,this,audioQueue);
         
         contentPane = getContentPane();
@@ -327,27 +327,27 @@ public class LoggingGUI extends JFrame {
     	//a group of JMenuItems
     	menuItem = new JMenuItem("New");
     	//menuItem.setMnemonic(KeyEvent.VK_B);
-    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.NEW,audioQueue,outputLogDisplay,audioFilePathReference));
+    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.NEW,audioQueue,outputLogDisplay,audioFilePathReference,outputQueue));
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Open Project", KeyEvent.VK_T);
     	//menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.OPEN,audioQueue,outputLogDisplay,audioFilePathReference));
+    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.OPEN,audioQueue,outputLogDisplay,audioFilePathReference,outputQueue));
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Save");
     	//menuItem.setMnemonic(KeyEvent.VK_B);
-    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.SAVE,audioQueue,outputLogDisplay,audioFilePathReference));
+    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.SAVE,audioQueue,outputLogDisplay,audioFilePathReference,outputQueue));
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Save As");
     	//menuItem.setMnemonic(KeyEvent.VK_B);
-    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.SAVE_AS,audioQueue,outputLogDisplay,audioFilePathReference));
+    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.SAVE_AS,audioQueue,outputLogDisplay,audioFilePathReference,outputQueue));
     	menu.add(menuItem);
     	
     	menuItem = new JMenuItem("Preferences");
     	//menuItem.setMnemonic(KeyEvent.VK_B);
-    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.UPDATE_PREFS,audioQueue,outputLogDisplay,audioFilePathReference));
+    	menuItem.addActionListener(new PerformFileAction(this,performSaveQueue,outputLog,FileAction.UPDATE_PREFS,audioQueue,outputLogDisplay,audioFilePathReference,outputQueue));
     	menu.add(menuItem);
     	
     	
