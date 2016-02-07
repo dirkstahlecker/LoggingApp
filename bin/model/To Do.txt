@@ -39,12 +39,13 @@ Maybe:
 -------------------------------------------------------------
 Critical bugs:
 -open dialog doesn't allow for selecting files sometimes (after saving)
+-open audio dialog has same problem
 -NaN in length is a threading issue (not consistently reproduceable)
 -save vs. save as doesn't work
--broken on open when saved without an audio file - whole application freezes
 -clicking "save" after "save as" gives the no audio file loaded error
--new is broken
--open in general is broken too
+	-getting no audio file loaded error (when audio file is loaded) on saving after save
+-help menu doesn't show anything after 
+
 
 Bugs:
 -change time indicator to minutes:seconds
@@ -121,6 +122,10 @@ Done:
 -add more log debug to parsing and opening of save files
 -help documentation
 -make everything synchronized
+-open in general is broken too
+-new is broken
+-broken on open when saved without an audio file - whole application freezes
+-New does not reset elapsed time
 
 
 

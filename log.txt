@@ -2289,3 +2289,483 @@ Player configured
 ~~~length: NaN
 ~~~rawLength: NaN
 Finished with setupAudio
+Parsed hyperlink number: 4
+message: seek
+--------------------
+--------------------
+Creating new file
+message: init
+message: new
+No audio file to set up
+Finished with setupAudio
+----------------------------------
+Started at 2016-02-05T17:42:03.157-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+filePath: null
+----------------------------------
+Started at 2016-02-05T17:43:09.968-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Creating new file
+message: new
+message: init
+No audio file to set up
+Finished with setupAudio
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/140309_02.WAV
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@486b7cb7
+Player configured
+Finished with setupAudio
+message: playpause
+SoundPlayer: play
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://2">2</a>: testing
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://2">2</a>: testing
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: test test
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://1">1</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://2">2</a>: testing
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://4">4</a>: test test
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://6">6</a>: test test test
+<br />
+Parsed hyperlink number: 2
+message: seek
+message: playpause
+SoundPlayer: pause
+Saving file
+audioPath to save: file:/Users/Dirk/Desktop/140309_02.WAV
+Updating audioFilePathReference: /Users/Dirk/Desktop/newsave.txt
+--------------------
+--------------------
+Opening file:
+filePath: null
+Saving file
+~~~Message empty
+Saving file
+~~~Message empty
+message: playpause
+SoundPlayer: play
+message: playpause
+SoundPlayer: pause
+Saving file
+audioPath to save: file:/Users/Dirk/Desktop/140309_02.WAV
+Updating audioFilePathReference: /Users/Dirk/Desktop/newsave.txt
+Saving file
+~~~Message empty
+Saving file
+~~~Message empty
+Saving file
+~~~Message empty
+message: playpause
+SoundPlayer: play
+message: playpause
+SoundPlayer: pause
+Saving file
+audioPath to save: file:/Users/Dirk/Desktop/140309_02.WAV
+Updating audioFilePathReference: /Users/Dirk/Desktop/newsave.txt
+--------------------
+--------------------
+Creating new file
+message: new
+message: init
+No audio file to set up
+Finished with setupAudio
+--------------------
+--------------------
+Creating new file
+message: new
+message: init
+No audio file to set up
+Finished with setupAudio
+Exporting file with extension .txt
+File contents:
+
+
+message: clear
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://8">8</a>: test
+<br />
+message: clear
+----------------------------------
+Started at 2016-02-05T21:01:06.465-05:00[America/New_York]
+Running outputLogDisplay
+message: rate
+Exporting file with extension .txt
+File contents:
+
+
+path: /Users/Dirk/Desktop/test save.txt
+File successfully created.
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: added one line
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: added one line
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: added a second line
+<br />
+Saving file
+~~~Message empty
+----------------------------------
+Started at 2016-02-07T11:49:44.755-05:00[America/New_York]
+Running outputLogDisplay
+Saving file
+~~~Message empty
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />10&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />10&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />11&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />10&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />11&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />12&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />10&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />11&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />12&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />13&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />10&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />11&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />12&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />13&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />14&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />10&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />11&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />12&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />13&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />14&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />15&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />10&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />11&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />12&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />13&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />14&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />15&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />16&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />10&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />11&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />12&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />13&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />14&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />15&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />16&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />17&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: te
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sf
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asf
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />10&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />11&nbsp;&nbsp;:  <a href="http://0">0</a>: as
+<br />12&nbsp;&nbsp;:  <a href="http://0">0</a>: f
+<br />13&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />14&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />15&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />16&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />17&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />18&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />
+message: clear
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fa
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fa
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fa
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fa
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fa
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fa
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: asdf
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: fa
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />8&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: 
+<br />9&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: a
+<br />
+--------------------
+--------------------
+Creating new file
+message: new
+message: init
+No audio file to set up
+~~~Illegal argument in progress bar
+~~~length: 0.0
+~~~rawLength: 0.0
+Finished with setupAudio
+message: rate
+----------------------------------
+Started at 2016-02-07T11:55:13.776-05:00[America/New_York]
+Running outputLogDisplay
+----------------------------------
+Started at 2016-02-07T11:56:31.349-05:00[America/New_York]
+Running outputLogDisplay
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/140309_02.WAV
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@55d9bfa5
+Player configured
+Finished with setupAudio
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: test
+<br />
+Saving file
+audioPath to save: file:/Users/Dirk/Desktop/140309_02.WAV
+Updating audioFilePathReference: /Users/Dirk/Desktop/title test.txt
+Saving file
+~~~Message empty
+Saving file
+~~~Message empty
+----------------------------------
+Started at 2016-02-07T11:59:31.873-05:00[America/New_York]
+Running outputLogDisplay
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/140309_02.WAV
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@6b1ddb0a
+Player configured
+~~~Illegal argument in progress bar
+~~~length: NaN
+~~~rawLength: NaN
+Finished with setupAudio
+message: playpause
+SoundPlayer: play
+message: playpause
+SoundPlayer: pause
+--------------------
+--------------------
+Creating new file
+message: init
+message: new
+No audio file to set up
+~~~Illegal argument in progress bar
+~~~length: 0.0
+~~~rawLength: 0.0
+Finished with setupAudio

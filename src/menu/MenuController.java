@@ -44,7 +44,7 @@ public class MenuController implements Runnable {
 				switch(message[0]) {
 				case "about":
 					JOptionPane.showMessageDialog(frame,"Version " + Constants.VERSION + "\n\n"
-							+ "Created by Dirk Stahlecker\nstahdirk@mit.edu\nCopyright 2015\n\n"
+							+ "Created by Dirk Stahlecker\nstahdirk@mit.edu\nCopyright 2016\n\n"
 							+ "This software comes AS IS with ABSOLUTELY NO WARRANTY\n"
 							+ "Use at your own risk.","About",JOptionPane.PLAIN_MESSAGE);
 					break;

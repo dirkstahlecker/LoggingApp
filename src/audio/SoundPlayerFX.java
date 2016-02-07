@@ -78,7 +78,7 @@ public class SoundPlayerFX implements Runnable {
 			
 			//used to just return here - now trying to do everything else that doesn't throw an error
 			//////////////////////////////////////////
-/*			
+
 			audioPlayer = null;
 			
 			outputTime();
@@ -107,7 +107,7 @@ public class SoundPlayerFX implements Runnable {
 			}
 			
 			initialSetup = true;
-*/			
+
 			
 			//////////////////////////////////////////
 			

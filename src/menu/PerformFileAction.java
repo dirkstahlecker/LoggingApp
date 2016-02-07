@@ -119,6 +119,7 @@ public class PerformFileAction implements ActionListener {
 				fileWriter = new PrintWriter(file,"UTF-8");
 				fileWriter.write(out);
 				fileWriter.close();
+				frame.setTitle(saveFilePath);
 				popupDialog.showMessage("File saved");
 			} catch (FileNotFoundException | UnsupportedEncodingException e) {
 				JOptionPane.showMessageDialog(frame, "Error creating file","Error",JOptionPane.ERROR_MESSAGE);
