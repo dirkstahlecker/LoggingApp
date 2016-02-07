@@ -41,7 +41,7 @@ public class PerformFileAction implements ActionListener {
 	private final JFrame frame;
 	private final FileAction action;
 	private final OutputLogDisplayRunnable outputLogDisplay;
-	private final AtomicReference<String> audioFilePathReference;
+	private final AtomicReference<String> saveFilePathReference;
 	private final PopupDialog popupDialog;
 	
 	public PerformFileAction(JFrame frame, BlockingQueue<String[]> performSaveQueue, JTextPane log, FileAction action, 
@@ -53,7 +53,7 @@ public class PerformFileAction implements ActionListener {
 		this.frame = frame;
 		this.action = action;
 		this.outputLogDisplay = outputLogDisplay;
-		this.audioFilePathReference = audioFilePathReference;
+		this.saveFilePathReference = audioFilePathReference;
 		this.popupDialog = new PopupDialog(frame);
 		this.outputQueue = outputQueue;
 	}
@@ -86,22 +86,22 @@ public class PerformFileAction implements ActionListener {
 		 */
 		String audioPath = "";
 		int position = 0;
-		String[] message = null;
+		String[] currentAudioTime = null;
 		
-		message = performSaveQueue.poll();
-		if (message != null) {
-			audioPath = message[0];
+		currentAudioTime = performSaveQueue.poll(); //this holds the current time of the audio
+		if (currentAudioTime != null) {
+			audioPath = currentAudioTime[0];
 			audioPath = audioPath.replace(" ", "%20");
 			Globals.log("audioPath to save: " + audioPath);
 
-			position = (int)Double.parseDouble(message[1]);
+			position = (int)Double.parseDouble(currentAudioTime[1]);
 		}
 		else {
-			PopupDialog.showError(frame, "No audio file is loaded.\n\nAn audio file is required to save a project.\n"
-					+ "Please load an audio file and try again");
-			//audioPath = Constants.nullPath; //TODO: reenable the ability to save a project without an audio file
+			//PopupDialog.showError(frame, "No audio file is loaded.\n\nAn audio file is required to save a project.\n"
+				//	+ "Please load an audio file and try again");
+			audioPath = Constants.nullPath; //TODO: reenable the ability to save a project without an audio file?
 			Globals.log("Message empty", true);
-			return; //workaround for broken opening of projects with no audio file saved. Just don't allow it to happen
+			//return; //workaround for broken opening of projects with no audio file saved. Just don't allow it to happen
 		}
 
 		out += audioPath + '\n';
@@ -110,8 +110,8 @@ public class PerformFileAction implements ActionListener {
 		out += log.getText();
 		
 		if (saveFilePath != null) {
-			audioFilePathReference.set(saveFilePath);
-			Globals.log("Updating audioFilePathReference: " + audioFilePathReference);
+			saveFilePathReference.set(saveFilePath);
+			Globals.log("Updating audioFilePathReference: " + saveFilePathReference);
 			File file = new File(saveFilePath);
 
 			PrintWriter fileWriter;
@@ -145,7 +145,7 @@ public class PerformFileAction implements ActionListener {
 
 		if (filePath != null) { //user clicked okay and not cancel 
 			
-			audioFilePathReference.set(filePath.toString()); //allow us to save without save as later
+			saveFilePathReference.set(filePath.toString()); //allow us to save without save as later
 			//String filePath = fileDialog.getDirectory() + fileDialog.getFile();
 			String audioFilePath = null;
 			String playbackPosition = "";
@@ -242,12 +242,12 @@ public class PerformFileAction implements ActionListener {
 		Globals.log("Creating new file");
 		audioQueue.add(new String[]{"init",""});
 		outputQueue.add("new");
-		audioFilePathReference.set(null);
+		saveFilePathReference.set(null);
 	}
 
 	@Override
 	public synchronized void actionPerformed(ActionEvent e) {
-		String path = audioFilePathReference.get();
+		String path = saveFilePathReference.get();
 		if (action == FileAction.SAVE) {
 			if (path == null) { //not already saved
 				String filePath = getSaveFile();

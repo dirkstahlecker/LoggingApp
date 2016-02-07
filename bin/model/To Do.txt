@@ -45,6 +45,8 @@ Critical bugs:
 -clicking "save" after "save as" gives the no audio file loaded error
 	-getting no audio file loaded error (when audio file is loaded) on saving after save
 -help menu doesn't show anything after 
+-weird wrapping doesn't show line number
+-on entering new comment when scrolling, need to automatically scroll to the bottom
 
 
 Bugs:
@@ -57,6 +59,7 @@ Bugs:
 -progress bar labels move back and forth sometimes
 -spacing on display time is wrong
 -FileDialogClass has Apple specific stuff
+-jumpy when redrawing all lines on entering text 
 
 Problems to consider:
 -holding focus when typing
