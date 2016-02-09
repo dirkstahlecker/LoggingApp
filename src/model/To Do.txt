@@ -39,11 +39,10 @@ Maybe:
 -------------------------------------------------------------
 Critical bugs:
 -open dialog doesn't allow for selecting files sometimes (after saving)
--open audio dialog has same problem
+	-open audio dialog has same problem
 -NaN in length is a threading issue (not consistently reproduceable)
 -save vs. save as doesn't work
 -help menu doesn't show anything after 
--weird wrapping doesn't show line number
 -on entering new comment when scrolling, need to automatically scroll to the bottom
 
 
@@ -129,6 +128,8 @@ Done:
 -New does not reset elapsed time
 -clicking "save" after "save as" gives the no audio file loaded error
 -getting no audio file loaded error (when audio file is loaded) on saving after save
+-log doesn't wrap lines
+-weird wrapping doesn't show line number
 
 
 

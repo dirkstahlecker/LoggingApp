@@ -100,7 +100,6 @@ public class Globals {
 				+ "Length of audio file occasionally shows up as \"NaN\" for some unknown reason. No known fix.\n"
 				+ "Occasionally, changing the rewind and fastforward gains doesn't work. No known fix.\n"
 				+ "Occasional crashes. Restart the app and it should be fine.\n"
-				+ "Opening a saved project with no audio file will freeze the app.\n"
 				+ "Many other bugs likely exist. Feel free to email stahdirk@mit.edu if you experience problems.";
 	}
 }
