@@ -164,25 +164,40 @@ public class LoggingGUI extends JFrame {
         player = new SoundPlayerFX(audioQueue, timeStamp, currentAudioSource, time, playpauseBtn, 
         		performSaveQueue,this,audioProgressBar);
         
+        /*
+        textPane = new JTextPane();
+        noWrapPanel = new JPanel( new BorderLayout() );
+        noWrapPanel.add( textPane );
+        scrollPane = new JScrollPane( noWrapPanel );
+        scrollPane.setViewportView(textPane); // creates a wrapped scroll pane using the text pane as a viewport.
+        */
+        
+        
+        this.setSize(600, 400);
+        
         outputLog = new JTextPane();
         outputLog.setName("outputField");
         outputLog.setText("");
         outputLog.addHyperlinkListener(new TextPaneHyperLinkListener(audioQueue));
         outputLog.setEditable(false);
         outputLog.setFont(fixedWidthFont);
+        
 	    //HTMLDocument doc = new HTMLDocument();
 	    outputLog.setEditorKit(JEditorPane.createEditorKitForContentType("text/html"));
 	    //outputLog.setDocument(doc);
 	    //outputLog.setText("<a href='#'>C</a>");
 	    
-        this.outputLogDisplay = new OutputLogDisplayRunnable(outputQueue, commentFieldTxt, outputLog, time);
+        //displayPanel = new DisplayBox(); //this is the old version
+        displayScrollPane = new JScrollPane(outputLog);
+        displayScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        displayScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        displayScrollPane.setViewportView(outputLog);
+	    
+        this.outputLogDisplay = new OutputLogDisplayRunnable(outputQueue, commentFieldTxt, outputLog, displayScrollPane, time);
         this.menuController = new MenuController(menuQueue,this,audioQueue);
         
         contentPane = getContentPane();
         userPanel = new JPanel();
-        
-        //displayPanel = new DisplayBox(); //this is the old version
-        displayScrollPane = new JScrollPane(outputLog);
         
         //Configure slider
         int initialTime = 0;

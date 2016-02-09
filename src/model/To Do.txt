@@ -42,8 +42,6 @@ Critical bugs:
 -open audio dialog has same problem
 -NaN in length is a threading issue (not consistently reproduceable)
 -save vs. save as doesn't work
--clicking "save" after "save as" gives the no audio file loaded error
-	-getting no audio file loaded error (when audio file is loaded) on saving after save
 -help menu doesn't show anything after 
 -weird wrapping doesn't show line number
 -on entering new comment when scrolling, need to automatically scroll to the bottom
@@ -129,6 +127,8 @@ Done:
 -new is broken
 -broken on open when saved without an audio file - whole application freezes
 -New does not reset elapsed time
+-clicking "save" after "save as" gives the no audio file loaded error
+-getting no audio file loaded error (when audio file is loaded) on saving after save
 
 
 

@@ -6,12 +6,17 @@ import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.JViewport;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import javax.swing.text.html.HTMLDocument;
+
+import java.awt.Rectangle;
 
 import menu.PerformFileAction;
 import view.OutputArrayElement;
@@ -21,16 +26,19 @@ public class OutputLogDisplayRunnable implements Runnable {
 	private final BlockingQueue<String> outputQueue;
 	private final JTextField commentField;
 	protected final JTextPane logOutputField;
+	protected final JScrollPane scrollPane;
 	protected final AtomicInteger time;
 	private int count;
 	protected List<OutputArrayElement> lines; //internal structure to hold just the comments, in order
 	private boolean currentlyHighlighted;
 	public OutputLogDisplayHelper outputHelper;
 	
-	public OutputLogDisplayRunnable(BlockingQueue<String> outputQueue, JTextField commentField, JTextPane outputLog, AtomicInteger time) {
+	public OutputLogDisplayRunnable(BlockingQueue<String> outputQueue, JTextField commentField, JTextPane outputLog, JScrollPane scrollPane,
+			AtomicInteger time) {
 		this.outputQueue = outputQueue;
 		this.commentField = commentField;
 		this.logOutputField = outputLog;
+		this.scrollPane = scrollPane;
 		this.time = time;
 		this.count = 1;
 		this.lines = new ArrayList<OutputArrayElement>();
@@ -203,6 +211,19 @@ public class OutputLogDisplayRunnable implements Runnable {
 		}
 		Globals.log("newText: " + newText);
 		logOutputField.setText(newText);
+		
+		//scroll to bottom
+		
+		JViewport viewPort = scrollPane.getViewport();
+		/*
+		Rectangle r = new Rectangle(logOutputField.getWidth(), logOutputField.getHeight(), logOutputField.getWidth(), logOutputField.getHeight());
+		System.out.println(logOutputField.getHeight() + " " + logOutputField.getWidth());
+        scrollPane.scrollRectToVisible(r);
+		*/
+
+		
+		JScrollBar vertical = scrollPane.getVerticalScrollBar();
+		vertical.setValue( vertical.getMaximum() );
 	}
 	
 	//Overload for default text color and background

@@ -72,8 +72,8 @@ public class ExportLogActionListener implements ActionListener {
 				fileWriter.write(logText);
 				fileWriter.close();
 
-				JOptionPane.showMessageDialog(frame, "File created");
-				Globals.log("File successfully created.");
+				JOptionPane.showMessageDialog(frame, "File successfully exported");
+				Globals.log("File successfully exported");
 			} 
 			catch (FileNotFoundException e1) {
 				JOptionPane.showMessageDialog(frame, "Error creating file: File not found","Error",JOptionPane.ERROR_MESSAGE);
