@@ -86,6 +86,7 @@ public class OutputLogDisplayRunnable implements Runnable {
 	 */
 	protected synchronized void enterText() {
 		String comment = commentField.getText();
+		/*
 		if (comment.matches("(\\s*rm)|(\\s*rm\\s+.*)")) { //remove command, handle and don't add comment
 			comment = comment.trim();
 			String[] parts = comment.split("\\s+");
@@ -136,6 +137,7 @@ public class OutputLogDisplayRunnable implements Runnable {
 			writeArrayToField();
 		}
 		else { //comment, add like normal
+		*/
 			String out = "";
 			out += " <a href=\"http://" + time.get() + "\">" + time.get() + "</a>";
 			out += ": ";
@@ -149,7 +151,7 @@ public class OutputLogDisplayRunnable implements Runnable {
 			count++;
 			writeArrayToField(this.currentlyHighlighted);
 			//appendToField(out, null, new Color(255,255,0));
-		}
+		//}
 		commentField.setText("");
 	}
 

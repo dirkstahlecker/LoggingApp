@@ -7338,3 +7338,10 @@ message: playpause
 SoundPlayer: play
 message: playpause
 SoundPlayer: pause
+message: playpause
+SoundPlayer: play
+message: playpause
+SoundPlayer: pause
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://8">8</a>: test
+<br />
