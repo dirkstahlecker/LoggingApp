@@ -16,6 +16,8 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import javax.swing.text.html.HTMLDocument;
 
+import audio.SoundPlayerFX;
+
 import java.awt.Rectangle;
 
 import menu.PerformFileAction;
@@ -138,8 +140,10 @@ public class OutputLogDisplayRunnable implements Runnable {
 		}
 		else { //comment, add like normal
 		*/
+			
+			String currentTime = SoundPlayerFX.convertTime(time.get());
 			String out = "";
-			out += " <a href=\"http://" + time.get() + "\">" + time.get() + "</a>";
+			out += " <a href=\"http://" + currentTime + "\">" + currentTime + "</a>";
 			out += ": ";
 			out += comment;
 			out += '\n';

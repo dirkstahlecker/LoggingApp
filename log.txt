@@ -7345,3 +7345,49 @@ SoundPlayer: pause
 message: enter
 newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://8">8</a>: test
 <br />
+----------------------------------
+Started at 2016-02-17T20:49:49.063-05:00[America/New_York]
+Running outputLogDisplay
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/140309_02.WAV
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@2bba38e2
+Player configured
+~~~Illegal argument in progress bar
+~~~length: NaN
+~~~rawLength: NaN
+Finished with setupAudio
+message: playpause
+SoundPlayer: play
+message: playpause
+SoundPlayer: pause
+message: playpause
+SoundPlayer: play
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0:18">0:18</a>: test
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0:18">0:18</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0:55">0:55</a>: dsz
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0:18">0:18</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0:55">0:55</a>: dsz
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://1:1">1:1</a>: s
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0:18">0:18</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0:55">0:55</a>: dsz
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://1:1">1:1</a>: s
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://1:3">1:3</a>: fswff
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0:18">0:18</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0:55">0:55</a>: dsz
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://1:1">1:1</a>: s
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://1:3">1:3</a>: fswff
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://1:6">1:6</a>: sfDfsd
+<br />

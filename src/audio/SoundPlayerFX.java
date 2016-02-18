@@ -397,7 +397,7 @@ public class SoundPlayerFX implements Runnable {
 	 * @param time time in seconds
 	 * @return time in minutes:seconds
 	 */
-	private synchronized String convertTime(double time) {
+	public static synchronized String convertTime(double time) {
 		int minutes;
 		int seconds;
 		minutes = (int)time / 60;
