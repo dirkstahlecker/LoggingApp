@@ -141,9 +141,8 @@ public class OutputLogDisplayRunnable implements Runnable {
 		else { //comment, add like normal
 		*/
 			
-			String currentTime = SoundPlayerFX.convertTime(time.get());
 			String out = "";
-			out += " <a href=\"http://" + currentTime + "\">" + currentTime + "</a>";
+			out += " <a href=\"http://" + time.get() + "\">" + SoundPlayerFX.convertTime(time.get()) + "</a>";
 			out += ": ";
 			out += comment;
 			out += '\n';

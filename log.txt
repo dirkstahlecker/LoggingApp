@@ -7391,3 +7391,47 @@ newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0:18">0:18</a>: test
 <br />4&nbsp;&nbsp;&nbsp;:  <a href="http://1:3">1:3</a>: fswff
 <br />5&nbsp;&nbsp;&nbsp;:  <a href="http://1:6">1:6</a>: sfDfsd
 <br />
+----------------------------------
+Started at 2016-02-17T20:53:00.372-05:00[America/New_York]
+Running outputLogDisplay
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/140309_02.WAV
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@6449f481
+Player configured
+~~~Illegal argument in progress bar
+~~~length: NaN
+~~~rawLength: NaN
+Finished with setupAudio
+message: playpause
+SoundPlayer: play
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0:3">0:3</a>: adkjalsk
+<br />
+Parsed hyperlink number: 0:3
+message: seek
+----------------------------------
+Started at 2016-02-17T20:53:45.093-05:00[America/New_York]
+Running outputLogDisplay
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/140309_02.WAV
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@6e0f0fea
+Player configured
+~~~Illegal argument in progress bar
+~~~length: NaN
+~~~rawLength: NaN
+Finished with setupAudio
+message: playpause
+SoundPlayer: play
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://1">0:1</a>: test
+<br />
+Parsed hyperlink number: 1
+message: seek
