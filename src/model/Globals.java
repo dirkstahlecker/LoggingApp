@@ -46,7 +46,7 @@ public class Globals {
 		   try {writer.close();} catch (Exception ex) {}
 		}
 		 */
-		
+		/*
 		try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(currentDir + filename, true)))) {
 		    if (err) {
 		    	out.println("~~~" + msg); //something to indicate an error ocurred 
@@ -56,7 +56,7 @@ public class Globals {
 		    }
 		}catch (IOException e) {
 		    //exception handling left as an exercise for the reader
-		}
+		}*/
 	}
 	
 	/**

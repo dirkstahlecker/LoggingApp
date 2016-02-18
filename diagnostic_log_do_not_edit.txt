@@ -63,3 +63,25 @@ message: clear
 message: enter
 newText: 1&nbsp;&nbsp;&nbsp;>  <a href="http://0">0:0</a>> test
 <br />
+----------------------------------
+Started at 2016-02-18T00:04:51.753-05:00[America/New_York]
+Running outputLogDisplay
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;>  <a href="http://0">0:0</a>> test
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;>  <a href="http://0">0:0</a>> test
+<br />2&nbsp;&nbsp;&nbsp;>  <a href="http://0">0:0</a>> spaces
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;>  <a href="http://0">0:0</a>> test
+<br />2&nbsp;&nbsp;&nbsp;>  <a href="http://0">0:0</a>> spaces
+<br />3&nbsp;&nbsp;&nbsp;>  <a href="http://0">0:0</a>> with actual spaces
+<br />
+Exporting file with extension .txt
+File contents:
+
+1&gt; 0: 0&gt; test
+2&gt; 0: 0&gt;spaces
+3&gt; 0: 0&gt; with actualspaces
+path: /Users/Dirk/Desktop/export test.txt
