@@ -1,0 +1,65 @@
+----------------------------------
+Started at 2016-02-17T23:40:32.843-05:00[America/New_York]
+Running outputLogDisplay
+----------------------------------
+Started at 2016-02-17T23:41:32.995-05:00[America/New_York]
+Running outputLogDisplay
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/140309_02.WAV
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@2bba38e2
+Player configured
+Finished with setupAudio
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0:0</a>: test
+<br />
+message: playpause
+SoundPlayer: play
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0:0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://2">0:2</a>: test
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0:0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://2">0:2</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://5">0:5</a>: testing
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0:0</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://2">0:2</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://5">0:5</a>: testing
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://9">0:9</a>: more testing lines
+<br />
+message: playpause
+SoundPlayer: pause
+----------------------------------
+Started at 2016-02-17T23:44:47.366-05:00[America/New_York]
+Running outputLogDisplay
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0:0</a>> test
+<br />
+----------------------------------
+Started at 2016-02-17T23:47:52.776-05:00[America/New_York]
+Running outputLogDisplay
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0:0</a>> test
+<br />
+----------------------------------
+Started at 2016-02-17T23:48:08.069-05:00[America/New_York]
+Running outputLogDisplay
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0:0</a>> as
+<br />
+----------------------------------
+Started at 2016-02-17T23:49:06.273-05:00[America/New_York]
+Running outputLogDisplay
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;>  <a href="http://0">0:0</a>> asdf
+<br />
+message: clear
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;>  <a href="http://0">0:0</a>> test
+<br />

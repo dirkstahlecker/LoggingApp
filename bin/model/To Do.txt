@@ -44,7 +44,6 @@ Critical bugs:
 -save vs. save as doesn't work
 -help menu doesn't show anything after 
 -on entering new comment when scrolling, need to automatically scroll to the bottom
--during export, there are no spaces in the comments
 
 
 Bugs:
@@ -58,6 +57,7 @@ Bugs:
 -FileDialogClass has Apple specific stuff
 -jumpy when redrawing all lines on entering text 
 -change time indicators to hours:minutes:seconds
+-change colons to different separators in log text
 
 Problems to consider:
 -holding focus when typing
@@ -132,6 +132,7 @@ Done:
 -log doesn't wrap lines
 -weird wrapping doesn't show line number
 -change time indicator to minutes:seconds
+-during export, there are no spaces in the comments
 
 
 

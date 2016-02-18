@@ -11,7 +11,7 @@ import java.io.Writer;
 
 public class Globals {
 	
-	private static String filename = "/log.txt";
+	private static String filename = "/diagnostic_log_do_not_edit.txt";
 	
 	/**
 	 * Log a message to both the console (if debug is enabled) and to the log file

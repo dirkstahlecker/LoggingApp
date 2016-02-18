@@ -143,7 +143,7 @@ public class OutputLogDisplayRunnable implements Runnable {
 			
 			String out = "";
 			out += " <a href=\"http://" + time.get() + "\">" + SoundPlayerFX.convertTime(time.get()) + "</a>";
-			out += ": ";
+			out += Constants.SEPARATOR;
 			out += comment;
 			out += '\n';
 
@@ -171,7 +171,7 @@ public class OutputLogDisplayRunnable implements Runnable {
 		for (String line : newLines) {
 			String out = "";
 			out += time.get();
-			out += ": ";
+			out += Constants.SEPARATOR;
 			out += line;
 			out += '\n';
 
@@ -260,6 +260,6 @@ public class OutputLogDisplayRunnable implements Runnable {
 			diff = 0;
 		for (int i = 0; i < diff; i++) 
 			out += "&nbsp;";
-		return out + ": ";
+		return out + Constants.SEPARATOR;
 	}
 }
