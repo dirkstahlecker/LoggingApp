@@ -57,7 +57,8 @@ Bugs:
 -FileDialogClass has Apple specific stuff
 -jumpy when redrawing all lines on entering text 
 -change time indicators to hours:minutes:seconds
--change colons to different separators in log text
+-replacing special html characters with printable characters in log output is not robust at all
+
 
 Problems to consider:
 -holding focus when typing
@@ -133,6 +134,7 @@ Done:
 -weird wrapping doesn't show line number
 -change time indicator to minutes:seconds
 -during export, there are no spaces in the comments
+-change colons to different separators in log text
 
 
 

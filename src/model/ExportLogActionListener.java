@@ -38,6 +38,7 @@ public class ExportLogActionListener implements ActionListener {
 		logText = logText.replaceAll("<br>","\n");
 		logText = logText.replaceAll("\\<[^>]*>","");
 		logText = logText.replaceAll("&#160;","");
+		logText = logText.replaceAll("&gt;",">");
 		logText = logText.trim();
 		Globals.log("File contents:\n");
 		Globals.log(logText);

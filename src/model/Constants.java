@@ -15,7 +15,7 @@ public class Constants {
 	public static final String SEPARATOR = "> ";
 	public static final Color YELLOW = new Color(255,255,0);
 	public static final Color WHITE = new Color(255,255,255);
-	public static final double VERSION = 0.21;
+	public static final double VERSION = 0.22;
 	
 	public static enum FileAction {
 		OPEN, SAVE, SAVE_AS, NEW, UPDATE_PREFS
