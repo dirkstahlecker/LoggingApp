@@ -67,7 +67,7 @@ public class ExportLogActionListener implements ActionListener {
 			if (extension.equals(".xls") || extension.equals(".xlsx")) {
 				logText = logText.replaceAll(":", "\t"); //tabs create new column in excel
 			}
-			
+			/*
 			try {
 				PrintWriter fileWriter = new PrintWriter(file,"UTF-8");
 
@@ -84,7 +84,7 @@ public class ExportLogActionListener implements ActionListener {
 			catch (UnsupportedEncodingException e1) {
 				JOptionPane.showMessageDialog(frame, "Error creating file: Unsupported encoding","Error",JOptionPane.ERROR_MESSAGE);
 				Globals.log("Export failed with unsupported encoding error");
-			}
+			}*/
 		}
 	}
 }
