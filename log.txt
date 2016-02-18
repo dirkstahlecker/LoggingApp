@@ -7219,3 +7219,122 @@ newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdfasf asfa sdas a sfa 
 ----------------------------------
 Started at 2016-02-17T20:05:32.421-05:00[America/New_York]
 Running outputLogDisplay
+----------------------------------
+Started at 2016-02-17T20:14:18.014-05:00[America/New_York]
+Running outputLogDisplay
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/140309_02.WAV
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@21128575
+Player configured
+Finished with setupAudio
+message: playpause
+SoundPlayer: play
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://30">30</a>: test
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://30">30</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://78">78</a>: test
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://30">30</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://78">78</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://689">689</a>: test
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://30">30</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://78">78</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://689">689</a>: test
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://691">691</a>: aslkjdf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://30">30</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://78">78</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://689">689</a>: test
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://691">691</a>: aslkjdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://692">692</a>: al;skdjf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://30">30</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://78">78</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://689">689</a>: test
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://691">691</a>: aslkjdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://692">692</a>: al;skdjf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://693">693</a>: a;lskdjf
+<br />
+message: enter
+newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://30">30</a>: test
+<br />2&nbsp;&nbsp;&nbsp;:  <a href="http://78">78</a>: test
+<br />3&nbsp;&nbsp;&nbsp;:  <a href="http://689">689</a>: test
+<br />4&nbsp;&nbsp;&nbsp;:  <a href="http://691">691</a>: aslkjdf
+<br />5&nbsp;&nbsp;&nbsp;:  <a href="http://692">692</a>: al;skdjf
+<br />6&nbsp;&nbsp;&nbsp;:  <a href="http://693">693</a>: a;lskdjf
+<br />7&nbsp;&nbsp;&nbsp;:  <a href="http://693">693</a>: alksjdfk
+<br />
+----------------------------------
+Started at 2016-02-17T20:28:13.790-05:00[America/New_York]
+----------------------------------
+Started at 2016-02-17T20:28:13.790-05:00[America/New_York]
+Running outputLogDisplay
+Running outputLogDisplay
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/140309_02.WAV
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@37d7aeb4
+Player configured
+~~~Illegal argument in progress bar
+~~~length: NaN
+~~~rawLength: NaN
+Finished with setupAudio
+message: playpause
+SoundPlayer: play
+----------------------------------
+Started at 2016-02-17T20:29:18.524-05:00[America/New_York]
+Running outputLogDisplay
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/140309_02.WAV
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@44abcbd6
+Player configured
+Finished with setupAudio
+----------------------------------
+Started at 2016-02-17T20:29:38.169-05:00[America/New_York]
+Running outputLogDisplay
+--------------------
+--------------------
+Opening file:
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/140309_02.WAV
+filePath: /Users/Dirk/Desktop/140309_02.WAV
+RIFF� 
+Invalid file! Breaking in case 1
+audioFilePath: null
+playbackPosition: 
+----------------------------------
+Started at 2016-02-17T20:31:17.609-05:00[America/New_York]
+Running outputLogDisplay
+Trace in File Dialog Class:
+outputFilePath: /Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI(): file:/Users/Dirk/Desktop/140309_02.WAV
+outputFilePath.toURI().toString(): file:/Users/Dirk/Desktop/140309_02.WAV
+message: init
+Audio source: file:/Users/Dirk/Desktop/140309_02.WAV
+audioPlayer: javafx.scene.media.MediaPlayer@3b4860b
+Player configured
+Finished with setupAudio
+message: playpause
+SoundPlayer: play
+message: playpause
+SoundPlayer: pause

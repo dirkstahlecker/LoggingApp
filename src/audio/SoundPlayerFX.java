@@ -370,9 +370,8 @@ public class SoundPlayerFX implements Runnable {
 		else {
 			currentTime = 0;
 		}
-		String timeStr = convertTime(currentTime);
 		
-		timeStamp.setText("     " + timeStr + "/" + length);
+		timeStamp.setText("     " + convertTime(currentTime) + "/" + convertTime(length));
 		time.set((int) currentTime);
 		try {
 			audioProgressBar.setValue((int)currentTime);
