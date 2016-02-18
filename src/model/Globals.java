@@ -80,7 +80,7 @@ public class Globals {
 		return "This app helps radio logging by automatically timestamping comments and offering other features.\n"
 				+ "Type in the comment box, then click \"Enter Text\" or press enter to submit text to the log\n"
 				+ "Clicking on a timestamp in the log will jump to that point in the audio file.\n"
-				+ "Change the playback rate of the audio in the \"Options\" menu.\n"
+				+ "Change the playback rate of the audio in the \"Audio\" menu.\n"
 				+ "Click \"Open Audio\" to import an audio file\n"
 				+ "Clicking \"Fast Forward\" or \"Rewind\" moves the audio file forward or backward an amount set by the gain.\n"
 				+ "You can change the gain in its respective menu.\n"

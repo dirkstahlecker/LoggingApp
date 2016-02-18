@@ -31,11 +31,13 @@ public class ExportLogActionListener implements ActionListener {
 		Globals.log("Exporting file with extension " + extension);
 		String logText = log.getText();
 		//remove html and tabs, replace with single space after colon
-		logText = logText.replaceAll("\\n|\\s","");
+		//logText = logText.replaceAll("\\n|\\s","");
+		logText = logText.replaceAll("\\n","");
+		logText = logText.replaceAll("\\s\\s+","");
+		logText = logText.replaceAll(":",": ");
 		logText = logText.replaceAll("<br>","\n");
 		logText = logText.replaceAll("\\<[^>]*>","");
 		logText = logText.replaceAll("&#160;","");
-		logText = logText.replaceAll(":",": ");
 		logText = logText.trim();
 		Globals.log("File contents:\n");
 		Globals.log(logText);
