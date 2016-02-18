@@ -88,7 +88,7 @@ public class Globals {
 				+ "Exporting a project saves the log to a file format of your choosing.\n"
 				//+ "Clicking \"Highlight\" will highlights whatever text you enter. There is no way to highlight after entering.\n"
 				+ "\nReminder: There is no autosave feature. Save frequently, because if the app crashes it can't recover your log.\n"
-				+ "Java 7 is required for the proper function of this application.";
+				+ "Java 7 or higher is required for the proper function of this application.";
 	}
 	
 	/**

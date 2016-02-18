@@ -159,21 +159,12 @@ public class LoggingGUI extends JFrame {
         
         audioQueue = new LinkedBlockingQueue<String[]>();
         outputQueue = new LinkedBlockingQueue<String>();
-        menuQueue = new LinkedBlockingQueue<String[]>(); //TODO: I don't think menuQueue does anythings
+        menuQueue = new LinkedBlockingQueue<String[]>(); //TODO: I don't think menuQueue does anything
         performSaveQueue = new LinkedBlockingQueue<String[]>();
         player = new SoundPlayerFX(audioQueue, timeStamp, currentAudioSource, time, playpauseBtn, 
         		performSaveQueue,this,audioProgressBar);
         
-        /*
-        textPane = new JTextPane();
-        noWrapPanel = new JPanel( new BorderLayout() );
-        noWrapPanel.add( textPane );
-        scrollPane = new JScrollPane( noWrapPanel );
-        scrollPane.setViewportView(textPane); // creates a wrapped scroll pane using the text pane as a viewport.
-        */
-        
-        
-        this.setSize(600, 400);
+        this.setSize(750, 400);
         
         outputLog = new JTextPane();
         outputLog.setName("outputField");

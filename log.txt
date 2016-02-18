@@ -7216,3 +7216,6 @@ message: enter
 newText: 1&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdfasf asfa sdas a sfa sfas asd sdfasf asfa sdas a sfa sfas asd sdfasf asfa sdas a sfa sfas asd sdfasf asfa sdas a sfa sfas asd 
 <br />2&nbsp;&nbsp;&nbsp;:  <a href="http://0">0</a>: sdfasf asfa sdas a sfa sfas asd sdfasf asfa sdas a sfa sfas asd sdfasf asfa sdas a sfa sfas asd sdfasf asfa sdas a sfa sfas asd sdfasf asfa sdas a sfa sfas asd sdfasf asfa sdas a sfa sfas asd sdfasf asfa sdas a sfa sfas asd sdfasf asfa sdas a sfa sfas asd sdfasf asfa sdas a sfa sfas asd 
 <br />
+----------------------------------
+Started at 2016-02-17T20:05:32.421-05:00[America/New_York]
+Running outputLogDisplay

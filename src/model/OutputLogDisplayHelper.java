@@ -26,7 +26,7 @@ public class OutputLogDisplayHelper{
 
 	/**
 	 * Used to enter a string directly into the pane
-	 * Does not additional markup on it; enters exactly as passed
+	 * Does no additional markup on it; enters exactly as passed
 	 * @param textIn String to enter
 	 */
 	public synchronized void enterTextNoAdditionalMarkup(String textIn) {

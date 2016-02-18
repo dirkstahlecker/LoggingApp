@@ -89,7 +89,8 @@ public class SoundPlayerFX implements Runnable {
 			
 			Duration rawDuration = new Duration(0);
 			double rawLength = rawDuration.toSeconds();
-			length = convertTime(rawLength);
+			//length = convertTime(rawLength);
+			length = rawLength;
 			
 			SetupUtils.setTimeStampText(timeStamp, startTime * 1000, length);
 			
@@ -139,7 +140,8 @@ public class SoundPlayerFX implements Runnable {
 			audioPlayer.play();
 			Duration rawDuration = audioPlayer.getTotalDuration();
 			double rawLength = rawDuration.toSeconds();
-			length = convertTime(rawLength);
+			//length = convertTime(rawLength);
+			length = rawLength;
 			audioPlayer.stop();
 			
 			seek(startTime * 10000);
@@ -368,9 +370,9 @@ public class SoundPlayerFX implements Runnable {
 		else {
 			currentTime = 0;
 		}
-		currentTime = convertTime(currentTime);
+		String timeStr = convertTime(currentTime);
 		
-		timeStamp.setText("     " + currentTime + "/" + length);
+		timeStamp.setText("     " + timeStr + "/" + length);
 		time.set((int) currentTime);
 		try {
 			audioProgressBar.setValue((int)currentTime);
@@ -391,8 +393,18 @@ public class SoundPlayerFX implements Runnable {
 		return audioPlayer.getCurrentTime().toSeconds();
 	}
 	
-	private synchronized double convertTime(double time) {
-		return time;
+	/**
+	 * Convert time from seconds to minutes:seconds
+	 * @param time time in seconds
+	 * @return time in minutes:seconds
+	 */
+	private synchronized String convertTime(double time) {
+		int minutes;
+		int seconds;
+		minutes = (int)time / 60;
+		seconds = (int)time % 60;
+		
+		return minutes + ":" + seconds;
 	}
 	
 	private synchronized void addInfoToQueue() {
