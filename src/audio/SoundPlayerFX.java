@@ -400,10 +400,18 @@ public class SoundPlayerFX implements Runnable {
 	public static synchronized String convertTime(double time) {
 		int minutes;
 		int seconds;
+		
 		minutes = (int)time / 60;
 		seconds = (int)time % 60;
 		
-		return minutes + ":" + seconds;
+		if (seconds < 10) {
+			return minutes + ":0" + seconds;
+		}
+		else {
+			return minutes + ":" + seconds;
+		}
+		
+		//return minutes + ":" + seconds;//(seconds < 10 ? '0' + seconds : seconds);
 	}
 	
 	private synchronized void addInfoToQueue() {

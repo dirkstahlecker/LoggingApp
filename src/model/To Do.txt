@@ -17,6 +17,7 @@ Good:
 -make main display box vertically draggable in size
 -save playback rate (?)
 -make preferences do something
+-add a title
 
 Extra:
 -html output
@@ -58,6 +59,7 @@ Bugs:
 -jumpy when redrawing all lines on entering text 
 -change time indicators to hours:minutes:seconds
 -replacing special html characters with printable characters in log output is not robust at all
+-add zero padding to single-digit seconds (1:9 -> 1:09)
 
 
 Problems to consider:
